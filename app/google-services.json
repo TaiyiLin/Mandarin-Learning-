@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "969358936395",
+    "firebase_url": "https://mandarin-learning.firebaseio.com",
+    "project_id": "mandarin-learning",
+    "storage_bucket": "mandarin-learning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:969358936395:android:75ac49189d20b6981ec0ce",
+        "android_client_info": {
+          "package_name": "com.taiyilin.mandarinlearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "969358936395-pqtql4fi47q0fns0alpk62slgih75rkc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3e-_68EGlJD0CjnT0vDOVxw8F3j7Q8z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "969358936395-pqtql4fi47q0fns0alpk62slgih75rkc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
