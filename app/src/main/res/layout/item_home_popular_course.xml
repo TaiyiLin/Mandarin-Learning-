@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp">
+
+    <!-- //Base CardView-->
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/base_cardView"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!--    //This is a constraintlayout for the entire CardView including the expandable portion-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F5EBE4">
+
+
+            <!--//This is a ConstraintLayout for the fixed portion of the CardView. The elements that lie within the fixed portion of the CardView  can be constrained to this layout.-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fixed_layout"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/course_cover"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/gradation"
+                    app:layout_constraintDimensionRatio="H,3:2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/course_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/inconsolata"
+                    android:text="Course Title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/course_cover" />
+
+                <soup.neumorphism.NeumorphButton
+                    android:id="@+id/button"
+                    style="@style/Widget.Neumorph.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Learn more"
+                    android:fontFamily="@font/inconsolata"
+                    android:textAllCaps="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!--        //The following is the expandable portion whose visibility is initially set to "gone" -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/hidden_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
+
+
+                <TextView
+                    android:id="@+id/about_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/inconsolata"
+                    android:text="About"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/course_description"
+                    android:layout_width="224dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/inconsolata"
+                    android:text="This is a description. This is a description. This is a description. This is a description."
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/about_title" />
+
+                <TextView
+                    android:id="@+id/review_title"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/inconsolata"
+                    android:text="Review"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/course_description" />
+
+                <ImageView
+                    android:id="@+id/star_01"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintStart_toStartOf="@+id/review_title"
+                    app:layout_constraintTop_toBottomOf="@+id/review_title"
+                    app:srcCompat="@drawable/ic_star_full_24" />
+
+                <ImageView
+                    android:id="@+id/star_02"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/star_01"
+                    app:layout_constraintTop_toTopOf="@+id/star_01"
+                    app:srcCompat="@drawable/ic_star_full_24" />
+
+                <ImageView
+                    android:id="@+id/star_03"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/star_02"
+                    app:layout_constraintTop_toTopOf="@+id/star_02"
+                    app:srcCompat="@drawable/ic_star_full_24" />
+
+                <ImageView
+                    android:id="@+id/star_04"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/star_03"
+                    app:layout_constraintTop_toTopOf="@+id/star_03"
+                    app:srcCompat="@drawable/ic_star_full_24" />
+
+                <ImageView
+                    android:id="@+id/star_05"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/star_04"
+                    app:layout_constraintTop_toTopOf="@+id/star_04"
+                    app:srcCompat="@drawable/ic_star_half_24" />
+
+                <TextView
+                    android:id="@+id/rating_avg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/inconsolata"
+                    android:text="4.5"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintEnd_toStartOf="@+id/rating_total"
+                    app:layout_constraintTop_toTopOf="@+id/rating_total" />
+
+                <TextView
+                    android:id="@+id/rating_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/inconsolata"
+                    android:text="(123)"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintEnd_toEndOf="@+id/review_title"
+                    app:layout_constraintTop_toBottomOf="@+id/review_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_review"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginTop="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@+id/star_05"
+                    tools:layout_editor_absoluteX="16dp">
+                    <!--                    app:products="@{viewModel.products}"-->
+
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </soup.neumorphism.NeumorphCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning
+package com.taiyilin.mandarinlearning.data
 
 import com.google.firebase.Timestamp
 
