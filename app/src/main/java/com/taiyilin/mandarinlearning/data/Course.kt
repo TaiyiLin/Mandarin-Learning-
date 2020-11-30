@@ -4,9 +4,9 @@ import com.google.firebase.Timestamp
 
 data class Course(
 
-    var id: String = "",
+    var id: String,
 
-    var name: String = "",
+    var name: String,
 
     var level: String = "",
 

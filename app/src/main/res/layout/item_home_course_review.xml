@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/card_review"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:neumorph_shapeType="pressed">
+
+        <!--//This is the constraintLayout inside the cardView-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_inside_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="159dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
+<!--            app:layout_constraintBottom_toBottomOf="constraint_card_view"-->
+
+            <soup.neumorphism.NeumorphImageButton
+                android:id="@+id/basin_image_view_user"
+                style="@style/Widget.Neumorph.ImageButton"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_face_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:neumorph_shapeType="basin" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/inconsolata"
+                android:text="UserName"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/basin_image_view_user"
+                app:layout_constraintTop_toTopOf="@+id/basin_image_view_user" />
+
+            <ImageView
+                android:id="@+id/star_01"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/basin_image_view_user"
+                app:layout_constraintStart_toEndOf="@+id/basin_image_view_user"
+                app:layout_constraintTop_toTopOf="@+id/basin_image_view_user"
+                app:srcCompat="@drawable/ic_star_full_24" />
+
+            <ImageView
+                android:id="@+id/star_02"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintStart_toEndOf="@+id/star_01"
+                app:layout_constraintTop_toTopOf="@+id/star_01"
+                app:srcCompat="@drawable/ic_star_full_24" />
+
+            <ImageView
+                android:id="@+id/star_03"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintStart_toEndOf="@+id/star_02"
+                app:layout_constraintTop_toTopOf="@+id/star_02"
+                app:srcCompat="@drawable/ic_star_full_24" />
+
+            <ImageView
+                android:id="@+id/star_04"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintStart_toEndOf="@+id/star_03"
+                app:layout_constraintTop_toTopOf="@+id/star_03"
+                app:srcCompat="@drawable/ic_star_full_24" />
+
+            <ImageView
+                android:id="@+id/star_05"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintStart_toEndOf="@+id/star_04"
+                app:layout_constraintTop_toTopOf="@+id/star_04"
+                app:srcCompat="@drawable/ic_star_half_24" />
+
+            <TextView
+                android:id="@+id/textView_comment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/inconsolata"
+                android:text="yyyy/mm/dd"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/user_name"
+                app:layout_constraintStart_toEndOf="@+id/user_name"
+                app:layout_constraintTop_toTopOf="@+id/user_name" />
+
+            <TextView
+                android:id="@+id/textView_comment_context"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/inconsolata"
+                android:text="I highly recommend it. I highly recommend it. I highly recommend it. I highly recommend it. I highly recommend it. I highly recommend it. I highly recommend it."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/basin_image_view_user" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </soup.neumorphism.NeumorphCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
