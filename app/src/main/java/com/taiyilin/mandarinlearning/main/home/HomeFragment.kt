@@ -1,15 +1,13 @@
-package com.taiyilin.mandarinlearning.ui.home
+package com.taiyilin.mandarinlearning.main.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.databinding.FragmentHomeBinding

@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning.ui.home
+package com.taiyilin.mandarinlearning.main.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

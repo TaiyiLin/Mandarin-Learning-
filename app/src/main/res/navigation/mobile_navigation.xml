@@ -7,19 +7,28 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.taiyilin.mandarinlearning.ui.home.HomeFragment"
+        android:name="com.taiyilin.mandarinlearning.main.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.taiyilin.mandarinlearning.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.taiyilin.mandarinlearning.ui.profile.ProfileFragment"
+        android:name="com.taiyilin.mandarinlearning.main.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_classroom"
+        android:name="com.taiyilin.mandarinlearning.main.classroom.ClassroomFragment"
+        android:label="Classroom"
+        tools:layout="@layout/fragment_classroom" />
+    <fragment
+        android:id="@+id/sentenceReorderingFragment"
+        android:name="com.taiyilin.mandarinlearning.SentenceReorderingFragment"
+        android:label="fragment_sentence_reordering"
+        tools:layout="@layout/fragment_sentence_reordering" />
+    <fragment
+        android:id="@+id/pictureDescriptionFragment"
+        android:name="com.taiyilin.mandarinlearning.PictureDescription.PictureDescriptionFragment"
+        android:label="fragment_picture_description"
+        tools:layout="@layout/fragment_picture_description" />
 </navigation>

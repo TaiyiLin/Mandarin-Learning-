@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent">
             <!--        android:layout_width="280dp"-->
 
-            <!--    //This is a constraintlayout for the entire CardView including the expandable portion-->
+            <!--//This is a constraintlayout for the entire CardView including the expandable portion-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

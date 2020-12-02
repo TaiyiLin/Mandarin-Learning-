@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#F8F8FC"
-        tools:context=".ui.home.HomeFragment">
+        tools:context=".main.home.HomeFragment">
+<!--        android:background="#F8F8FC"-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -47,6 +48,7 @@
                         android:background="#F8F8FC"
                         android:fontFamily="@font/inconsolata"
                         android:hint="Search"
+                        android:letterSpacing="0.2"
                         android:singleLine="true"
                         android:textColor="#BDC1C9" />
                 </soup.neumorphism.NeumorphCardView>

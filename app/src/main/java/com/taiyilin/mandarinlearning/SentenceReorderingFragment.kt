@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning.ui.profile
+package com.taiyilin.mandarinlearning
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,27 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.taiyilin.mandarinlearning.R
 
-class ProfileFragment : Fragment() {
+class SentenceReorderingFragment : Fragment() {
 
     companion object {
-        fun newInstance() =
-            ProfileFragment()
+        fun newInstance() = SentenceReorderingFragment()
     }
 
-    private lateinit var viewModel: ProfileViewModel
+    private lateinit var viewModel: SentenceReorderingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_sentence_reordering, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SentenceReorderingViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

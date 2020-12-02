@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning.ui.profile
+package com.taiyilin.mandarinlearning.main.profile
 
 import androidx.lifecycle.ViewModel
 

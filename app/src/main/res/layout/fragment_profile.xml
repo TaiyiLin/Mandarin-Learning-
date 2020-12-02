@@ -5,24 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F8F8FC"
-    tools:context=".ui.profile.ProfileFragment">
-
-    <!--        imageUrl="@{data.images[0]}"-->
-
-    <!--    <soup.neumorphism.NeumorphTextView-->
-    <!--        android:id="@+id/text_user_name"-->
-    <!--        style="@style/Widget.Neumorph.TextView"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:fontFamily="@font/inconsolata_bold"-->
-    <!--        android:text="Auntie Hsu"-->
-    <!--        android:textColor="#000000"-->
-    <!--        android:textSize="20sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.497"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/user_image" />-->
+    tools:context=".main.profile.ProfileFragment">
 
     <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/user_image"
@@ -56,8 +39,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/inconsolata_bold"
-            android:text="Auntie Lin"
             android:letterSpacing="0.1"
+            android:text="Auntie Lin"
             android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -71,8 +54,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/inconsolata"
-        android:text="ABOUT"
         android:letterSpacing="0.3"
+        android:text="ABOUT"
         android:textColor="@color/gray"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -88,11 +71,84 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/inconsolata"
-        android:textSize="20dp"
         android:text="I am Auntie Lin. I am a mandarin teacher. I am Auntie Lin. I am a mandarin teacher. I am Auntie Lin. I am a mandarin teacher."
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_profile_about" />
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/card_create_course"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/card_classes_n_feedback"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_profile_description">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_create_new"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradation_top_to_bottom_blue"
+                android:fontFamily="@font/inconsolata_bold"
+                android:gravity="center"
+                android:lineSpacingExtra="8sp"
+                android:text="CREATE &#10; A &#10; NEW &#10; CLASS"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </soup.neumorphism.NeumorphCardView>
+
+
+    <soup.neumorphism.NeumorphCardView
+        android:id="@+id/card_classes_n_feedback"
+        style="@style/Widget.Neumorph.CardView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/card_create_course"
+        app:layout_constraintTop_toBottomOf="@+id/text_profile_description">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/text_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradation_top_to_bottom_green"
+            android:fontFamily="@font/inconsolata_bold"
+            android:gravity="center"
+            android:lineSpacingExtra="8sp"
+            android:text="MY &#10; CLASSES &#10; AND &#10; FEEDBACK"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>/>
+    </soup.neumorphism.NeumorphCardView>
+
 
     <soup.neumorphism.NeumorphButton
         android:id="@+id/button"
@@ -106,7 +162,6 @@
         android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
