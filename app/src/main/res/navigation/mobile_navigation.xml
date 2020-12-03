@@ -23,12 +23,12 @@
         tools:layout="@layout/fragment_classroom" />
     <fragment
         android:id="@+id/sentenceReorderingFragment"
-        android:name="com.taiyilin.mandarinlearning.SentenceReorderingFragment"
+        android:name="com.taiyilin.mandarinlearning.sentenceReordering.SentenceReorderingFragment"
         android:label="fragment_sentence_reordering"
         tools:layout="@layout/fragment_sentence_reordering" />
     <fragment
         android:id="@+id/pictureDescriptionFragment"
-        android:name="com.taiyilin.mandarinlearning.PictureDescription.PictureDescriptionFragment"
+        android:name="com.taiyilin.mandarinlearning.pictureDescription.PictureDescriptionFragment"
         android:label="fragment_picture_description"
         tools:layout="@layout/fragment_picture_description" />
 </navigation>

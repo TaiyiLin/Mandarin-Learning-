@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning.PictureDescription
+package com.taiyilin.mandarinlearning.sentenceReordering
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -8,25 +8,25 @@ import android.view.View
 import android.view.ViewGroup
 import com.taiyilin.mandarinlearning.R
 
-class PictureDescriptionFragment : Fragment() {
+class SentenceReorderingFragment : Fragment() {
 
     companion object {
         fun newInstance() =
-            PictureDescriptionFragment()
+            SentenceReorderingFragment()
     }
 
-    private lateinit var viewModel: PictureDescriptionViewModel
+    private lateinit var viewModel: SentenceReorderingViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_picture_description, container, false)
+        return inflater.inflate(R.layout.fragment_sentence_reordering, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(PictureDescriptionViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SentenceReorderingViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

@@ -62,7 +62,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
-                        android:text="Course Title"
+                        android:text="@{recomdNPopCourse.name}"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -79,7 +79,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <soup.neumorphism.NeumorphButton
-                        android:id="@+id/button"
+                        android:id="@+id/btnLearnMore"
                         style="@style/Widget.Neumorph.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,10 +98,10 @@
                     android:id="@+id/hidden_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fixed_layout">
-                    <!--                android:visibility="gone"-->
 
 
                     <TextView

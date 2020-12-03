@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning.PictureDescription
+package com.taiyilin.mandarinlearning.pictureDescription
 
 import androidx.lifecycle.ViewModel
 

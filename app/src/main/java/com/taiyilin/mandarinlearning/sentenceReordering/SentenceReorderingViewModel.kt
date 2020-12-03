@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning
+package com.taiyilin.mandarinlearning.sentenceReordering
 
 import androidx.lifecycle.ViewModel
 

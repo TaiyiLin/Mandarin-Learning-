@@ -15,7 +15,4 @@
     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
     tools:listitem="@layout/item_classroom_selected_courses"/>
 
-
-
-    
 </androidx.constraintlayout.widget.ConstraintLayout>

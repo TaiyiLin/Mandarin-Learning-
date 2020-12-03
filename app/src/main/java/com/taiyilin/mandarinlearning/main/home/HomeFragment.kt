@@ -12,6 +12,7 @@ import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.databinding.FragmentHomeBinding
 
+
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
@@ -43,6 +44,21 @@ class HomeFragment : Fragment() {
         recyclerviewContinueCourse.adapter = adapter
 
         adapter.submitList(list)
+
+        //Recommended & Popular courses
+        val courseRNP1 = Course("001","Mandarin 101")
+        val courseRNP2 = Course("002","Mandarin 102")
+        val courseRNP3 = Course("003","Mandarin 103")
+        val listRNP = mutableListOf<Course>()
+        listRNP.add(courseRNP1)
+        listRNP.add(courseRNP2)
+        listRNP.add(courseRNP3)
+
+        val adapterRNP = HomeAdapterRecomdNPop() //類別N + () = 實例化
+        val recyclerviewRecommendedCourse = binding.recyclerviewRecommendedCourse
+        recyclerviewRecommendedCourse.adapter = adapterRNP
+
+        adapterRNP.submitList(listRNP)
 
 
         return binding.root
