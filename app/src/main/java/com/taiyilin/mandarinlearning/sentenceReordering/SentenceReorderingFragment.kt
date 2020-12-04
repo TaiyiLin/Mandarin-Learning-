@@ -2,6 +2,7 @@ package com.taiyilin.mandarinlearning.sentenceReordering
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,6 +36,14 @@ class SentenceReorderingFragment : Fragment() {
         binding.viewModel= ViewModelProvider(
             this, viewModelFactory
         ).get(SentenceReorderingViewModel::class.java)
+
+        val adapter = SRChatRoomAdapter()
+        binding.messageList.adapter = adapter
+
+        val list = classroomData.messageList!!
+
+        Log.d("aaa", "$list")
+        classroomData.messageList?.let { adapter.separateMsgSubmitList(it) }
 
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()

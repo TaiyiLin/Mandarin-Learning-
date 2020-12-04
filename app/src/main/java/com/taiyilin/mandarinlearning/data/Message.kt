@@ -8,6 +8,8 @@ data class Message(
 
     var senderId: String = "",
 
+    var receiverId: String= "",
+
     var content: String ="",
 
     var createdTime: Long? = null,
