@@ -14,6 +14,8 @@ data class User(
 
     var rating: Int? = null,
 
-    var level: String = ""
+    var level: String = "",
+
+    var feedbackList: List<Feedback>?= null
 
 )

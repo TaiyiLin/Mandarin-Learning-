@@ -53,12 +53,6 @@ class CourseViewHolder(private var binding: ItemHomeContinueCourseBinding) : Rec
         binding.continuingCourse = course
         binding.executePendingBindings()
 
-//        if (showDetail){
-//
-//        } else {
-//
-//        }
-
 
     }
 

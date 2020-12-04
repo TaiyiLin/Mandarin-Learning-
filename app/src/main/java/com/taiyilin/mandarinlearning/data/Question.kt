@@ -1,5 +1,9 @@
 package com.taiyilin.mandarinlearning.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Question(
 
     var number: Int? = null,
@@ -10,4 +14,4 @@ data class Question(
 
     var answer: String = ""
 
-)
+): Parcelable

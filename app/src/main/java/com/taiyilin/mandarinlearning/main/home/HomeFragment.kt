@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.databinding.FragmentHomeBinding
@@ -46,19 +47,43 @@ class HomeFragment : Fragment() {
         adapter.submitList(list)
 
         //Recommended & Popular courses
+        //R
         val courseRNP1 = Course("001","Mandarin 101")
         val courseRNP2 = Course("002","Mandarin 102")
         val courseRNP3 = Course("003","Mandarin 103")
-        val listRNP = mutableListOf<Course>()
-        listRNP.add(courseRNP1)
-        listRNP.add(courseRNP2)
-        listRNP.add(courseRNP3)
+        val listR = mutableListOf<Course>()
+        listR.add(courseRNP1)
+        listR.add(courseRNP2)
+        listR.add(courseRNP3)
 
-        val adapterRNP = HomeAdapterRecomdNPop() //類別N + () = 實例化
+        val adapterR = HomeAdapterRecomdNPop() //類別N + () = 實例化
+
         val recyclerviewRecommendedCourse = binding.recyclerviewRecommendedCourse
-        recyclerviewRecommendedCourse.adapter = adapterRNP
+        recyclerviewRecommendedCourse.adapter = adapterR
 
-        adapterRNP.submitList(listRNP)
+        adapterR.submitList(listR)
+
+        //P
+        val courseRNP4 = Course("004","Mandarin 104")
+        val courseRNP5 = Course("005","Mandarin 105")
+        val courseRNP6 = Course("006","Mandarin 106")
+
+        val listP = mutableListOf<Course>()
+        listP.add(courseRNP4)
+        listP.add(courseRNP5)
+        listP.add(courseRNP6)
+
+        val adapterP = HomeAdapterRecomdNPop() //類別N + () = 實例化
+
+        val recyclerviewPopularCourse = binding.recyclerviewPopularCourse
+        recyclerviewPopularCourse.adapter = adapterP
+
+        adapterP.submitList(listP)
+
+
+        binding.textviewSeeAll.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_global_navigation_classroom)
+        }
 
 
         return binding.root

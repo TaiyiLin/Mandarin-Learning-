@@ -1,5 +1,9 @@
 package com.taiyilin.mandarinlearning.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Feedback(
 
     var courseId: String = "",
@@ -10,4 +14,4 @@ data class Feedback(
 
     var senderId: String = ""
 
-)
+) :Parcelable

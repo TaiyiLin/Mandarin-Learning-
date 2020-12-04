@@ -1,7 +1,11 @@
 package com.taiyilin.mandarinlearning.data
 
+import android.net.wifi.aware.ParcelablePeerHandle
+import android.os.Parcelable
 import com.google.firebase.Timestamp
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Course(
 
     var id: String,
@@ -10,13 +14,17 @@ data class Course(
 
     var level: String = "",
 
-    var rating: String = "",
+    var avgRating: String = "",
 
     var ownerId: String = "",
 
-    var status: String = "",
+    var status: Int? = null,
 
-    var updatedTime : Long?= null
+    var updatedTime : Long? = null,
 
-)
+    var feedbackList: List<Feedback>? = null,
+
+    var questionList: List<Question>? = null
+
+) : Parcelable
 

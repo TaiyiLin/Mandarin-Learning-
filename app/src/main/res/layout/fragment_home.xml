@@ -56,20 +56,33 @@
                 <soup.neumorphism.NeumorphTextView
                     android:id="@+id/textview_continue"
                     style="@style/Widget.Neumorph.TextView"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="12dp"
-                    android:layout_marginEnd="24dp"
-                    android:fontFamily="@font/inconsolata"
+                    android:fontFamily="@font/inconsolata_bold"
                     android:text="Continue Your Courses"
                     android:textColor="#1726A2"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.096"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/edittext_card" />
+
+                <soup.neumorphism.NeumorphTextView
+                    android:id="@+id/textview_see_all"
+                    style="@style/Widget.Neumorph.TextView"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/et_style"
+                    android:fontFamily="@font/inconsolata_bold"
+                    android:gravity="center"
+                    android:text="Check All >"
+                    android:textColor="#1726A2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textview_continue"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textview_continue"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewContinueCourse"
@@ -85,20 +98,33 @@
                 <soup.neumorphism.NeumorphTextView
                     android:id="@+id/textview_recommended"
                     style="@style/Widget.Neumorph.TextView"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="24dp"
                     android:fontFamily="@font/inconsolata"
                     android:text="Recommended For You"
                     android:textColor="#1726A2"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerviewContinueCourse" />
+
+                <soup.neumorphism.NeumorphTextView
+                    android:id="@+id/recomd_see_all"
+                    style="@style/Widget.Neumorph.TextView"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/et_style"
+                    android:fontFamily="@font/inconsolata_bold"
+                    android:gravity="center"
+                    android:text="Check All >"
+                    android:textColor="#1726A2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textview_recommended"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textview_recommended" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewRecommendedCourse"
@@ -114,20 +140,33 @@
                 <soup.neumorphism.NeumorphTextView
                     android:id="@+id/textview_popular"
                     style="@style/Widget.Neumorph.TextView"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:layout_marginStart="24dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginTop="8dp"
                     android:fontFamily="@font/inconsolata"
                     android:text="Popular This Week"
                     android:textColor="#1726A2"
                     android:textSize="20dp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerviewRecommendedCourse" />
+
+                <soup.neumorphism.NeumorphTextView
+                    android:id="@+id/popular_see_all"
+                    style="@style/Widget.Neumorph.TextView"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/et_style"
+                    android:fontFamily="@font/inconsolata_bold"
+                    android:gravity="center"
+                    android:text="Check All >"
+                    android:textColor="#1726A2"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/textview_popular"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textview_popular" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewPopularCourse"

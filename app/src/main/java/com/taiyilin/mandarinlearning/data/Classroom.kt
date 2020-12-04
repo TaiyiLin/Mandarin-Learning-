@@ -8,6 +8,9 @@ data class Classroom(
 
     var studentId: String = "",
 
-    var teacherId: String = ""
+    var teacherId: String = "",
 
+    var answerList: List<Answer>? = null,
+
+    var messageList: List<Message>? =null
 )
