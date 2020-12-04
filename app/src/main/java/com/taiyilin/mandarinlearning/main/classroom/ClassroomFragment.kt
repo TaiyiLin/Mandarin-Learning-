@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.taiyilin.mandarinlearning.MobileNavigationDirections
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.databinding.FragmentClassroomBinding
@@ -81,7 +82,7 @@ class ClassroomFragment : Fragment() {
 
         classroomViewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
-              findNavController()?.navigate(R.id.action_global_sentenceReorderingFragment)
+              findNavController().navigate(MobileNavigationDirections.actionGlobalSentenceReorderingFragment(it))
 
                 classroomViewModel.onDetailNavigated()
 

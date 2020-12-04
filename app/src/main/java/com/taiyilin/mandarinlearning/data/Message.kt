@@ -1,5 +1,9 @@
 package com.taiyilin.mandarinlearning.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Message(
 
     var senderId: String = "",
@@ -10,4 +14,4 @@ data class Message(
 
     var beRead: Boolean? = false
 
-)
+): Parcelable

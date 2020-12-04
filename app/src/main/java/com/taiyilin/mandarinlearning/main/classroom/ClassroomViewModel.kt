@@ -3,6 +3,7 @@ package com.taiyilin.mandarinlearning.main.classroom
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.Question
 
@@ -12,8 +13,8 @@ class ClassroomViewModel : ViewModel() {
     val course = MutableLiveData<Course>()
 
 
-    private val _navigateToDetail = MutableLiveData<Course>()
-     val navigateToDetail: LiveData<Course>
+    private val _navigateToDetail = MutableLiveData<Classroom>()
+     val navigateToDetail: LiveData<Classroom>
     get() = _navigateToDetail
 
 
@@ -66,8 +67,8 @@ class ClassroomViewModel : ViewModel() {
         }
 
 
-    fun navigateToDetail(course: Course) {
-        _navigateToDetail.value = course
+    fun navigateToDetail(classroom: Classroom) {
+        _navigateToDetail.value = classroom
     }
 
     fun onDetailNavigated() {

@@ -14,8 +14,8 @@ class ClassroomSelectedClassAdapter(private val viewModel: ClassroomViewModel, p
     ListAdapter<Classroom, RecyclerView.ViewHolder>(DiffCallback) {
 
 
-    class OnClickListener(val clickListener: (course: Course) -> Unit) {
-        fun onClick(course: Course) = clickListener(course)
+    class OnClickListener(val clickListener: (classroom: Classroom) -> Unit) {
+        fun onClick(classroom: Classroom) = clickListener(classroom)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -66,7 +66,7 @@ class ClassroomViewHolder(private var binding: ItemClassroomSelectedCoursesBindi
 
         binding.root.setOnClickListener {
             if (course != null) {
-                onClickListener.onClick(course)
+                onClickListener.onClick(classroom)
             }
         }
 

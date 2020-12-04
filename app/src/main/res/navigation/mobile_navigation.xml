@@ -27,8 +27,8 @@
         android:label="fragment_sentence_reordering"
         tools:layout="@layout/fragment_sentence_reordering" >
         <argument
-            android:name="courseData"
-            app:argType="com.taiyilin.mandarinlearning.data.Course" />
+            android:name="classroomData"
+            app:argType="com.taiyilin.mandarinlearning.data.Classroom" />
     </fragment>
     <fragment
         android:id="@+id/pictureDescriptionFragment"
