@@ -48,6 +48,17 @@ class SentenceReorderingFragment : Fragment() {
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
         }
+
+
+        binding.buttonHint.setOnClickListener {
+            if (binding.recyclerMessage.visibility == View.GONE){
+                binding.recyclerMessage.visibility = View.VISIBLE
+            }else{
+                binding.recyclerMessage.visibility = View.GONE
+            }
+        }
+
+
         return binding.root
     }
 

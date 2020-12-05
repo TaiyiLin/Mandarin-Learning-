@@ -30,7 +30,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#F5EBE4">
+                android:background="#1726A2">
+<!--            android:background="#F5EBE4">-->
 
 
                 <!--//This is a ConstraintLayout for the fixed portion of the CardView. The elements that lie within the fixed portion of the CardView  can be constrained to this layout.-->
@@ -47,12 +48,14 @@
                         android:id="@+id/course_cover"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:src="@drawable/gradation"
+                        android:background="@drawable/gradation_top_to_bottom"
                         app:layout_constraintDimensionRatio="H,3:2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_calligraphy" />
+                    <!--                        android:background="@drawable/gradation"-->
 
                     <TextView
                         android:id="@+id/course_title"
@@ -63,6 +66,7 @@
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="@{recomdNPopCourse.name}"
+                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +75,7 @@
                     <soup.neumorphism.NeumorphImageButton
                         android:id="@+id/button_plus"
                         style="@style/Widget.Neumorph.ImageButton"
-                        android:layout_width="60dp"
+                        android:layout_width="55dp"
                         android:layout_height="50dp"
                         android:scaleType="centerInside"
                         android:src="@drawable/ic_plus"
@@ -84,10 +88,26 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inconsolata"
-                        android:text="Learn more"
+                        android:text="See more"
+                        android:textColor="@color/white"
                         android:textAllCaps="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/course_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/inconsolata"
+                        android:text="@{recomdNPopCourse.level}"
+                        android:textColor="@color/white"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="Basic" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -113,6 +133,7 @@
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="About"
+                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +147,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
+                        android:textColor="@color/white"
                         android:text="This is a description. This is a description. This is a description. This is a description."
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -141,6 +163,7 @@
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="Review"
+                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -194,6 +217,7 @@
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="4.5"
+                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintEnd_toStartOf="@+id/rating_total"
                         app:layout_constraintTop_toTopOf="@+id/rating_total" />
@@ -205,6 +229,7 @@
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="(123)"
+                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintEnd_toEndOf="@+id/review_title"
                         app:layout_constraintTop_toBottomOf="@+id/review_title" />

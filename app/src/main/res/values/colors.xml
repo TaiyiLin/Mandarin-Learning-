@@ -8,9 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_accent">#000000</color>
-    <color name="background">#EFEEEE</color>
-    <color name="background_1">#F5EBE4</color>
+    <color name="background_gray">#EFEEEE</color>
+    <color name="background_nude">#F5EBE4</color>
     <color name="gray">#BDC1C9</color>
+    <color name="action_blue">#1726A2</color>
+
 
 
 </resources>

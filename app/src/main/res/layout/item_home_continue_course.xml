@@ -48,12 +48,14 @@
                         android:id="@+id/course_cover"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:src="@drawable/gradation"
+                        android:background="@drawable/gradation_top_to_bottom"
                         app:layout_constraintDimensionRatio="H,3:2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_characters" />
+<!--                        android:src="@drawable/gradation"-->
 
                     <TextView
                         android:id="@+id/course_title"
@@ -64,6 +66,7 @@
                         android:layout_marginEnd="16dp"
                         android:text="@{continuingCourse.name}"
                         android:fontFamily="@font/inconsolata"
+                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

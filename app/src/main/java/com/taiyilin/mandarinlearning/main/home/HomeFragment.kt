@@ -48,9 +48,9 @@ class HomeFragment : Fragment() {
 
         //Recommended & Popular courses
         //R
-        val courseRNP1 = Course("001","Mandarin 101")
-        val courseRNP2 = Course("002","Mandarin 102")
-        val courseRNP3 = Course("003","Mandarin 103")
+        val courseRNP1 = Course("001","Mandarin 101","Basic")
+        val courseRNP2 = Course("002","Mandarin 102","Intermediate")
+        val courseRNP3 = Course("003","Mandarin 103", "Advanced")
         val listR = mutableListOf<Course>()
         listR.add(courseRNP1)
         listR.add(courseRNP2)
@@ -64,9 +64,9 @@ class HomeFragment : Fragment() {
         adapterR.submitList(listR)
 
         //P
-        val courseRNP4 = Course("004","Mandarin 104")
-        val courseRNP5 = Course("005","Mandarin 105")
-        val courseRNP6 = Course("006","Mandarin 106")
+        val courseRNP4 = Course("004","Mandarin 104","Basic")
+        val courseRNP5 = Course("005","Mandarin 105","Intermediate")
+        val courseRNP6 = Course("006","Mandarin 106","Advanced")
 
         val listP = mutableListOf<Course>()
         listP.add(courseRNP4)

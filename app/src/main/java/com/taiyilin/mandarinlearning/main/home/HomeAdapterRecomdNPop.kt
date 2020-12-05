@@ -55,10 +55,10 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
         binding.btnLearnMore.setOnClickListener {
             if (binding.hiddenView.visibility == View.GONE){
                 binding.hiddenView.visibility=View.VISIBLE
-                binding.btnLearnMore.text="Back"
+                binding.btnLearnMore.text="See Less"
             }else{
                 binding.hiddenView.visibility = View.GONE
-                binding.btnLearnMore.text="Learn More"
+                binding.btnLearnMore.text="See More"
             }
         }
 
