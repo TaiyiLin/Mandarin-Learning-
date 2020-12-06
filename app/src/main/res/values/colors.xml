@@ -13,6 +13,10 @@
     <color name="gray">#BDC1C9</color>
     <color name="action_blue">#1726A2</color>
 
+    //version 02
+    <color name="brown">#b5592b</color>
+    <color name="mint_green">#ace6cf</color>
+    <color name="sand_gray">#efefef</color>
 
 
 </resources>

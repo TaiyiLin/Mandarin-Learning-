@@ -31,9 +31,9 @@ class HomeFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home, container, false)
 
-        val course1 = Course("MA123", "Mandarin for Beginners")
-        val course2 = Course("MA225", "Learning Mandarin So Much Fun")
-        val course3 = Course("MA402", "Mandarin Grammar for Beginners")
+        val course1 = Course("MA123", "Mandarin for Beginners","Basic")
+        val course2 = Course("MA225", "Learning Mandarin So Much Fun", "Advanced")
+        val course3 = Course("MA402", "Mandarin Grammar for Beginners","Basic")
         val list = mutableListOf<Course>()
         list.add(course1)
         list.add(course2)

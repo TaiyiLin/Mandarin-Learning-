@@ -31,7 +31,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#E1403C">
+                android:background="@color/brown">
 
 
                 <!--//This is a ConstraintLayout for the fixed portion of the CardView. The elements that lie within the fixed portion of the CardView  can be constrained to this layout.-->
@@ -48,14 +48,16 @@
                         android:id="@+id/course_cover"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:background="@drawable/gradation_top_to_bottom"
+                        android:background="@drawable/gradation"
+                        android:backgroundTint="@color/mint_green"
+                        android:foregroundGravity="center"
+                        android:src="@drawable/ic_calligraphy"
                         app:layout_constraintDimensionRatio="H,3:2"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/ic_characters" />
-<!--                        android:src="@drawable/gradation"-->
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <!--                        android:src="@drawable/gradation"-->
 
                     <TextView
                         android:id="@+id/course_title"
@@ -64,14 +66,29 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/inconsolata_bold"
                         android:text="@{continuingCourse.name}"
-                        android:fontFamily="@font/inconsolata"
-                        android:textColor="@color/white"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/mint_green"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/course_cover" />
-<!--                        android:text="Course Title"-->
+                    <!--                        android:text="Course Title"-->
+
+                    <TextView
+                        android:id="@+id/course_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/inconsolata"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/mint_green"
+                        android:text="@{continuingCourse.level}"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:text="Basic" />
 
                     <soup.neumorphism.NeumorphButton
                         android:id="@+id/button"

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F8F8FC"
+        android:background="@color/sand_gray"
         tools:context=".main.classroom.ClassroomFragment">
 
         <androidx.recyclerview.widget.RecyclerView
