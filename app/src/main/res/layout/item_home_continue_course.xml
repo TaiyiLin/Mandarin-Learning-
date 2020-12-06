@@ -68,6 +68,8 @@
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata_bold"
                         android:text="@{continuingCourse.name}"
+                        android:letterSpacing="0.1"
+                        android:textSize="18dp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         android:textColor="@color/mint_green"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -123,8 +125,11 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:fontFamily="@font/inconsolata"
+                        android:fontFamily="@font/inconsolata_bold"
+                        android:textColor="@color/mint_green"
                         android:text="About"
+                        android:letterSpacing="0.1"
+                        android:textSize="16sp"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -138,6 +143,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
+                        android:textColor="@color/mint_green"
                         android:text="This is a description. This is a description. This is a description. This is a description."
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -151,8 +157,11 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:fontFamily="@font/inconsolata"
+                        android:fontFamily="@font/inconsolata_bold"
                         android:text="Review"
+                        android:letterSpacing="0.1"
+                        android:textSize="16dp"
+                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -206,6 +215,7 @@
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="4.5"
+                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintEnd_toStartOf="@+id/rating_total"
                         app:layout_constraintTop_toTopOf="@+id/rating_total" />
@@ -217,6 +227,7 @@
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="(123)"
+                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                         app:layout_constraintEnd_toEndOf="@+id/review_title"
                         app:layout_constraintTop_toBottomOf="@+id/review_title" />
@@ -224,10 +235,13 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_review"
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:layout_editor_absoluteX="16dp"
-                        tools:layout_editor_absoluteY="172dp">
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/star_01">
                         <!--                    app:products="@{viewModel.products}"-->
 
                     </androidx.recyclerview.widget.RecyclerView>

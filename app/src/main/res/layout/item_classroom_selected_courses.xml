@@ -28,11 +28,12 @@
             android:orientation="horizontal">
 
             <View
-                android:layout_width="20dp"
+                android:layout_width="25dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="-10dp"
                 android:backgroundTint="@color/brown"
+                android:textColor="@color/white"
                 android:background="@drawable/small_circle" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -45,14 +46,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{selectedCourse.name}"
-                    android:textSize="20dp"
-                    android:textColor="@color/brown"
+                    android:layout_marginTop="4dp"
                     android:fontFamily="@font/inconsolata_bold"
                     android:letterSpacing="0.1"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="@{selectedCourse.name}"
+                    android:textColor="@color/brown"
+                    android:textSize="18dp"
+                    app:layout_constraintBottom_toTopOf="@+id/selected_class_level"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/selected_class_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/inconsolata"
+                    android:letterSpacing="0.1"
+                    android:text="@{selectedCourse.level}"
+                    android:textColor="@color/brown"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toTopOf="@+id/determinateBar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/selected_class_title"
+                    tools:text="111" />
 
                 <ProgressBar
                     android:id="@+id/determinateBar"
@@ -66,7 +83,9 @@
                     android:progressBackgroundTint="@color/sand_gray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/selected_class_level" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

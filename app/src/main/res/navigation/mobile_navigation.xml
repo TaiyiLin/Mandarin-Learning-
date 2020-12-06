@@ -40,4 +40,15 @@
     <action android:id="@+id/action_global_navigation_classroom" app:destination="@id/navigation_classroom"/>
     <action android:id="@+id/action_global_sentenceReorderingFragment" app:destination="@id/sentenceReorderingFragment"/>
     <action android:id="@+id/action_global_navigation_profile" app:destination="@id/navigation_profile"/>
+    <fragment
+        android:id="@+id/classesNFeedbackFragment"
+        android:name="com.taiyilin.mandarinlearning.ClassesNFeedbackFragment"
+        android:label="fragment_classes_n_feedback"
+        tools:layout="@layout/fragment_classes_n_feedback" />
+    <action android:id="@+id/action_global_classesNFeedbackFragment" app:destination="@id/classesNFeedbackFragment" />
+    <fragment
+        android:id="@+id/identityFragment"
+        android:name="com.taiyilin.mandarinlearning.IdentityFragment"
+        android:label="fragment_identity"
+        tools:layout="@layout/fragment_identity" /><action android:id="@+id/action_global_identityFragment" app:destination="@id/identityFragment"/>
 </navigation>
