@@ -72,16 +72,25 @@ class SentenceReorderingFragment : Fragment() {
         viewModel.showToast.observe(viewLifecycleOwner, Observer {
             it?.let {
                 when(it){
-
-                    0 ->{Toast.makeText(context,"Start your first question", Toast.LENGTH_LONG).show()
-                    viewModel.resetShowToast()}
-
-                    1 -> {Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
+                    0 -> {
+                        Log.d("aaaaaaaaaaaaa", "aaaaaaaaaa")
+                        Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
+                        viewModel.resetShowToast()
+                    }
+                    1 ->{
+                        Log.d("bbbbbbbbbbb", "aaaaaaaaaa")
+                        Toast.makeText(context,"Start your first question", Toast.LENGTH_LONG).show()
                         viewModel.resetShowToast()
                     }
                 }
             }
         })
+//                    Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
+//                    viewModel.resetShowToast()
+
+
+
+
 
 
         return binding.root

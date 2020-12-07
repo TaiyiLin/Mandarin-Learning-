@@ -1,6 +1,7 @@
 package com.taiyilin.mandarinlearning.sentenceReordering
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -98,28 +99,37 @@ class SentenceReorderingViewModel(classroomData: Classroom, application: Applica
     fun next() {
 
         var size = questionList.size
-        position += 1
+
         if (position < size) {
-            _questionData.value = questionList[position]  //有下一題
+
+            position += 1
+
+            if (position < size) {
+                _questionData.value = questionList[position]  //有下一題
+            }
 
         } else {
             _showToast.value = 1 //沒有下一題了
         }
-
     }
 
     fun resetShowToast() {
+        Log.d("resetShowToast", "resetShowToast")
         _showToast.value = null
     }
 
     fun back() {
-        var size = questionList.size
-        position -= 1
-        if (position >= 0) {
-            _questionData.value = questionList[position]
+        if (position > 0) {
+            position -= 1
+
+            if (position >= 0) {
+                _questionData.value = questionList[position]
+            }
+
         } else {
-            _showToast.value = 0
+            _showToast.value = 0 //第一題
         }
+
     }
 
 }
