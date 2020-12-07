@@ -21,8 +21,8 @@ class ClassroomViewModel : ViewModel() {
     fun getCourseById(id: String) {
         if (id == "C01") {
             //Question for course1
-            val question101 = Question(1, "回家/昨天/晚上/你/幾點?", "你昨天晚上幾點回家?", "Sentence Reodering")
-            val question102 = Question(2, "沒有/昨天/回家/通宵/我", "我昨天通宵沒有回家", "Sentence Reodering")
+            val question101 = Question(1, "回家/昨天/晚上/你/幾點?", "Sentence Reodering", "你昨天晚上幾點回家?")
+            val question102 = Question(2, "沒有/昨天/回家/通宵/我", "Sentence Reodering", "我昨天通宵沒有回家")
             val questionList1 = mutableListOf<Question>()
             questionList1.add(question101)
             questionList1.add(question102)
@@ -42,8 +42,8 @@ class ClassroomViewModel : ViewModel() {
             course.value = course1
         } else if(id == "C02"){
             //Question for course2
-            val question201 = Question(1, "過得/今天/如何?", "今天過得如何?", "Sentence Reodering")
-            val question202 = Question(2, "糟/今天/一樣/過得", "今天過得一樣糟", "Sentence Reodering")
+            val question201 = Question(1, "過得/今天/如何?", "Sentence Reodering", "今天過得如何?")
+            val question202 = Question(2, "糟/今天/一樣/過得", "Sentence Reodering", "今天過得一樣糟")
             val questionList2 = mutableListOf<Question>()
             questionList2.add(question201)
             questionList2.add(question202)
