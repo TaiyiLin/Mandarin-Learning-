@@ -48,7 +48,6 @@ class ClassroomSelectedClassAdapter(private val viewModel: ClassroomViewModel, p
             return oldItem == newItem
         }
     }
-
 }
 
 

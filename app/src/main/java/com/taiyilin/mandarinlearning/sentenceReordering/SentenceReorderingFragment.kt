@@ -7,14 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.taiyilin.mandarinlearning.MainActivity
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.databinding.FragmentSentenceReorderingBinding
-import com.taiyilin.mandarinlearning.main.classroom.ClassroomViewModel
 
 
 class SentenceReorderingFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,22 +35,22 @@ class SentenceReorderingFragment : Fragment() {
 
         //使用factory創建viewModel
         val viewModelFactory = SentenceReorderingViewModelFactory(classroomData, application)
-        binding.viewModel= ViewModelProvider(
-            this, viewModelFactory
-        ).get(SentenceReorderingViewModel::class.java)
+        val viewModel = ViewModelProvider(this, viewModelFactory).get(SentenceReorderingViewModel::class.java)
+
+        binding.viewModel = viewModel
 
         val adapter = SRChatRoomAdapter()
         binding.messageList.adapter = adapter
 
         val list = classroomData.messageList!!
-
-        Log.d("aaa", "$list")
+//      Log.d("aaa", "$list")
         classroomData.messageList?.let { adapter.separateMsgSubmitList(it) }
+
+
 
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
         }
-
 
         binding.buttonHint.setOnClickListener {
             if (binding.recyclerMessage.visibility == View.GONE){
@@ -57,6 +59,29 @@ class SentenceReorderingFragment : Fragment() {
                 binding.recyclerMessage.visibility = View.GONE
             }
         }
+
+        binding.buttonRight.setOnClickListener {
+            viewModel.next()
+        }
+
+        binding.buttonLeft.setOnClickListener {
+            viewModel.back()
+        }
+
+        //Observe next button
+        viewModel.showToast.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                when(it){
+
+                    0 ->{Toast.makeText(context,"Start your first question", Toast.LENGTH_LONG).show()
+                    viewModel.resetShowToast()}
+
+                    1 -> {Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
+                        viewModel.resetShowToast()
+                    }
+                }
+            }
+        })
 
 
         return binding.root

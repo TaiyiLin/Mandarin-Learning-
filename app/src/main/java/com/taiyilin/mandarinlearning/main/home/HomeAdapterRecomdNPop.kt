@@ -62,5 +62,10 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
             }
         }
 
+        val recyclerViewReview = binding.recyclerReview
+        val homeAdapterFeedback = HomeAdapterFeedback()
+        recyclerViewReview.adapter = homeAdapterFeedback
+        homeAdapterFeedback.submitList(course.feedbackList)
+
     }
 }

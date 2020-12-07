@@ -1,18 +1,20 @@
 package com.taiyilin.mandarinlearning.main.home
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.taiyilin.mandarinlearning.data.Course
-import com.taiyilin.mandarinlearning.databinding.ItemHomeContinueCourseBinding
+import com.taiyilin.mandarinlearning.data.Feedback
+import com.taiyilin.mandarinlearning.databinding.ItemHomeCourseReviewBinding
 
-class HomeAdapter: ListAdapter<Course, RecyclerView.ViewHolder> (DiffCallback){
+
+class HomeAdapterFeedback : ListAdapter<Feedback, RecyclerView.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CourseViewHolder(
-            ItemHomeContinueCourseBinding.inflate(
+        return CourseReviewViewHolder(
+            ItemHomeCourseReviewBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -21,40 +23,36 @@ class HomeAdapter: ListAdapter<Course, RecyclerView.ViewHolder> (DiffCallback){
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 
         //把holder 轉型為下面自己建的ViewHolder
-        val holder = holder as CourseViewHolder
+        val courseReviewViewHolder = holder as CourseReviewViewHolder
 
         //用getItem方法取得course的資料list
-        val course = getItem(position)
+        val feedback = getItem(position)
 
         //呼叫自己的方法
-        holder.bind(course)
+        courseReviewViewHolder.bind(feedback)
     }
 
-
-
-    companion object DiffCallback : DiffUtil.ItemCallback<Course>(){
-        override fun areItemsTheSame(oldItem: Course, newItem: Course): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Feedback>() {
+        override fun areItemsTheSame(oldItem: Feedback, newItem: Feedback): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Course, newItem: Course): Boolean {
+        override fun areContentsTheSame(oldItem: Feedback, newItem: Feedback): Boolean {
             return oldItem == newItem
         }
     }
-
 }
 
 
-class CourseViewHolder(private var binding: ItemHomeContinueCourseBinding) : RecyclerView.ViewHolder(binding.root){
+class CourseReviewViewHolder(private var binding: ItemHomeCourseReviewBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(course: Course){
+    fun bind(feedback: Feedback) {
 
         //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
-        binding.continuingCourse = course
-
+        binding.feedback = feedback
         binding.executePendingBindings()
 
 
     }
-
 }

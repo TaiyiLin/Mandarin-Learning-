@@ -10,8 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.taiyilin.mandarinlearning.R
+import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
+import com.taiyilin.mandarinlearning.data.Feedback
 import com.taiyilin.mandarinlearning.databinding.FragmentHomeBinding
+
 
 
 class HomeFragment : Fragment() {
@@ -19,21 +22,27 @@ class HomeFragment : Fragment() {
     private lateinit var homeViewModel: HomeViewModel
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
         })
 
-        val binding = DataBindingUtil.inflate<FragmentHomeBinding>(inflater, R.layout.fragment_home, container, false)
+        val binding = DataBindingUtil.inflate<FragmentHomeBinding>(
+            inflater,
+            R.layout.fragment_home,
+            container,
+            false
+        )
 
-        val course1 = Course("MA123", "Mandarin for Beginners","Basic")
+        //Continue Course
+        val course1 = Course("MA123", "Mandarin for Beginners", "Basic")
         val course2 = Course("MA225", "Learning Mandarin So Much Fun", "Advanced")
-        val course3 = Course("MA402", "Mandarin Grammar for Beginners","Basic")
+        val course3 = Course("MA402", "Mandarin Grammar for Beginners", "Basic")
         val list = mutableListOf<Course>()
         list.add(course1)
         list.add(course2)
@@ -41,16 +50,25 @@ class HomeFragment : Fragment() {
 
         val adapter = HomeAdapter() //類別N + () = 實例化
 
-        val recyclerviewContinueCourse = binding.recyclerviewContinueCourse //binding . layout id 就可以拿到view元件
+        val recyclerviewContinueCourse =
+            binding.recyclerviewContinueCourse //binding . layout id 就可以拿到view元件
         recyclerviewContinueCourse.adapter = adapter
 
         adapter.submitList(list)
 
+
+        //Feedback
+        val feedback1 = Feedback("001", "I highly recommend it! The best course ever.")
+        val feedback2 = Feedback("002", "Auntie Lin is very helpful!!!!!")
+        val feedbackList1= mutableListOf<Feedback>()
+        feedbackList1.add(feedback1)
+        feedbackList1.add(feedback2)
+
         //Recommended & Popular courses
         //R
-        val courseRNP1 = Course("001","Mandarin 101","Basic")
-        val courseRNP2 = Course("002","Mandarin 102","Intermediate")
-        val courseRNP3 = Course("003","Mandarin 103", "Advanced")
+        val courseRNP1 = Course("001", "Mandarin 101", "Basic", "4.5", "T105", null, 20201208,feedbackList1)
+        val courseRNP2 = Course("002", "Mandarin 102", "Intermediate")
+        val courseRNP3 = Course("003", "Mandarin 103", "Advanced")
         val listR = mutableListOf<Course>()
         listR.add(courseRNP1)
         listR.add(courseRNP2)
@@ -63,10 +81,12 @@ class HomeFragment : Fragment() {
 
         adapterR.submitList(listR)
 
+
+
         //P
-        val courseRNP4 = Course("004","Mandarin 104","Basic")
-        val courseRNP5 = Course("005","Mandarin 105","Intermediate")
-        val courseRNP6 = Course("006","Mandarin 106","Advanced")
+        val courseRNP4 = Course("004", "Mandarin 104", "Basic")
+        val courseRNP5 = Course("005", "Mandarin 105", "Intermediate")
+        val courseRNP6 = Course("006", "Mandarin 106", "Advanced")
 
         val listP = mutableListOf<Course>()
         listP.add(courseRNP4)

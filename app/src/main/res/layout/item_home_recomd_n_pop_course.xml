@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="recomdNPopCourse"
             type="com.taiyilin.mandarinlearning.data.Course" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -64,9 +64,9 @@
                         android:fontFamily="@font/inconsolata_bold"
                         android:letterSpacing="0.1"
                         android:text="@{recomdNPopCourse.name}"
-                        android:textSize="18dp"
-                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/mint_green"
+                        android:textSize="18dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/course_cover" />
@@ -115,7 +115,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!--                //The following is the expandable portion whose visibility is initially set to "gone" -->
+                <!--//The following is the expandable portion whose visibility is initially set to "gone" -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/hidden_view"
                     android:layout_width="match_parent"
@@ -133,10 +133,12 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:fontFamily="@font/inconsolata"
+                        android:fontFamily="@font/inconsolata_bold"
+                        android:letterSpacing="0.1"
                         android:text="About"
-                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:textColor="@color/mint_green"
+                        android:textSize="18dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -149,25 +151,26 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/inconsolata"
-                        android:textColor="@color/mint_green"
                         android:text="This is a description. This is a description. This is a description. This is a description."
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:textColor="@color/mint_green"
+                        android:textSize="16dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/about_title" />
 
                     <TextView
                         android:id="@+id/review_title"
-                        android:layout_width="0dp"
-                        android:layout_height="25dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:fontFamily="@font/inconsolata"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/inconsolata_bold"
+                        android:letterSpacing="0.1"
                         android:text="Review"
-                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="@color/mint_green"
+                        android:textSize="18dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/course_description" />
 
@@ -175,16 +178,19 @@
                         android:id="@+id/star_01"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginTop="4dp"
-                        app:layout_constraintEnd_toStartOf="@+id/star_02"
-                        app:layout_constraintTop_toBottomOf="@+id/review_title"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="5dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/review_title"
+                        app:layout_constraintStart_toEndOf="@+id/review_title"
+                        app:layout_constraintTop_toTopOf="@+id/review_title"
                         app:srcCompat="@drawable/ic_star_full_24" />
 
                     <ImageView
                         android:id="@+id/star_02"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/star_03"
+                        app:layout_constraintBottom_toBottomOf="@+id/star_01"
+                        app:layout_constraintStart_toEndOf="@+id/star_01"
                         app:layout_constraintTop_toTopOf="@+id/star_01"
                         app:srcCompat="@drawable/ic_star_full_24" />
 
@@ -192,7 +198,8 @@
                         android:id="@+id/star_03"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/star_04"
+                        app:layout_constraintBottom_toBottomOf="@+id/star_02"
+                        app:layout_constraintStart_toEndOf="@+id/star_02"
                         app:layout_constraintTop_toTopOf="@+id/star_02"
                         app:srcCompat="@drawable/ic_star_full_24" />
 
@@ -200,7 +207,8 @@
                         android:id="@+id/star_04"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        app:layout_constraintEnd_toStartOf="@+id/star_05"
+                        app:layout_constraintBottom_toBottomOf="@+id/star_03"
+                        app:layout_constraintStart_toEndOf="@+id/star_03"
                         app:layout_constraintTop_toTopOf="@+id/star_03"
                         app:srcCompat="@drawable/ic_star_full_24" />
 
@@ -208,8 +216,8 @@
                         android:id="@+id/star_05"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginEnd="16dp"
-                        app:layout_constraintEnd_toStartOf="@+id/rating_avg"
+                        app:layout_constraintBottom_toBottomOf="@+id/star_04"
+                        app:layout_constraintStart_toEndOf="@+id/star_04"
                         app:layout_constraintTop_toTopOf="@+id/star_04"
                         app:srcCompat="@drawable/ic_star_half_24" />
 
@@ -217,25 +225,27 @@
                         android:id="@+id/rating_avg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
+                        android:layout_marginStart="8dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="4.5"
-                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        app:layout_constraintEnd_toStartOf="@+id/rating_total"
-                        app:layout_constraintTop_toTopOf="@+id/rating_total" />
+                        android:textColor="@color/mint_green"
+                        app:layout_constraintBottom_toBottomOf="@+id/star_05"
+                        app:layout_constraintStart_toEndOf="@+id/star_05"
+                        app:layout_constraintTop_toTopOf="@+id/star_05" />
 
                     <TextView
                         android:id="@+id/rating_total"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="8dp"
                         android:fontFamily="@font/inconsolata"
                         android:text="(123)"
-                        android:textColor="@color/mint_green"
                         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        app:layout_constraintEnd_toEndOf="@+id/review_title"
-                        app:layout_constraintTop_toBottomOf="@+id/review_title" />
+                        android:textColor="@color/mint_green"
+                        app:layout_constraintBottom_toBottomOf="@+id/rating_avg"
+                        app:layout_constraintStart_toEndOf="@+id/rating_avg"
+                        app:layout_constraintTop_toTopOf="@+id/rating_avg" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_review"

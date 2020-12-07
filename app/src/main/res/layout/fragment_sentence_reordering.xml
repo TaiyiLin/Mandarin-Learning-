@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.taiyilin.mandarinlearning.sentenceReordering.SentenceReorderingViewModel" />
+        <variable
+            name="question"
+            type="com.taiyilin.mandarinlearning.data.Question" />
+        <import type="android.view.View"/>
     </data>
 
 
@@ -72,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/inconsolata_bold"
-                    android:text="@{}"
+                    android:text="@{String.valueOf(viewModel.questionData.number)}"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     app:layout_constraintStart_toEndOf="@+id/text_question_title"
@@ -87,7 +91,7 @@
                     android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
                     android:fontFamily="@font/inconsolata_bold"
-                    android:text="@{}"
+                    android:text="@{viewModel.questionData.title}"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     app:layout_constraintEnd_toEndOf="parent"

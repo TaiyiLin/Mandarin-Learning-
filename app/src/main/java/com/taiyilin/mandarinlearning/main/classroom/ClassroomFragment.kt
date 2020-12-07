@@ -57,10 +57,12 @@ class ClassroomFragment : Fragment() {
 
         //Message for classroom2
         val message201 = Message("S02", "T02", "Done!",20121205,true)
-        val message202 = Message("T02", "S02", "Good work!",20121205,false)
+        val message202 = Message("T02", "S02", "Good work!",20121205,true)
+        val message203 = Message("S02", "T02", "Thx a lot!",20121206,true)
         val messageList2 = mutableListOf<Message>()
         messageList2.add(message201)
         messageList2.add(message202)
+        messageList2.add(message203)
 
         //Classroom
         val classroom1 = Classroom("CR01","C01","S01","T01", answerList1, messageList1)
