@@ -72,7 +72,7 @@ class ClassroomFragment : Fragment() {
         classroomList.add(classroom1)
         classroomList.add(classroom2)
 
-        //TODO
+
         val adapter = ClassroomSelectedClassAdapter(classroomViewModel, ClassroomSelectedClassAdapter.OnClickListener{
             classroomViewModel.navigateToDetail(it)
         }) //類別N + () = 實例化

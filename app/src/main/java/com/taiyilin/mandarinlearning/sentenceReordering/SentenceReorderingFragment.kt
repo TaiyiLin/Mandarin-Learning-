@@ -74,12 +74,12 @@ class SentenceReorderingFragment : Fragment() {
                 when(it){
                     0 -> {
                         Log.d("aaaaaaaaaaaaa", "aaaaaaaaaa")
-                        Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context,"Start your first question", Toast.LENGTH_LONG).show()
                         viewModel.resetShowToast()
                     }
                     1 ->{
                         Log.d("bbbbbbbbbbb", "aaaaaaaaaa")
-                        Toast.makeText(context,"Start your first question", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
                         viewModel.resetShowToast()
                     }
                 }
