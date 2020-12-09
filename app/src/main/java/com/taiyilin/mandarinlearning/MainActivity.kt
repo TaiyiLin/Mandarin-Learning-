@@ -1,5 +1,6 @@
 package com.taiyilin.mandarinlearning
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +8,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.taiyilin.mandarinlearning.login.LogInActivity
+import com.taiyilin.mandarinlearning.login.UserManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,6 +17,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
+
+        //Login Check
+        if (!UserManager.isLoggedIn) {
+
+            startActivity(Intent(this, LogInActivity::class.java))
+
+        } else {
+
+//            val userName = UserManager.userName  ?:  "No Name"
+//            viewModel.loginAndSetUser(UserManager.userUID!!, userName)
+
+        }
+
 
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of Ids because each

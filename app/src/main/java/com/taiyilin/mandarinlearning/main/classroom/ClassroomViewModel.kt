@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
+import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
 import com.taiyilin.mandarinlearning.data.Question
 
-class ClassroomViewModel : ViewModel() {
+class ClassroomViewModel(private val repository: MandarinLearningRepository) : ViewModel() {
 
 
     val course = MutableLiveData<Course>()

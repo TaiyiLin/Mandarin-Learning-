@@ -8,18 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.taiyilin.mandarinlearning.MobileNavigationDirections
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.databinding.FragmentClassroomBinding
-
+import com.taiyilin.mandarinlearning.ext.getVmFactory
+import com.taiyilin.mandarinlearning.main.home.HomeViewModel
 
 
 class ClassroomFragment : Fragment() {
 
-    private lateinit var classroomViewModel: ClassroomViewModel
+//    private lateinit var classroomViewModel: ClassroomViewModel
+
+    private val classroomViewModel by viewModels<ClassroomViewModel> {getVmFactory()  }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,8 +31,10 @@ class ClassroomFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        classroomViewModel =
-            ViewModelProvider(this).get(ClassroomViewModel::class.java)
+
+//        classroomViewModel =
+//            ViewModelProvider(this).get(ClassroomViewModel::class.java)
+
         val root = inflater.inflate(R.layout.fragment_classroom, container, false)
 
         val binding = DataBindingUtil.inflate<FragmentClassroomBinding>(inflater, R.layout.fragment_classroom, container, false)

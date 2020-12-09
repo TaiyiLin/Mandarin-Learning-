@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning
+package com.taiyilin.mandarinlearning.identity
 
 import androidx.lifecycle.ViewModel
 

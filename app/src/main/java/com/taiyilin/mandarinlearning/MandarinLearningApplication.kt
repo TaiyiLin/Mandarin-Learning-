@@ -1,6 +1,6 @@
 package com.taiyilin.mandarinlearning
 import android.app.Application
-import com.taiyilin.mandarinlearning.data.MandarinLearningRepository
+import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
 import com.taiyilin.mandarinlearning.util.ServiceLocator
 import kotlin.properties.Delegates
 

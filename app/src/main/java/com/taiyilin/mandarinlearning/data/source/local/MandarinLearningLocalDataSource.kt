@@ -1,7 +1,7 @@
-package com.taiyilin.mandarinlearning.data.local
+package com.taiyilin.mandarinlearning.data.source.local
 
 import android.content.Context
-import com.taiyilin.mandarinlearning.data.MandarinLearningDataSource
+import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 
 
 //Concrete implementation of a Publisher source as a db.

@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning
+package com.taiyilin.mandarinlearning.identity
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -6,11 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.taiyilin.mandarinlearning.R
 
 class IdentityFragment : Fragment() {
 
     companion object {
-        fun newInstance() = IdentityFragment()
+        fun newInstance() =
+            IdentityFragment()
     }
 
     private lateinit var viewModel: IdentityViewModel

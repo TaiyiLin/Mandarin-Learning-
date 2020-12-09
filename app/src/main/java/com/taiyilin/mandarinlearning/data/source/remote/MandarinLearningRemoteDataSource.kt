@@ -1,6 +1,6 @@
-package com.taiyilin.mandarinlearning.data.remote
+package com.taiyilin.mandarinlearning.data.source.remote
 
-import com.taiyilin.mandarinlearning.data.MandarinLearningDataSource
+import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 
 //Implementation of the Mandarin Learning source that from network.
 object MandarinLearningRemoteDataSource :

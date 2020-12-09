@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.databinding.FragmentHomeBinding
 import com.taiyilin.mandarinlearning.databinding.FragmentProfileBinding
+import com.taiyilin.mandarinlearning.ext.getVmFactory
 
 class ProfileFragment : Fragment() {
 
@@ -19,7 +21,9 @@ class ProfileFragment : Fragment() {
             ProfileFragment()
     }
 
-    private lateinit var viewModel: ProfileViewModel
+    private val profileViewModel by viewModels<ProfileViewModel> {getVmFactory()}
+
+//    private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

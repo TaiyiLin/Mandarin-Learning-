@@ -8,13 +8,16 @@ import androidx.lifecycle.ViewModel
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.Question
+import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
 
-class SentenceReorderingViewModel(classroomData: Classroom, application: Application) :
-    ViewModel() {
+class SentenceReorderingViewModel(
+    private val repository: MandarinLearningRepository,
+    private val classroomArgs: Classroom?
+) : ViewModel() {
 
     //Classroom Data
     private val _classroomData = MutableLiveData<Classroom>().apply {
-        value = classroomData
+        value = classroomArgs
     }
     val classroomData: LiveData<Classroom>
         get() = _classroomData
@@ -40,7 +43,7 @@ class SentenceReorderingViewModel(classroomData: Classroom, application: Applica
 
 
     init {
-        _classroomData.value = classroomData
+        _classroomData.value = classroomArgs
 
         getCourseData("C01")
         _questionData.value = questionList[0]
