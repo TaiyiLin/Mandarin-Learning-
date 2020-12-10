@@ -1,9 +1,12 @@
 package com.taiyilin.mandarinlearning.data.source
 
-import androidx.lifecycle.MutableLiveData
+import com.taiyilin.mandarinlearning.data.Result
+import com.taiyilin.mandarinlearning.data.Course
 
 //Interface to the Publisher layers
 interface MandarinLearningRepository {
+
+    suspend fun getAllCourses(): Result<List<Course>>
 
 //    suspend fun loginMockData(id: String): Result<Author>
 //

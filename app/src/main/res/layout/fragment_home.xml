@@ -6,6 +6,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.taiyilin.mandarinlearning.main.home.HomeViewModel" />
+        <variable
+            name="course"
+            type="com.taiyilin.mandarinlearning.data.Course" />
 
     </data>
 

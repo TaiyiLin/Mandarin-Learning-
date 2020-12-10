@@ -1,10 +1,17 @@
 package com.taiyilin.mandarinlearning.data.source
 
+import com.taiyilin.mandarinlearning.data.Result
+import com.taiyilin.mandarinlearning.data.Course
+
 
 // Concrete implementation to load Mandarin Learning sources.
 class DefaultMandarinLearningRepository (private val remoteDataSource: MandarinLearningDataSource,
                                          private val localDataSource: MandarinLearningDataSource
 ): MandarinLearningRepository {
+
+    override suspend fun getAllCourses(): Result<List<Course>> {
+        return remoteDataSource.getAllCourses()
+    }
 
 //    override suspend fun loginMockData(id: String): Result<Author> {
 //        return localDataSource.login(id)

@@ -1,12 +1,19 @@
 package com.taiyilin.mandarinlearning.data.source.local
 
 import android.content.Context
+import com.taiyilin.mandarinlearning.data.Result
+import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 
 
 //Concrete implementation of a Publisher source as a db.
 class MandarinLearningLocalDataSource(val context: Context) :
     MandarinLearningDataSource {
+
+
+    override suspend fun getAllCourses(): Result<List<Course>> {
+        TODO("Not yet implemented")
+    }
 
 //    override suspend fun login(id: String): Result<Author> {
 //        return when (id) {
@@ -41,7 +48,6 @@ class MandarinLearningLocalDataSource(val context: Context) :
 //        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
 //    }
 //
-
 
 
 }

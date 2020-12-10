@@ -36,8 +36,7 @@ class ClassroomViewModel(private val repository: MandarinLearningRepository) : V
                 "O001",
                 1,
                 20201203,
-                null,
-                questionList1
+                "null"
             )
 
             course.value = course1
@@ -57,8 +56,7 @@ class ClassroomViewModel(private val repository: MandarinLearningRepository) : V
                 "O002",
                 0,
                 20201201,
-                null,
-                questionList2
+                "null"
             )
             course.value = course2
         }

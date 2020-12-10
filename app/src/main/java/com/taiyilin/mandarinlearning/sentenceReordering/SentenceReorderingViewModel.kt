@@ -67,9 +67,9 @@ class SentenceReorderingViewModel(
                 "O001",
                 1,
                 20201203,
-                null,
-                questionList1
+                "null"
             )
+//                questionList1
             courseData = course1
             questionList = questionList1
 
@@ -89,9 +89,10 @@ class SentenceReorderingViewModel(
                 "O002",
                 0,
                 20201201,
-                null,
-                questionList2
+                "null"
             )
+//                questionList2
+
             courseData = course2
             questionList = questionList2
 

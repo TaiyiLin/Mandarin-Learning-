@@ -1,45 +1,81 @@
 package com.taiyilin.mandarinlearning.data.source.remote
 
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
+import com.taiyilin.mandarinlearning.data.Result
+import com.taiyilin.mandarinlearning.data.Course
+import com.taiyilin.mandarinlearning.data.Feedback
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 //Implementation of the Mandarin Learning source that from network.
 object MandarinLearningRemoteDataSource :
     MandarinLearningDataSource {
 
-//    private const val PATH_ARTICLES = "articles"
-//    private const val KEY_CREATED_TIME = "createdTime"
-//
-//    override suspend fun login(id: String): Result<Author> {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-//
-//    override suspend fun getArticles(): Result<List<Article>> = suspendCoroutine { continuation ->
-//        FirebaseFirestore.getInstance()
-//            .collection(PATH_ARTICLES)
+    private val db = FirebaseFirestore.getInstance()
+
+    override suspend fun getAllCourses(): Result<List<Course>> = suspendCoroutine { continuation ->
+
+        db.collection("Course")
 //            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
-//            .get()
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    val list = mutableListOf<Article>()
-//                    for (document in task.result!!) {
-//                        Logger.d(document.id + " => " + document.data)
-//
-//                        val article = document.toObject(Article::class.java)
-//                        list.add(article)
-//                    }
-//                    continuation.resume(Result.Success(list))
-//                } else {
-//                    task.exception?.let {
-//
-//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-//                        continuation.resume(Result.Error(it))
-//                        return@addOnCompleteListener
-//                    }
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Course>()
+                    var count = 0
+                    for (document in task.result!!) {
+                        Log.d("Taiyi", document.id + " => " + document.data)
+
+                        db.collection("Course").document(document.id).collection("Feedback").get()
+                            .addOnCompleteListener { task1 ->
+                                if (task1.isSuccessful) {
+                                    val feedbackList = mutableListOf<Feedback>()
+                                    for (fbDocument in task1.result!!){
+                                        val feedback = fbDocument.toObject(Feedback::class.java)
+                                        feedbackList.add(feedback)
+
+                                    }
+                                    //把document轉成我們需要資料的格式Course
+                                    val course = document.toObject(Course::class.java)
+                                    course.feedbackList = feedbackList
+                                    list.add(course)
+                                    count += 1
+                                    if (count == task.result!!.size()) {
+                                        continuation.resume(Result.Success(list))
+                                    }
+
+                                } else {
+                                    task1.exception?.let {
+                                        Log.w(
+                                            "ty", "000"
+                                        )
+                                        continuation.resume(Result.Error(it))
+                                        return@addOnCompleteListener
+                                    }
+                                }
+
+                            }
+
+
+                    }
+
+                } else {
+                    task.exception?.let {
+
+                        Log.w(
+                            "Taiyi",
+                            "[${this::class.simpleName}] Error getting documents. ${it.message}"
+                        )
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
 //                    continuation.resume(Result.Fail(PublisherApplication.instance.getString(R.string.you_know_nothing)))
-//                }
-//            }
-//    }
-//
+                    continuation.resume(Result.Fail("Taiyiyiyiyiyiyiyi"))
+                }
+            }
+    }
+
 //    override fun getLiveArticles(): MutableLiveData<List<Article>> {
 //
 //        val liveData = MutableLiveData<List<Article>>()
@@ -121,9 +157,6 @@ object MandarinLearningRemoteDataSource :
 //
 //    }
 //
-
-
-
 
 
 }

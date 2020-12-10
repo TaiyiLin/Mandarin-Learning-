@@ -8,10 +8,10 @@ data class Question(
 
     var number: Int? = null,
 
-    var title: String = "",
+    var title: String = " ",
 
-    var type: String = "",
+    var type: String = " ",
 
-    var answer: String = ""
+    var answer: String = " "
 
 ): Parcelable

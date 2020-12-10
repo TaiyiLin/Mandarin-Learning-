@@ -1,10 +1,13 @@
 package com.taiyilin.mandarinlearning.data.source
 
-import androidx.lifecycle.MutableLiveData
+import com.taiyilin.mandarinlearning.data.Result
+import com.taiyilin.mandarinlearning.data.Course
 
 
 // Main entry point for accessing Publisher sources.
 interface MandarinLearningDataSource {
+
+    suspend fun getAllCourses(): Result<List<Course>>
 
 //    suspend fun login(id: String): Result<Author>
 //
