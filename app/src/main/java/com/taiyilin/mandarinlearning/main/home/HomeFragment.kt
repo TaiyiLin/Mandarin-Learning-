@@ -35,20 +35,26 @@ class HomeFragment : Fragment() {
         binding.viewModel = homeViewModel
         binding.lifecycleOwner = this
 
-        //Continue Adapter
+
+
+            //Continue Adapter
         val adapter = HomeAdapter() //類別N + () = 實例化
         val recyclerviewContinueCourse = binding.recyclerviewContinueCourse //binding . layout id 就可以拿到view元件
         recyclerviewContinueCourse.adapter = adapter
 
         //Recommended Adapter
-        val adapterR = HomeAdapterRecomdNPop() //類別N + () = 實例化
+        val adapterR = HomeAdapterRecomdNPop(homeViewModel) //類別N + () = 實例化
         val recyclerviewRecommendedCourse = binding.recyclerviewRecommendedCourse
         recyclerviewRecommendedCourse.adapter = adapterR
 
         //Popular Adapter
-        val adapterP = HomeAdapterRecomdNPop() //類別N + () = 實例化
+        val adapterP = HomeAdapterRecomdNPop(homeViewModel) //類別N + () = 實例化
         val recyclerviewPopularCourse = binding.recyclerviewPopularCourse
         recyclerviewPopularCourse.adapter = adapterP
+
+
+
+
 
 
         //Home page Course

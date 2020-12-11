@@ -26,7 +26,9 @@ data class Course(
 
     var feedbackList: List<Feedback>? = null,
 
-    var questionList: List<Question>? = null
+    var questionList: List<Question>? = null,
+
+    var studentList: List<String> = mutableListOf()
 
 ) : Parcelable
 

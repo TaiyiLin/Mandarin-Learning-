@@ -3,14 +3,20 @@ package com.taiyilin.mandarinlearning.main.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.databinding.ItemHomeRecomdNPopCourseBinding
+import com.taiyilin.mandarinlearning.login.UserManager
+import com.taiyilin.mandarinlearning.main.classroom.ClassroomSelectedClassAdapter
+import com.taiyilin.mandarinlearning.main.classroom.ClassroomViewModel
 
 
-class HomeAdapterRecomdNPop : ListAdapter<Course, RecyclerView.ViewHolder>(DiffCallback) {
+class HomeAdapterRecomdNPop(private val homeViewModel: HomeViewModel) : ListAdapter<Course, RecyclerView.ViewHolder>(DiffCallback) {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CourseRNPViewHolder(
@@ -29,7 +35,7 @@ class HomeAdapterRecomdNPop : ListAdapter<Course, RecyclerView.ViewHolder>(DiffC
         val course = getItem(position)
 
         //呼叫自己的方法
-        courseRNPViewHolder.bind(course)
+        courseRNPViewHolder.bind(homeViewModel, course)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Course>() {
@@ -47,11 +53,10 @@ class HomeAdapterRecomdNPop : ListAdapter<Course, RecyclerView.ViewHolder>(DiffC
 class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(course: Course) {
+    fun bind(homeViewModel: HomeViewModel, course: Course) {
 
         //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
         binding.recomdNPopCourse = course
-        binding.executePendingBindings()
         binding.btnLearnMore.setOnClickListener {
             if (binding.hiddenView.visibility == View.GONE){
                 binding.hiddenView.visibility=View.VISIBLE
@@ -66,6 +71,12 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
         val homeAdapterFeedback = HomeAdapterFeedback()
         recyclerViewReview.adapter = homeAdapterFeedback
         homeAdapterFeedback.submitList(course.feedbackList)
+
+        binding.buttonPlus.setOnClickListener{
+            homeViewModel.addSelectedCourse(course)
+            UserManager.userUID?.let { it1 -> homeViewModel.updateCourse(course.id, it1) }
+        binding.executePendingBindings()
+        }
 
     }
 }

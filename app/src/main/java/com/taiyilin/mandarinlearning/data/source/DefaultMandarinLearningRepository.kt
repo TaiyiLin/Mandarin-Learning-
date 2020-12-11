@@ -1,5 +1,7 @@
 package com.taiyilin.mandarinlearning.data.source
 
+import androidx.lifecycle.MutableLiveData
+import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Result
 import com.taiyilin.mandarinlearning.data.Course
 
@@ -13,25 +15,17 @@ class DefaultMandarinLearningRepository (private val remoteDataSource: MandarinL
         return remoteDataSource.getAllCourses()
     }
 
-//    override suspend fun loginMockData(id: String): Result<Author> {
-//        return localDataSource.login(id)
-//    }
-//
-//    override suspend fun getArticles(): Result<List<Article>> {
-//        return remoteDataSource.getArticles()
-//    }
-//
-//    override fun getLiveArticles(): MutableLiveData<List<Article>> {
-//        return remoteDataSource.getLiveArticles()
-//    }
-//
-//    override suspend fun publish(article: Article): Result<Boolean> {
-//        return remoteDataSource.publish(article)
-//    }
-//
-//    override suspend fun delete(article: Article): Result<Boolean> {
-//        return remoteDataSource.delete(article)
-//    }
+    override suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean> {
+        return remoteDataSource.addSelectedCourse(classroom)
+    }
+
+    override fun getLiveCourses(): MutableLiveData<List<Course>> {
+        return remoteDataSource.getLiveCourses()
+    }
+
+    override suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean> {
+        TODO("Not yet implemented")
+    }
 
 
 }

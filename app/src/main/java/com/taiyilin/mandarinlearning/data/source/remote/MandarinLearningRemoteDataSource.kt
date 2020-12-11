@@ -1,11 +1,20 @@
 package com.taiyilin.mandarinlearning.data.source.remote
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import com.taiyilin.mandarinlearning.MandarinLearningApplication
+import com.taiyilin.mandarinlearning.R
+import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Result
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.Feedback
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
+import com.taiyilin.mandarinlearning.util.Logger
+import io.grpc.InternalChannelz.id
+import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -16,6 +25,7 @@ object MandarinLearningRemoteDataSource :
     private val db = FirebaseFirestore.getInstance()
 
     override suspend fun getAllCourses(): Result<List<Course>> = suspendCoroutine { continuation ->
+
 
         db.collection("Course")
 //            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
@@ -31,7 +41,7 @@ object MandarinLearningRemoteDataSource :
                             .addOnCompleteListener { task1 ->
                                 if (task1.isSuccessful) {
                                     val feedbackList = mutableListOf<Feedback>()
-                                    for (fbDocument in task1.result!!){
+                                    for (fbDocument in task1.result!!) {
                                         val feedback = fbDocument.toObject(Feedback::class.java)
                                         feedbackList.add(feedback)
 
@@ -54,10 +64,7 @@ object MandarinLearningRemoteDataSource :
                                         return@addOnCompleteListener
                                     }
                                 }
-
                             }
-
-
                     }
 
                 } else {
@@ -76,87 +83,89 @@ object MandarinLearningRemoteDataSource :
             }
     }
 
-//    override fun getLiveArticles(): MutableLiveData<List<Article>> {
-//
-//        val liveData = MutableLiveData<List<Article>>()
-//
-//        FirebaseFirestore.getInstance()
-//            .collection(PATH_ARTICLES)
-//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
-//            .addSnapshotListener { snapshot, exception ->
-//
-//                Logger.i("addSnapshotListener detect")
-//
-//                exception?.let {
-//                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-//                }
-//
-//                val list = mutableListOf<Article>()
-//                for (document in snapshot!!) {
-//                    Logger.d(document.id + " => " + document.data)
-//
-//                    val article = document.toObject(Article::class.java)
-//                    list.add(article)
-//                }
-//
-//                liveData.value = list
-//            }
-//        return liveData
-//    }
-//
-//    override suspend fun publish(article: Article): Result<Boolean> = suspendCoroutine { continuation ->
-//        val articles = FirebaseFirestore.getInstance().collection(PATH_ARTICLES)
-//        val document = articles.document()
-//
-//        article.id = document.id
-//        article.createdTime = Calendar.getInstance().timeInMillis
-//
-//        document
-//            .set(article)
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    Logger.i("Publish: $article")
-//
-//                    continuation.resume(Result.Success(true))
-//                } else {
-//                    task.exception?.let {
-//
-//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-//                        continuation.resume(Result.Error(it))
-//                        return@addOnCompleteListener
-//                    }
-//                    continuation.resume(Result.Fail(PublisherApplication.instance.getString(R.string.you_know_nothing)))
-//                }
-//            }
-//    }
-//
-//    override suspend fun delete(article: Article): Result<Boolean> = suspendCoroutine { continuation ->
-//
-//        when {
-//            article.author?.id == "waynechen323"
-//                    && article.tag.toLowerCase(Locale.TAIWAN) != "test"
-//                    && article.tag.trim().isNotEmpty() -> {
-//
-//                continuation.resume(Result.Fail("You know nothing!! ${article.author?.name}"))
-//            }
-//            else -> {
-//                FirebaseFirestore.getInstance()
-//                    .collection(PATH_ARTICLES)
-//                    .document(article.id)
-//                    .delete()
-//                    .addOnSuccessListener {
-//                        Logger.i("Delete: $article")
-//
-//                        continuation.resume(Result.Success(true))
-//                    }.addOnFailureListener {
-//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-//                        continuation.resume(Result.Error(it))
-//                    }
-//            }
-//        }
-//
-//    }
-//
 
 
+
+
+
+    override suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean> = suspendCoroutine { continuation ->
+
+        val classroomRef = FirebaseFirestore.getInstance().collection("Classroom")
+        //val document的document 是一個空資料夾
+        val document = classroomRef.document()
+
+        classroom.id = document.id
+
+        document
+            .set(classroom)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("Publish: $classroom")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(""))
+                }
+            }
+
+    }
+
+    //監聽資料、持續更新
+    override fun getLiveCourses(): MutableLiveData<List<Course>> {
+
+        val liveData = MutableLiveData<List<Course>>()
+
+        FirebaseFirestore.getInstance()
+            .collection("Course")
+//          .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, exception ->
+
+                Logger.i("addSnapshotListener detect")
+
+                exception?.let {
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                }
+
+                val list = mutableListOf<Course>()
+                for (document in snapshot!!) {
+                    Logger.d(document.id + " => " + document.data)
+
+                    val course = document.toObject(Course::class.java)
+                    list.add(course)
+                }
+
+                liveData.value = list
+            }
+        return liveData
+
+
+    }
+
+    override suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean> = suspendCoroutine { continuation ->
+
+        val courseRef = FirebaseFirestore.getInstance().collection("Course")
+
+        courseRef.document(courseId).update("studentList", FieldValue.arrayUnion(studentId))
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("Course: $courseId")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(""))
+                }
+            }
+    }
 }
