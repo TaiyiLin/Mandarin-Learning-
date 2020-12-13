@@ -12,6 +12,7 @@ import com.taiyilin.mandarinlearning.data.Result
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.Feedback
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
+import com.taiyilin.mandarinlearning.login.UserManager
 import com.taiyilin.mandarinlearning.util.Logger
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -171,7 +172,7 @@ object MandarinLearningRemoteDataSource :
         val courseRef = db.collection("Course")
         val liveData = MutableLiveData<List<Course>>()
 
-        courseRef.whereArrayContains("studentList", "UserManager.userUID")
+        courseRef.whereArrayContains("studentList", UserManager.userUID!!)
             .addSnapshotListener { snapshot, exception ->
 
                 Logger.i("addSnapshotListener detect")

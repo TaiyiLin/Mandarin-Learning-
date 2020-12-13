@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.taiyilin.mandarinlearning.MandarinLearningApplication
-import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
@@ -25,9 +24,13 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
     val course: LiveData<List<Course>>
     get() = _course
 
+    var liveCourses = MutableLiveData<List<Course>>()
 
     var liveCourses = MutableLiveData<List<Course>>()
 
+    var liveUserCourse = MutableLiveData<List<Course>>()
+
+    var liveNonSelectedCourses = MutableLiveData<List<Course>>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -182,12 +185,23 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
 
     // (2) 取得所有同一個User的Live課程
     private fun getUserLiveCourseResult(){
-        liveCourses = repository.getUserLiveCourse()
+        liveUserCourse = repository.getUserLiveCourse()
         _status.value = LoadApiStatus.DONE
         _refreshStatus.value = false
     }
 
+    // (3) = (1) - (2)
+    fun getNonSelectedCourses(){
+        val list = mutableListOf<Course>()
+        list.addAll(liveCourses.value!!)
+        list.removeAll(liveUserCourse.value!!)
 
+        liveNonSelectedCourses.value = list
+
+
+
+
+    }
 
 
 

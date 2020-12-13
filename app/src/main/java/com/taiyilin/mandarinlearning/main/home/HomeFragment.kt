@@ -1,6 +1,7 @@
 package com.taiyilin.mandarinlearning.main.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,7 @@ import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.Feedback
 import com.taiyilin.mandarinlearning.databinding.FragmentHomeBinding
 import com.taiyilin.mandarinlearning.ext.getVmFactory
+import kotlin.math.log
 
 
 class HomeFragment : Fragment() {
@@ -52,12 +54,30 @@ class HomeFragment : Fragment() {
         val recyclerviewPopularCourse = binding.recyclerviewPopularCourse
         recyclerviewPopularCourse.adapter = adapterP
 
+        homeViewModel.liveCourses.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Log.d("aaaaaaa", "aaaaaaaa  = $it")
+            }
+        })
+
+        homeViewModel.liveUserCourse.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+                homeViewModel.getNonSelectedCourses()
+            }
+        })
+
+        homeViewModel.liveNonSelectedCourses.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                Log.d("ccccccc", "cccccc = $it")
+                adapterR.submitList(it)
+            }
+        })
+
         //Home page Course
         homeViewModel.course.observe(viewLifecycleOwner, Observer {
             it?.let {
 
-                adapter.submitList(it)
-                adapterR.submitList(it)
                 adapterP.submitList(it)
 
             }

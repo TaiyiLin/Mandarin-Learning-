@@ -7,9 +7,10 @@ import com.taiyilin.mandarinlearning.data.Course
 
 
 // Concrete implementation to load Mandarin Learning sources.
-class DefaultMandarinLearningRepository (private val remoteDataSource: MandarinLearningDataSource,
-                                         private val localDataSource: MandarinLearningDataSource
-): MandarinLearningRepository {
+class DefaultMandarinLearningRepository(
+    private val remoteDataSource: MandarinLearningDataSource,
+    private val localDataSource: MandarinLearningDataSource
+) : MandarinLearningRepository {
 
     override suspend fun getAllCourses(): Result<List<Course>> {
         return remoteDataSource.getAllCourses()
@@ -30,6 +31,4 @@ class DefaultMandarinLearningRepository (private val remoteDataSource: MandarinL
     override fun getUserLiveCourse(): MutableLiveData<List<Course>> {
         return remoteDataSource.getUserLiveCourse()
     }
-
-
 }
