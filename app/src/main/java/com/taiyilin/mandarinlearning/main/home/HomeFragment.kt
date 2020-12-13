@@ -52,11 +52,6 @@ class HomeFragment : Fragment() {
         val recyclerviewPopularCourse = binding.recyclerviewPopularCourse
         recyclerviewPopularCourse.adapter = adapterP
 
-
-
-
-
-
         //Home page Course
         homeViewModel.course.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -134,7 +129,6 @@ class HomeFragment : Fragment() {
         binding.textviewSeeAll.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_global_navigation_classroom)
         }
-
 
         return binding.root
     }
