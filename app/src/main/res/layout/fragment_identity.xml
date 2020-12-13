@@ -38,7 +38,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/inconsolata_bold"
-            android:text="I Am"
+            android:text="Pick Your Role"
             android:textAlignment="center"
             android:textColor="@color/brown"
             android:textSize="20dp"

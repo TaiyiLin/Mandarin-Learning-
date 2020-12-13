@@ -109,6 +109,7 @@
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </soup.neumorphism.NeumorphCardView>
 
                 <soup.neumorphism.NeumorphTextView

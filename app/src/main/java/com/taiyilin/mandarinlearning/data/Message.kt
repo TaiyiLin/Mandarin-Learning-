@@ -6,11 +6,11 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Message(
 
-    var senderId: String = " ",
+    var senderId: String = "",
 
-    var receiverId: String= " ",
+    var receiverId: String= "",
 
-    var content: String = " ",
+    var content: String = "",
 
     var createdTime: Long? = null,
 

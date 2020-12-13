@@ -51,4 +51,17 @@
         android:name="com.taiyilin.mandarinlearning.identity.IdentityFragment"
         android:label="fragment_identity"
         tools:layout="@layout/fragment_identity" /><action android:id="@+id/action_global_identityFragment" app:destination="@id/identityFragment"/>
+    <fragment
+        android:id="@+id/homeDetailFragment"
+        android:name="com.taiyilin.mandarinlearning.homeDetail.HomeDetailFragment"
+        android:label="fragment_home_detail"
+        tools:layout="@layout/fragment_home_detail" />
+    <activity
+        android:id="@+id/logInActivity"
+        android:name="com.taiyilin.mandarinlearning.login.LogInActivity"
+        android:label="LogInActivity" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.taiyilin.mandarinlearning.MainActivity"
+        android:label="MainActivity" />
 </navigation>

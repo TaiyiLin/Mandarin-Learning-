@@ -84,10 +84,6 @@ object MandarinLearningRemoteDataSource :
     }
 
 
-
-
-
-
     override suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean> = suspendCoroutine { continuation ->
 
         val classroomRef = FirebaseFirestore.getInstance().collection("Classroom")
@@ -116,8 +112,33 @@ object MandarinLearningRemoteDataSource :
 
     }
 
+
+    override suspend fun updateCourse(
+        courseId: String, studentId: String): Result<Boolean> = suspendCoroutine { continuation ->
+
+        val courseRef = FirebaseFirestore.getInstance().collection("Course")
+
+        courseRef.document(courseId)
+            .update("studentList", FieldValue.arrayUnion(studentId))
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("Course: $courseId")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(""))
+                }
+            }
+    }
+
     //監聽資料、持續更新
-    override fun getLiveCourses(): MutableLiveData<List<Course>> {
+    override fun getAllLiveCourses(): MutableLiveData<List<Course>> {
 
         val liveData = MutableLiveData<List<Course>>()
 
@@ -144,28 +165,34 @@ object MandarinLearningRemoteDataSource :
             }
         return liveData
 
-
     }
 
-    override suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean> = suspendCoroutine { continuation ->
 
-        val courseRef = FirebaseFirestore.getInstance().collection("Course")
+    override fun getUserLiveCourse(): MutableLiveData<List<Course>> {
 
-        courseRef.document(courseId).update("studentList", FieldValue.arrayUnion(studentId))
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Logger.i("Course: $courseId")
+        val courseRef = db.collection("Course")
+        val liveData = MutableLiveData<List<Course>>()
 
-                    continuation.resume(Result.Success(true))
-                } else {
-                    task.exception?.let {
+        courseRef.whereArrayContains("studentList", "UserManager.userUID")
+            .addSnapshotListener { snapshot, exception ->
 
-                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
-                    }
-                    continuation.resume(Result.Fail(""))
+                Logger.i("addSnapshotListener detect")
+
+                exception?.let {
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                 }
+
+                val list = mutableListOf<Course>()
+                for (document in snapshot!!) {
+                    Logger.d(document.id + " => " + document.data)
+
+                    val course = document.toObject(Course::class.java)
+                    list.add(course)
+                }
+
+                liveData.value = list
             }
+        return liveData
+
     }
 }

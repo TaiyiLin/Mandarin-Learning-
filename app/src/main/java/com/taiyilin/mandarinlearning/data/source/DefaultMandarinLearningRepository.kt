@@ -19,12 +19,16 @@ class DefaultMandarinLearningRepository (private val remoteDataSource: MandarinL
         return remoteDataSource.addSelectedCourse(classroom)
     }
 
-    override fun getLiveCourses(): MutableLiveData<List<Course>> {
-        return remoteDataSource.getLiveCourses()
+    override suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean> {
+        return remoteDataSource.updateCourse(courseId, studentId)
     }
 
-    override suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean> {
-        TODO("Not yet implemented")
+    override fun getAllLiveCourses(): MutableLiveData<List<Course>> {
+        return remoteDataSource.getAllLiveCourses()
+    }
+
+    override fun getUserLiveCourse(): MutableLiveData<List<Course>> {
+        return remoteDataSource.getUserLiveCourse()
     }
 
 

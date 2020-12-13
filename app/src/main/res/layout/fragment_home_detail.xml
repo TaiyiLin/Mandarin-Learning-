@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background_grid_white_grnline"
+    tools:context=".homeDetail.HomeDetailFragment">
+
+
+    <ImageView
+        android:id="@+id/course_cover"
+        android:layout_width="412dp"
+        android:layout_height="195dp"
+        android:background="@drawable/gradation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_soy_eggs" />
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/button_back"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_navigate_before_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/course_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inconsolata_bold"
+        android:letterSpacing="0.1"
+        android:text="@{recomdNPopCourse.name}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_cover"
+        tools:text="This Is Course Title" />
+
+    <soup.neumorphism.NeumorphImageButton
+        android:id="@+id/button_plus"
+        style="@style/Widget.Neumorph.ImageButton"
+        android:layout_width="55dp"
+        android:layout_height="50dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_baseline_add_24"
+        app:layout_constraintBottom_toBottomOf="@+id/course_cover"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <soup.neumorphism.NeumorphButton
+        android:id="@+id/btnLearnMore"
+        style="@style/Widget.Neumorph.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inconsolata_bold"
+        android:text="See more"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/text_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="9dp"
+        android:text="Level"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_title" />
+
+    <TextView
+        android:id="@+id/course_level"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/inconsolata"
+        android:text="@{recomdNPopCourse.level}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@+id/text_level"
+        app:layout_constraintTop_toTopOf="@+id/text_level"
+        tools:text="Basic" />
+
+
+    <TextView
+        android:id="@+id/text_total_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:text="Total Question"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_level" />
+
+    <TextView
+        android:id="@+id/text_question_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="100"
+        app:layout_constraintStart_toEndOf="@+id/text_total_question"
+        app:layout_constraintTop_toTopOf="@+id/text_total_question" />
+
+    <TextView
+        android:id="@+id/about_title"
+        android:layout_width="379dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inconsolata_bold"
+        android:letterSpacing="0.1"
+        android:text="About"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_total_question" />
+
+    <TextView
+        android:id="@+id/course_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/inconsolata"
+        android:text="@{recomdNPopCourse.description}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_title"
+        tools:text="This is a description. This is a description. This is a description. This is a description." />
+
+    <TextView
+        android:id="@+id/review_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inconsolata_bold"
+        android:letterSpacing="0.1"
+        android:text="Review"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/black"
+        android:textSize="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/course_description" />
+
+    <ImageView
+        android:id="@+id/star_01"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/review_title"
+        app:layout_constraintStart_toEndOf="@+id/review_title"
+        app:layout_constraintTop_toTopOf="@+id/review_title"
+        app:srcCompat="@drawable/ic_star_full_24" />
+
+    <ImageView
+        android:id="@+id/star_02"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/star_01"
+        app:layout_constraintStart_toEndOf="@+id/star_01"
+        app:layout_constraintTop_toTopOf="@+id/star_01"
+        app:srcCompat="@drawable/ic_star_full_24" />
+
+    <ImageView
+        android:id="@+id/star_03"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/star_02"
+        app:layout_constraintStart_toEndOf="@+id/star_02"
+        app:layout_constraintTop_toTopOf="@+id/star_02"
+        app:srcCompat="@drawable/ic_star_full_24" />
+
+    <ImageView
+        android:id="@+id/star_04"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/star_03"
+        app:layout_constraintStart_toEndOf="@+id/star_03"
+        app:layout_constraintTop_toTopOf="@+id/star_03"
+        app:srcCompat="@drawable/ic_star_full_24" />
+
+    <ImageView
+        android:id="@+id/star_05"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/star_04"
+        app:layout_constraintStart_toEndOf="@+id/star_04"
+        app:layout_constraintTop_toTopOf="@+id/star_04"
+        app:srcCompat="@drawable/ic_star_half_24" />
+
+    <TextView
+        android:id="@+id/rating_avg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/inconsolata"
+        android:text="@{recomdNPopCourse.avgRating}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/mint_green"
+        app:layout_constraintBottom_toBottomOf="@+id/star_05"
+        app:layout_constraintStart_toEndOf="@+id/star_05"
+        app:layout_constraintTop_toTopOf="@+id/star_05" />
+
+    <TextView
+        android:id="@+id/rating_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:fontFamily="@font/inconsolata"
+        android:text="(123)"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/rating_avg"
+        app:layout_constraintStart_toEndOf="@+id/rating_avg"
+        app:layout_constraintTop_toTopOf="@+id/rating_avg"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_review"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/review_title"
+        tools:listitem="@layout/item_home_course_review">
+        <!-- app:products="@{viewModel.products}"-->
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

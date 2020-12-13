@@ -66,10 +66,12 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
     init {
 
         getAllCoursesResult()
-
+        getAllLiveCoursesResult()
+        getUserLiveCourseResult()
     }
 
-    fun getAllCoursesResult() {
+    //不會用到???
+    private fun getAllCoursesResult() {
 
         coroutineScope.launch {
 
@@ -94,7 +96,7 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
                     null
                 }
                 else -> {
-//                    _error.value = MandarinLearningApplication.instance
+                    _error.value = MandarinLearningApplication.instance.toString()
                     _status.value = LoadApiStatus.ERROR
                     null
                 }
@@ -103,7 +105,7 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
         }
     }
 
-
+    // (0) Insert Course into Classroom
     fun addSelectedCourse(course: Course) {
 
         coroutineScope.launch {
@@ -129,19 +131,14 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
                     _status.value = LoadApiStatus.ERROR
                 }
                 else -> {
-//                    _error.value = MandarinLearningApplication.instance.getString(R.string.you_know_nothing)
+                    _error.value = MandarinLearningApplication.instance.toString()
                     _status.value = LoadApiStatus.ERROR
                 }
             }
         }
     }
 
-    fun getLiveCoursesResult(){
-        liveCourses = repository.getLiveCourses()
-        _status.value = LoadApiStatus.DONE
-        _refreshStatus.value = false
-    }
-
+   // (0) Update Course
     fun updateCourse(courseId: String, studentId: String){
         coroutineScope.launch {
 
@@ -175,4 +172,24 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
         }
 
     }
+
+    // (1) 取得所有監聽的的Live課程
+    private fun getAllLiveCoursesResult(){
+        liveCourses = repository.getAllLiveCourses()
+        _status.value = LoadApiStatus.DONE
+        _refreshStatus.value = false
+    }
+
+    // (2) 取得所有同一個User的Live課程
+    private fun getUserLiveCourseResult(){
+        liveCourses = repository.getUserLiveCourse()
+        _status.value = LoadApiStatus.DONE
+        _refreshStatus.value = false
+    }
+
+
+
+
+
 }
+

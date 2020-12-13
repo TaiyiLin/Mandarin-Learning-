@@ -21,11 +21,15 @@ class MandarinLearningLocalDataSource(val context: Context) :
         TODO("Not yet implemented")
     }
 
-    override fun getLiveCourses(): MutableLiveData<List<Course>> {
+    override suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean> {
+    override fun getAllLiveCourses(): MutableLiveData<List<Course>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getUserLiveCourse(): MutableLiveData<List<Course>> {
         TODO("Not yet implemented")
     }
 

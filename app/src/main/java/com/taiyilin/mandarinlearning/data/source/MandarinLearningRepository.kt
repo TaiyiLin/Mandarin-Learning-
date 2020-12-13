@@ -12,8 +12,10 @@ interface MandarinLearningRepository {
 
     suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean>
 
-    fun getLiveCourses(): MutableLiveData<List<Course>>
-
     suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean>
+
+    fun getAllLiveCourses(): MutableLiveData<List<Course>>
+
+    fun getUserLiveCourse(): MutableLiveData<List<Course>>
 
 }

@@ -8,21 +8,21 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Course(
 
-    var id: String = " ",
+    var id: String = "",
 
-    var name: String =" ",
+    var name: String ="",
 
-    var level: String = " ",
+    var level: String = "",
 
-    var avgRating: String = " ",
+    var avgRating: String = "",
 
-    var ownerId: String =  " ",
+    var ownerId: String = "",
 
     var status: Int? = null,
 
     var updatedTime : Long? = null,
 
-    var description : String = " ",
+    var description : String = "",
 
     var feedbackList: List<Feedback>? = null,
 
