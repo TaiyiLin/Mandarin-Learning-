@@ -23,8 +23,6 @@ import com.taiyilin.mandarinlearning.main.home.HomeViewModel
 
 class ClassroomFragment : Fragment() {
 
-//    private lateinit var classroomViewModel: ClassroomViewModel
-
     private val classroomViewModel by viewModels<ClassroomViewModel> {getVmFactory()  }
 
     override fun onCreateView(
@@ -32,10 +30,6 @@ class ClassroomFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
-//        classroomViewModel =
-//            ViewModelProvider(this).get(ClassroomViewModel::class.java)
 
         val root = inflater.inflate(R.layout.fragment_classroom, container, false)
 
@@ -81,16 +75,13 @@ class ClassroomFragment : Fragment() {
 //        classroomList.add(classroom1)
 //        classroomList.add(classroom2)
 
-
-
-
         val adapter = ClassroomSelectedClassAdapter(classroomViewModel, ClassroomSelectedClassAdapter.OnClickListener{
             classroomViewModel.navigateToDetail(it)
         }) //類別N + () = 實例化
         val recyclerSelectedClassName = binding.recyclerSelectedClassName //binding . layout id 就可以拿到view元件
         recyclerSelectedClassName.adapter = adapter
 
-
+        //拿到整包Classroom
         classroomViewModel.classroom.observe(viewLifecycleOwner, Observer {
             it?.let {
                 Log.d("dddddddddd", "dddddddddddd= $it")
@@ -98,16 +89,6 @@ class ClassroomFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
-
-
-//        val adapter = ClassroomSelectedClassAdapter(classroomViewModel, ClassroomSelectedClassAdapter.OnClickListener{
-//            classroomViewModel.navigateToDetail(it)
-//        }) //類別N + () = 實例化
-//
-//        val recyclerSelectedClassName = binding.recyclerSelectedClassName //binding . layout id 就可以拿到view元件
-//        recyclerSelectedClassName.adapter = adapter
-//
-//        adapter.submitList(classroomList)
 
         classroomViewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -117,6 +98,15 @@ class ClassroomFragment : Fragment() {
 
                 }
             })
+
+//        val adapter = ClassroomSelectedClassAdapter(classroomViewModel, ClassroomSelectedClassAdapter.OnClickListener{
+//            classroomViewModel.navigateToDetail(it)
+//        }) //類別N + () = 實例化
+//
+//        val recyclerSelectedClassName = binding.recyclerSelectedClassName //binding . layout id 就可以拿到view元件
+//        recyclerSelectedClassName.adapter = adapter
+//
+//        adapter.submitList(classroomList)
 
         return binding.root
     }

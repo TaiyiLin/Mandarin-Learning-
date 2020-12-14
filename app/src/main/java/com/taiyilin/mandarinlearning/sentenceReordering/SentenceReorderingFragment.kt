@@ -33,13 +33,12 @@ class SentenceReorderingFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-//        //取得上一個Fragment傳過來的參數
-//        val classroomData = SentenceReorderingFragmentArgs.fromBundle(requireArguments()).classroomData
+//       //取得上一個Fragment傳過來的參數
+//       val classroomData = SentenceReorderingFragmentArgs.fromBundle(requireArguments()).classroomData
 
         //使用factory創建viewModel
 //        val viewModelFactory = SentenceReorderingViewModelFactory(classroomData, application)
 //        val viewModel = ViewModelProvider(this, viewModelFactory).get(SentenceReorderingViewModel::class.java)
-
 
         binding.viewModel = viewModel
 
@@ -47,7 +46,7 @@ class SentenceReorderingFragment : Fragment() {
         binding.messageList.adapter = adapter
 
 //        val list = classroomData.messageList!!
-//      Log.d("aaa", "$list")
+//        Log.d("aaa", "$list")
 //        classroomData.messageList?.let { adapter.separateMsgSubmitList(it) }
 
 

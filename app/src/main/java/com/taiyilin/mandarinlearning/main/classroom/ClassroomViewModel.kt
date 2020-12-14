@@ -17,9 +17,7 @@ import kotlinx.coroutines.launch
 
 class ClassroomViewModel(private val repository: MandarinLearningRepository) : ViewModel() {
 
-
     val course = MutableLiveData<Course>()
-
 
     //Get Classroom list
     private var _classroom = MutableLiveData<List<Classroom>>()
@@ -114,11 +112,6 @@ class ClassroomViewModel(private val repository: MandarinLearningRepository) : V
     }
 
 
-
-
-
-//
-//
 //    fun getCourseById(id: String) {
 //        if (id == "C01") {
 //            //Question for course1
@@ -160,11 +153,7 @@ class ClassroomViewModel(private val repository: MandarinLearningRepository) : V
 //            )
 //            course.value = course2
 //        }
-//
-//
-//
 //        }
-//
 
     fun navigateToDetail(classroom: Classroom) {
         _navigateToDetail.value = classroom
