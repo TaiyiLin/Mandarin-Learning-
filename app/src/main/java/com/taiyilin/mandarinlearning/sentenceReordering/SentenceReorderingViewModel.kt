@@ -5,10 +5,17 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.taiyilin.mandarinlearning.MandarinLearningApplication
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.Question
+import com.taiyilin.mandarinlearning.data.Result
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
+import com.taiyilin.mandarinlearning.network.LoadApiStatus
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class SentenceReorderingViewModel(
     private val repository: MandarinLearningRepository,
@@ -27,7 +34,6 @@ class SentenceReorderingViewModel(
     private var courseData: Course? = null
     private var questionList = mutableListOf<Question>()
 
-
     //Question Data
     private val _questionData = MutableLiveData<Question>()
 
@@ -42,12 +48,82 @@ class SentenceReorderingViewModel(
         get() = _showToast
 
 
+    // status: The internal MutableLiveData that stores the status of the most recent request
+    private val _status = MutableLiveData<LoadApiStatus>()
+
+    val status: LiveData<LoadApiStatus>
+        get() = _status
+
+    // error: The internal MutableLiveData that stores the error of the most recent request
+    private val _error = MutableLiveData<String>()
+
+    val error: LiveData<String>
+        get() = _error
+
+    // status for the loading icon of swl
+    private val _refreshStatus = MutableLiveData<Boolean>()
+
+    val refreshStatus: LiveData<Boolean>
+        get() = _refreshStatus
+
+    // Create a Coroutine scope using a job to be able to cancel when needed
+    private var viewModelJob = Job()
+
+    // the Coroutine runs using the Main (UI) dispatcher
+    private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    /**
+     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
+     * Retrofit service to stop.
+     */
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
+
     init {
         _classroomData.value = classroomArgs
-
         getCourseData("C01")
         _questionData.value = questionList[0]
     }
+
+
+//    private fun getCourseData() {
+//
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            val result = repository.getAllClassrooms()
+//
+//            _classroom.value = when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//                    result.data
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//                else -> {
+//                    _error.value = MandarinLearningApplication.instance.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                    null
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
+
+
 
     private fun getCourseData(id: String) {
 
@@ -69,7 +145,7 @@ class SentenceReorderingViewModel(
                 20201203,
                 "null"
             )
-//                questionList1
+
             courseData = course1
             questionList = questionList1
 
@@ -91,7 +167,7 @@ class SentenceReorderingViewModel(
                 20201201,
                 "null"
             )
-//                questionList2
+
 
             courseData = course2
             questionList = questionList2
