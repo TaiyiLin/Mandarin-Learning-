@@ -25,7 +25,6 @@ object MandarinLearningRemoteDataSource :
 
     override suspend fun getAllCourses(): Result<List<Course>> = suspendCoroutine { continuation ->
 
-
         db.collection("Course")
 //            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
             .get()
@@ -83,37 +82,39 @@ object MandarinLearningRemoteDataSource :
     }
 
 
-    override suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean> = suspendCoroutine { continuation ->
+    override suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean> =
+        suspendCoroutine { continuation ->
 
-        val classroomRef = FirebaseFirestore.getInstance().collection("Classroom")
-        //val document的document 是一個空資料夾
-        val document = classroomRef.document()
+            val classroomRef = FirebaseFirestore.getInstance().collection("Classroom")
+            //val document的document 是一個空資料夾
+            val document = classroomRef.document()
 
-        classroom.id = document.id
+            classroom.id = document.id
 
-        document
-            .set(classroom)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
+            document
+                .set(classroom)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
 //                    Logger.i("Publish: $classroom")
 
-                    continuation.resume(Result.Success(true))
-                } else {
-                    task.exception?.let {
+                        continuation.resume(Result.Success(true))
+                    } else {
+                        task.exception?.let {
 
 //                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(""))
                     }
-                    continuation.resume(Result.Fail(""))
                 }
-            }
 
-    }
+        }
 
 
     override suspend fun updateCourse(
-        courseId: String, studentId: String): Result<Boolean> = suspendCoroutine { continuation ->
+        courseId: String, studentId: String
+    ): Result<Boolean> = suspendCoroutine { continuation ->
 
         val courseRef = FirebaseFirestore.getInstance().collection("Course")
 
@@ -191,7 +192,76 @@ object MandarinLearningRemoteDataSource :
 
                 liveData.value = list
             }
+
         return liveData
 
     }
+
+    override suspend fun getAllClassrooms(): Result<List<Classroom>> =
+        suspendCoroutine { continuation ->
+
+            db.collection("Classroom")
+//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+
+                        val list = mutableListOf<Classroom>()
+                        for (document in task.result!!) {
+                            Log.d("Taiyi", document.id + " => " + document.data)
+
+                            
+
+
+                            val classroom = document.toObject(Classroom::class.java)
+
+
+
+
+
+
+
+
+                            list.add(classroom)
+                        }
+                        continuation.resume(Result.Success(list))
+                    } else {
+                        task.exception?.let {
+
+//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(""))
+                    }
+                }
+        }
+
+    override fun getLiveClassrooms(): MutableLiveData<List<Classroom>> {
+        val liveData = MutableLiveData<List<Classroom>>()
+
+        db.collection("Classroom")
+//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, exception ->
+
+//                Logger.i("addSnapshotListener detect")
+
+                exception?.let {
+//                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                }
+
+                val list = mutableListOf<Classroom>()
+                for (document in snapshot!!) {
+//                    Logger.d(document.id + " => " + document.data)
+
+                    val classroom = document.toObject(Classroom::class.java)
+                    list.add(classroom)
+                }
+
+                liveData.value = list
+            }
+        return liveData
+
+    }
+
 }

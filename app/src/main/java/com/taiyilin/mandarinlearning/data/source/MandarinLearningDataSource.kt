@@ -19,6 +19,10 @@ interface MandarinLearningDataSource {
 
     fun getUserLiveCourse(): MutableLiveData<List<Course>>
 
+    suspend fun getAllClassrooms(): Result<List<Classroom>>
+
+    fun getLiveClassrooms(): MutableLiveData<List<Classroom>>
+
 }
 
 

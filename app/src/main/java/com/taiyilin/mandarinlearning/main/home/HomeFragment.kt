@@ -22,7 +22,6 @@ import kotlin.math.log
 
 class HomeFragment : Fragment() {
 
-
     private val homeViewModel by viewModels<HomeViewModel> { getVmFactory() }
 
     override fun onCreateView(

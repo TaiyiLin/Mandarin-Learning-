@@ -59,15 +59,17 @@ class ClassroomViewHolder(private var binding: ItemClassroomSelectedCoursesBindi
         //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
         binding.classroom = classroom
 
-        viewModel.getCourseById(classroom.courseId)
-        val course = viewModel.course.value
-        binding.selectedCourse = course
+//        viewModel.(classroom.courseId)
+//        val course = viewModel.course.value
+//        binding.selectedCourse = course
+
 
         binding.root.setOnClickListener {
-            if (course != null) {
+//            if (course != null) {
                 onClickListener.onClick(classroom)
-            }
+//            }
         }
+
 
         binding.executePendingBindings()
 
