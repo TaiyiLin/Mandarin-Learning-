@@ -31,4 +31,12 @@ class DefaultMandarinLearningRepository(
     override fun getUserLiveCourse(): MutableLiveData<List<Course>> {
         return remoteDataSource.getUserLiveCourse()
     }
+
+    override suspend fun getAllClassrooms(): Result<List<Classroom>> {
+        return remoteDataSource.getAllClassrooms()
+    }
+
+    override fun getLiveClassrooms(): MutableLiveData<List<Classroom>> {
+        return remoteDataSource.getLiveClassrooms()
+    }
 }

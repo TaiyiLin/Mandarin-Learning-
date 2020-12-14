@@ -11,6 +11,10 @@ data class Classroom(
 
     var courseId: String = "",
 
+    var courseLevel: String = "",
+
+    var courseTitle: String = "",
+
     var studentId: String = "",
 
     var teacherId: String = "",
@@ -18,4 +22,7 @@ data class Classroom(
     var answerList: List<Answer>? = null,
 
     var messageList: List<Message>? =null
+
 ): Parcelable
+
+

@@ -57,6 +57,8 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
 
         //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
         binding.recomdNPopCourse = course
+//        binding.executePendingBindings()
+
         binding.btnLearnMore.setOnClickListener {
             if (binding.hiddenView.visibility == View.GONE){
                 binding.hiddenView.visibility=View.VISIBLE

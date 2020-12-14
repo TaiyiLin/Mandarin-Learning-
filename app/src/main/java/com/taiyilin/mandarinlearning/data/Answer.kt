@@ -13,3 +13,5 @@ data class Answer(
     var type: String = ""
 
 ):Parcelable
+
+
