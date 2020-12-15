@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.taiyilin.mandarinlearning.data.Message
 import com.taiyilin.mandarinlearning.databinding.ItemClassroomMessageLeftBinding
 import com.taiyilin.mandarinlearning.databinding.ItemClassroomMessageRightBinding
+import com.taiyilin.mandarinlearning.login.UserManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -92,7 +93,7 @@ class SRChatRoomAdapter : ListAdapter<DataItem, RecyclerView.ViewHolder>(DiffCal
             val itemList = mutableListOf<DataItem>()
             list.let {
                 for (msg in it) {
-                    if (msg.senderId == "S02") {
+                    if (msg.senderId == UserManager.userUID) {
                         itemList.add(DataItem.SenderMsg(msg))
                     } else {
                         itemList.add(DataItem.ReceiverMsg(msg))

@@ -1,9 +1,7 @@
 package com.taiyilin.mandarinlearning.data.source
 
 import androidx.lifecycle.MutableLiveData
-import com.taiyilin.mandarinlearning.data.Classroom
-import com.taiyilin.mandarinlearning.data.Result
-import com.taiyilin.mandarinlearning.data.Course
+import com.taiyilin.mandarinlearning.data.*
 
 
 // Main entry point for accessing Mandarin Learning sources.
@@ -22,6 +20,10 @@ interface MandarinLearningDataSource {
     suspend fun getAllClassrooms(): Result<List<Classroom>>
 
     fun getLiveClassrooms(): MutableLiveData<List<Classroom>>
+
+    suspend fun getQuestions(classroom: Classroom): Result<List<Question>>
+
+    fun getAllLiveMessages(classroom: Classroom): MutableLiveData<List<Message>>
 
 }
 
