@@ -12,7 +12,7 @@ data class Message(
 
     var content: String = "",
 
-    var createdTime: Long? = null,
+    var createdTime: Long = -1,
 
     var beRead: Boolean? = false
 

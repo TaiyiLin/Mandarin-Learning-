@@ -6,10 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.taiyilin.mandarinlearning.MandarinLearningApplication
-import com.taiyilin.mandarinlearning.data.Classroom
-import com.taiyilin.mandarinlearning.data.Course
-import com.taiyilin.mandarinlearning.data.Question
-import com.taiyilin.mandarinlearning.data.Result
+import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
 import com.taiyilin.mandarinlearning.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
@@ -22,7 +19,7 @@ class SentenceReorderingViewModel(
     private val classroomArgs: Classroom?
 ) : ViewModel() {
 
-    //Classroom Data
+    //Classroom Data argument from Classroom Fragment
     private val _classroomData = MutableLiveData<Classroom>().apply {
         value = classroomArgs
     }
@@ -32,11 +29,12 @@ class SentenceReorderingViewModel(
 
     //Course Data
     private var courseData: Course? = null
-    private var questionList = mutableListOf<Question>()
+
 
     //Question Data
-    private val _questionData = MutableLiveData<Question>()
+    private var questionList = mutableListOf<Question>()
 
+    private val _questionData = MutableLiveData<Question>()
     val questionData: LiveData<Question>
         get() = _questionData
 
@@ -46,6 +44,14 @@ class SentenceReorderingViewModel(
     private val _showToast = MutableLiveData<Int>()
     val showToast: LiveData<Int>
         get() = _showToast
+
+
+    //ChatRoom
+    private val _message = MutableLiveData<Message>()
+    val message: LiveData<Message>
+        get() = _message
+
+    var liveMessage = MutableLiveData<List<Message>>()
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -84,97 +90,108 @@ class SentenceReorderingViewModel(
 
     init {
         _classroomData.value = classroomArgs
-        getCourseData("C01")
-        _questionData.value = questionList[0]
+//        getCourseData("C01")
+        getQuestionsResult()
+        getAllLiveMessages()
     }
 
 
-//    private fun getCourseData() {
-//
-//        coroutineScope.launch {
-//
-//            _status.value = LoadApiStatus.LOADING
-//
-//            val result = repository.getAllClassrooms()
-//
-//            _classroom.value = when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    result.data
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = MandarinLearningApplication.instance.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//            _refreshStatus.value = false
-//        }
-//    }
+    private fun getQuestionsResult() {
 
+        coroutineScope.launch {
 
+            _status.value = LoadApiStatus.LOADING
 
-    private fun getCourseData(id: String) {
+            val result = repository.getQuestions(classroomArgs!!)
 
-        if (id == "C01") {
-            //Question for course1
-            val question101 = Question(1, "回家/昨天/晚上/你/幾點?", "Sentence Reodering", "你昨天晚上幾點回家?")
-            val question102 = Question(2, "沒有/昨天/回家/通宵/我", "Sentence Reodering", "我昨天通宵沒有回家")
-            val questionList1 = mutableListOf<Question>()
-            questionList1.add(question101)
-            questionList1.add(question102)
-            //Course1
-            val course1 = Course(
-                "C01",
-                "Mandarin 101",
-                "Intermediate",
-                "3",
-                "O001",
-                1,
-                20201203,
-                "null"
-            )
+            when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+                    questionList.addAll(result.data)
+                    Log.d("Question","Questions=${result.data}")
+                    _questionData.value = questionList[0]
 
-            courseData = course1
-            questionList = questionList1
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
 
-        } else if (id == "C02") {
-            //Question for course2
-            val question201 = Question(1, "過得/今天/如何?", "Sentence Reodering", "今天過得如何?")
-            val question202 = Question(2, "糟/今天/一樣/過得", "Sentence Reodering", "今天過得一樣糟")
-            val questionList2 = mutableListOf<Question>()
-            questionList2.add(question201)
-            questionList2.add(question202)
-            //Course2
-            val course2 = Course(
-                "C02",
-                "Learning Mandarin So Much Fun",
-                "Basic",
-                "5",
-                "O002",
-                0,
-                20201201,
-                "null"
-            )
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
 
+                }
+                else -> {
+                    _error.value = MandarinLearningApplication.instance.toString()
+                    _status.value = LoadApiStatus.ERROR
 
-            courseData = course2
-            questionList = questionList2
-
+                }
+            }
+            _refreshStatus.value = false
         }
-
     }
+
+
+    // 取得所有監聽的的Live課程
+    private fun getAllLiveMessages() {
+        liveMessage = repository.getAllLiveMessages(classroomArgs!!)
+        _status.value = LoadApiStatus.DONE
+        _refreshStatus.value = false
+    }
+
+
+//    private fun getCourseData(id: String) {
+//
+//        if (id == "C01") {
+//            //Question for course1
+//            val question101 = Question(1, "回家/昨天/晚上/你/幾點?", "Sentence Reodering", "你昨天晚上幾點回家?")
+//            val question102 = Question(2, "沒有/昨天/回家/通宵/我", "Sentence Reodering", "我昨天通宵沒有回家")
+//            val questionList1 = mutableListOf<Question>()
+//            questionList1.add(question101)
+//            questionList1.add(question102)
+//            //Course1
+//            val course1 = Course(
+//                "C01",
+//                "Mandarin 101",
+//                "Intermediate",
+//                "3",
+//                "O001",
+//                1,
+//                20201203,
+//                "null"
+//            )
+//
+//            courseData = course1
+//            questionList = questionList1
+//
+//        } else if (id == "C02") {
+//            //Question for course2
+//            val question201 = Question(1, "過得/今天/如何?", "Sentence Reodering", "今天過得如何?")
+//            val question202 = Question(2, "糟/今天/一樣/過得", "Sentence Reodering", "今天過得一樣糟")
+//            val questionList2 = mutableListOf<Question>()
+//            questionList2.add(question201)
+//            questionList2.add(question202)
+//            //Course2
+//            val course2 = Course(
+//                "C02",
+//                "Learning Mandarin So Much Fun",
+//                "Basic",
+//                "5",
+//                "O002",
+//                0,
+//                20201201,
+//                "null"
+//            )
+//
+//
+//            courseData = course2
+//            questionList = questionList2
+//
+//        }
+//
+//    }
 
     fun next() {
 
@@ -213,3 +230,6 @@ class SentenceReorderingViewModel(
     }
 
 }
+
+
+

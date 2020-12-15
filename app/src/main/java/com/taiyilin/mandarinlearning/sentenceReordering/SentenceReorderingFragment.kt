@@ -71,9 +71,9 @@ class SentenceReorderingFragment : Fragment() {
             viewModel.back()
         }
 
-        viewModel.classroomData.observe(viewLifecycleOwner, Observer {
+        viewModel.liveMessage.observe(viewLifecycleOwner, Observer {
             it?.let {
-                it.messageList?.let { it1 -> adapter.separateMsgSubmitList(it1) }
+                adapter.separateMsgSubmitList(it)
             }
         })
 

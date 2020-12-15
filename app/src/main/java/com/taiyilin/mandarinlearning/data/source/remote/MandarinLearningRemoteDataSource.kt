@@ -7,10 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.taiyilin.mandarinlearning.MandarinLearningApplication
 import com.taiyilin.mandarinlearning.R
-import com.taiyilin.mandarinlearning.data.Classroom
-import com.taiyilin.mandarinlearning.data.Result
-import com.taiyilin.mandarinlearning.data.Course
-import com.taiyilin.mandarinlearning.data.Feedback
+import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 import com.taiyilin.mandarinlearning.login.UserManager
 import com.taiyilin.mandarinlearning.util.Logger
@@ -210,17 +207,7 @@ object MandarinLearningRemoteDataSource :
                         for (document in task.result!!) {
                             Log.d("Taiyi", document.id + " => " + document.data)
 
-                            
-
-
                             val classroom = document.toObject(Classroom::class.java)
-
-
-
-
-
-
-
 
                             list.add(classroom)
                         }
@@ -256,6 +243,61 @@ object MandarinLearningRemoteDataSource :
 
                     val classroom = document.toObject(Classroom::class.java)
                     list.add(classroom)
+                }
+
+                liveData.value = list
+            }
+        return liveData
+
+    }
+
+
+    override suspend fun getQuestions(classroom: Classroom): Result<List<Question>> = suspendCoroutine { continuation ->
+        FirebaseFirestore.getInstance()
+            .collection("Course").document(classroom.courseId).collection("Question")
+            .orderBy("number", Query.Direction.ASCENDING)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Question>()
+                    for (document in task.result!!) {
+//                        Logger.d(document.id + " => " + document.data)
+
+                        val question = document.toObject(Question::class.java)
+                        list.add(question)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else {
+                    task.exception?.let {
+
+//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(MandarinLearningApplication.instance.toString()))
+                }
+            }
+    }
+
+    override fun getAllLiveMessages(classroom: Classroom): MutableLiveData<List<Message>> {
+        val liveData = MutableLiveData<List<Message>>()
+
+        db.collection("Classroom").document(classroom.id).collection("Message")
+//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .addSnapshotListener { snapshot, exception ->
+
+//                Logger.i("addSnapshotListener detect")
+
+                exception?.let {
+//                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                }
+
+                val list = mutableListOf<Message>()
+                for (document in snapshot!!) {
+//                    Logger.d(document.id + " => " + document.data)
+
+                    val message = document.toObject(Message::class.java)
+                    list.add(message)
                 }
 
                 liveData.value = list
