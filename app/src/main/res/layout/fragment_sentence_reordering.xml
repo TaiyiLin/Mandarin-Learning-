@@ -200,7 +200,7 @@
                 android:ems="10"
                 android:fontFamily="@font/inconsolata"
                 android:hint="Type Your Answer Here 你的回答是"
-
+                android:text="@={viewModel.answerString}"
                 android:inputType="textMultiLine"
                 android:textAlignment="center"
                 android:backgroundTint="@color/brown"
@@ -222,7 +222,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

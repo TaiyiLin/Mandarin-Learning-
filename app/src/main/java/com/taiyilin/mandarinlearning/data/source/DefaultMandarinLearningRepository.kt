@@ -46,5 +46,7 @@ class DefaultMandarinLearningRepository(
         return remoteDataSource.getAllLiveMessages(classroom)
     }
 
-
+    override suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer> {
+        return remoteDataSource.sendAnswer(classroom, answer)
+     }
 }

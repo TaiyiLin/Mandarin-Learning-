@@ -9,7 +9,7 @@ interface MandarinLearningDataSource {
 
     suspend fun getAllCourses(): Result<List<Course>>
 
-    suspend fun addSelectedCourse(classroom: Classroom) :Result<Boolean>
+    suspend fun addSelectedCourse(classroom: Classroom) : Result<Boolean>
 
     suspend fun updateCourse(courseId: String, studentId: String): Result<Boolean>
 
@@ -24,6 +24,8 @@ interface MandarinLearningDataSource {
     suspend fun getQuestions(classroom: Classroom): Result<List<Question>>
 
     fun getAllLiveMessages(classroom: Classroom): MutableLiveData<List<Message>>
+
+    suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer>
 
 }
 

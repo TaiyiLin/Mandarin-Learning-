@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.taiyilin.mandarinlearning.MandarinLearningApplication
-import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 import com.taiyilin.mandarinlearning.login.UserManager
@@ -73,7 +71,7 @@ object MandarinLearningRemoteDataSource :
                         return@addOnCompleteListener
                     }
 //                    continuation.resume(Result.Fail(PublisherApplication.instance.getString(R.string.you_know_nothing)))
-                    continuation.resume(Result.Fail("Taiyiyiyiyiyiyiyi"))
+                    continuation.resume(Result.Fail(""))
                 }
             }
     }
@@ -92,13 +90,13 @@ object MandarinLearningRemoteDataSource :
                 .set(classroom)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-//                    Logger.i("Publish: $classroom")
+                        Logger.i("ToneGo: $classroom")
 
                         continuation.resume(Result.Success(true))
                     } else {
                         task.exception?.let {
 
-//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                             continuation.resume(Result.Error(it))
                             return@addOnCompleteListener
                         }
@@ -119,13 +117,13 @@ object MandarinLearningRemoteDataSource :
             .update("studentList", FieldValue.arrayUnion(studentId))
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-//                    Logger.i("Course: $courseId")
+                    Logger.i("Course: $courseId")
 
                     continuation.resume(Result.Success(true))
                 } else {
                     task.exception?.let {
 
-//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                         continuation.resume(Result.Error(it))
                         return@addOnCompleteListener
                     }
@@ -144,15 +142,15 @@ object MandarinLearningRemoteDataSource :
 //          .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
 
-//                Logger.i("addSnapshotListener detect")
+                Logger.i("addSnapshotListener detect")
 
                 exception?.let {
-//                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                 }
 
                 val list = mutableListOf<Course>()
                 for (document in snapshot!!) {
-//                    Logger.d(document.id + " => " + document.data)
+                    Logger.d(document.id + " => " + document.data)
 
                     val course = document.toObject(Course::class.java)
                     list.add(course)
@@ -173,15 +171,15 @@ object MandarinLearningRemoteDataSource :
         courseRef.whereArrayContains("studentList", UserManager.userUID!!)
             .addSnapshotListener { snapshot, exception ->
 
-//                Logger.d("addSnapshotListener detect")
+                Logger.d("addSnapshotListener detect")
 
                 exception?.let {
-//                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                 }
 
                 val list = mutableListOf<Course>()
                 for (document in snapshot!!) {
-//                    Logger.d(document.id + " => " + document.data)
+                    Logger.d(document.id + " => " + document.data)
 
                     val course = document.toObject(Course::class.java)
                     list.add(course)
@@ -215,7 +213,7 @@ object MandarinLearningRemoteDataSource :
                     } else {
                         task.exception?.let {
 
-//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                             continuation.resume(Result.Error(it))
                             return@addOnCompleteListener
                         }
@@ -231,15 +229,15 @@ object MandarinLearningRemoteDataSource :
 //            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
 
-//                Logger.i("addSnapshotListener detect")
+                Logger.i("addSnapshotListener detect")
 
                 exception?.let {
-//                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                 }
 
                 val list = mutableListOf<Classroom>()
                 for (document in snapshot!!) {
-//                    Logger.d(document.id + " => " + document.data)
+                    Logger.d(document.id + " => " + document.data)
 
                     val classroom = document.toObject(Classroom::class.java)
                     list.add(classroom)
@@ -252,32 +250,33 @@ object MandarinLearningRemoteDataSource :
     }
 
 
-    override suspend fun getQuestions(classroom: Classroom): Result<List<Question>> = suspendCoroutine { continuation ->
-        FirebaseFirestore.getInstance()
-            .collection("Course").document(classroom.courseId).collection("Question")
-            .orderBy("number", Query.Direction.ASCENDING)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val list = mutableListOf<Question>()
-                    for (document in task.result!!) {
-//                        Logger.d(document.id + " => " + document.data)
+    override suspend fun getQuestions(classroom: Classroom): Result<List<Question>> =
+        suspendCoroutine { continuation ->
+            FirebaseFirestore.getInstance()
+                .collection("Course").document(classroom.courseId).collection("Question")
+                .orderBy("number", Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Question>()
+                        for (document in task.result!!) {
+                            Logger.d(document.id + " => " + document.data)
 
-                        val question = document.toObject(Question::class.java)
-                        list.add(question)
-                    }
-                    continuation.resume(Result.Success(list))
-                } else {
-                    task.exception?.let {
+                            val question = document.toObject(Question::class.java)
+                            list.add(question)
+                        }
+                        continuation.resume(Result.Success(list))
+                    } else {
+                        task.exception?.let {
 
-//                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(""))
                     }
-                    continuation.resume(Result.Fail(MandarinLearningApplication.instance.toString()))
                 }
-            }
-    }
+        }
 
     override fun getAllLiveMessages(classroom: Classroom): MutableLiveData<List<Message>> {
         val liveData = MutableLiveData<List<Message>>()
@@ -286,15 +285,15 @@ object MandarinLearningRemoteDataSource :
 //            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
             .addSnapshotListener { snapshot, exception ->
 
-//                Logger.i("addSnapshotListener detect")
+                Logger.i("addSnapshotListener detect")
 
                 exception?.let {
-//                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
                 }
 
                 val list = mutableListOf<Message>()
                 for (document in snapshot!!) {
-//                    Logger.d(document.id + " => " + document.data)
+                    Logger.d(document.id + " => " + document.data)
 
                     val message = document.toObject(Message::class.java)
                     list.add(message)
@@ -306,4 +305,46 @@ object MandarinLearningRemoteDataSource :
 
     }
 
+    //Input answer in Classroom detail page
+    override suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer> =
+        suspendCoroutine { continuation ->
+            //拿到一個Classroom的一包answers
+            val answers = db.collection("Classroom")
+                .document(classroom.id)
+                .collection("Answer")
+                .whereEqualTo("questionNumber", answer.questionNumber) //whereEqualTo 是找到那個collection下的一個欄位
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Logger.i("ToneGO: $answer")
+
+                        //一個list 但裡面只有一筆document
+                        for (document in task.result!!) {
+
+                            document.id
+                            db.collection("Classroom").document(classroom.id).collection("Answer")
+                                .document(document.id)
+                                .set(answer)
+                                .addOnCompleteListener { task2 ->
+                                    if (task2.isSuccessful) {
+                                        Logger.i("ToneGO: $answer")
+
+                                        continuation.resume(Result.Success(answer))
+                                    } else {
+                                        task2.exception?.let {
+
+                                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                                            continuation.resume(Result.Error(it))
+
+                                        }
+                                        continuation.resume(Result.Fail(""))
+                                    }
+                                }
+
+                        }
+
+
+                    }
+                }
+        }
 }
