@@ -54,6 +54,15 @@ class SentenceReorderingViewModel(
     var liveMessage = MutableLiveData<List<Message>>()
 
 
+    //Set Answer
+    val answerString = MutableLiveData<String>()
+
+    //Answer Output
+    private val _answerOutput =MutableLiveData<String>()
+    val answerOutput : LiveData<String>
+        get() = _answerOutput
+
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -93,6 +102,8 @@ class SentenceReorderingViewModel(
 //        getCourseData("C01")
         getQuestionsResult()
         getAllLiveMessages()
+        sendAnswer()
+//        getAnswerOutput()
     }
 
 
@@ -109,7 +120,7 @@ class SentenceReorderingViewModel(
                     _error.value = null
                     _status.value = LoadApiStatus.DONE
                     questionList.addAll(result.data)
-                    Log.d("Question","Questions=${result.data}")
+                    Log.d("Question", "Questions=${result.data}")
                     _questionData.value = questionList[0]
 
                 }
@@ -139,6 +150,125 @@ class SentenceReorderingViewModel(
         liveMessage = repository.getAllLiveMessages(classroomArgs!!)
         _status.value = LoadApiStatus.DONE
         _refreshStatus.value = false
+    }
+
+
+    // 輸入訊息
+    fun sendAnswer() {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+            val answer = Answer()
+            answer.answer = answerString.value ?: ""  //?:如果前面值為null 就給後面的""
+            answer.questionNumber = questionData.value?.number
+
+            val result = repository.sendAnswer(classroomArgs!!, answer)
+
+
+            when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+
+                    Log.d("Answer", "answer=${result.data}")
+
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+
+                }
+                else -> {
+                    _error.value = MandarinLearningApplication.instance.toString()
+                    _status.value = LoadApiStatus.ERROR
+
+                }
+            }
+            _refreshStatus.value = false
+        }
+
+    }
+
+//    // Get answer output
+//    private fun getAnswerOutput() {
+//
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            val result = repository.getAnswerOutput(classroomArgs!!, answer)
+//
+//            when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//                    questionList.addAll(result.data)
+//                    Log.d("Answer", "Answers=${result.data}")
+//
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//
+//                }
+//                else -> {
+//                    _error.value = MandarinLearningApplication.instance.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
+
+
+
+
+    fun next() {
+
+        var size = questionList.size
+
+        if (position < size) {
+
+            position += 1
+
+            if (position < size) {
+                _questionData.value = questionList[position]  //有下一題
+            }
+
+        } else {
+            _showToast.value = 1 //沒有下一題了
+        }
+    }
+
+    fun resetShowToast() {
+        Log.d("resetShowToast", "resetShowToast")
+        _showToast.value = null
+    }
+
+    fun back() {
+        if (position > 0) {
+            position -= 1
+
+            if (position >= 0) {
+                _questionData.value = questionList[position]
+            }
+
+        } else {
+            _showToast.value = 0 //第一題
+        }
+
     }
 
 
@@ -193,41 +323,6 @@ class SentenceReorderingViewModel(
 //
 //    }
 
-    fun next() {
-
-        var size = questionList.size
-
-        if (position < size) {
-
-            position += 1
-
-            if (position < size) {
-                _questionData.value = questionList[position]  //有下一題
-            }
-
-        } else {
-            _showToast.value = 1 //沒有下一題了
-        }
-    }
-
-    fun resetShowToast() {
-        Log.d("resetShowToast", "resetShowToast")
-        _showToast.value = null
-    }
-
-    fun back() {
-        if (position > 0) {
-            position -= 1
-
-            if (position >= 0) {
-                _questionData.value = questionList[position]
-            }
-
-        } else {
-            _showToast.value = 0 //第一題
-        }
-
-    }
 
 }
 

@@ -20,6 +20,8 @@ data class Course(
 
     var status: Int? = null,
 
+    var image: String = "",
+
     var updatedTime : Long? = null,
 
     var description : String = "",

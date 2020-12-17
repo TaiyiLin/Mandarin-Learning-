@@ -5,7 +5,7 @@ import com.taiyilin.mandarinlearning.BuildConfig
 
 object Logger {
 
-    private const val TAG = "Wayne-Publisher"
+    private const val TAG = "ToneGO"
 
     fun v(content: String) { if (BuildConfig.LOGGER_VISIABLE) Log.v(TAG, content) }
     fun d(content: String) { if (BuildConfig.LOGGER_VISIABLE) Log.d(TAG, content) }

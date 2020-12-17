@@ -71,6 +71,12 @@ class SentenceReorderingFragment : Fragment() {
             viewModel.back()
         }
 
+      binding.buttonSubmit.setOnClickListener {
+          viewModel.sendAnswer()
+      }
+
+
+
         viewModel.liveMessage.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.separateMsgSubmitList(it)

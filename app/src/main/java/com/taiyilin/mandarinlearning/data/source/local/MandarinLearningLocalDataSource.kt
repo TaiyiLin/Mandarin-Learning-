@@ -10,7 +10,6 @@ import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 class MandarinLearningLocalDataSource(val context: Context) :
     MandarinLearningDataSource {
 
-
     override suspend fun getAllCourses(): Result<List<Course>> {
         TODO("Not yet implemented")
     }
@@ -46,5 +45,18 @@ class MandarinLearningLocalDataSource(val context: Context) :
     override fun getAllLiveMessages(classroom: Classroom): MutableLiveData<List<Message>> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getAnswerOutput(): Result<Answer> {
+        TODO("Not yet implemented")
+    }
+
+//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> {
+//        TODO("Not yet implemented")
+//    }
+
 
 }

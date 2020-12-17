@@ -9,8 +9,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MandarinLearning">
-        <activity android:name=".login.LogInActivity"></activity>
+        android:theme="@style/Theme.MandarinLearning"
+        android:windowSoftInputMode="stateHidden|adjustPan">
+        <activity android:name=".login.LogInActivity">
+
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -27,3 +30,5 @@
     </application>
 
 </manifest>
+
+

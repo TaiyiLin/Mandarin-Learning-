@@ -57,7 +57,7 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-                    <!--                        android:src="@drawable/gradation"-->
+                    <!--android:src="@drawable/gradation"-->
 
                     <TextView
                         android:id="@+id/course_title"

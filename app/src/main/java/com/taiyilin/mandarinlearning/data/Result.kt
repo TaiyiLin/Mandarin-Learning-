@@ -1,5 +1,7 @@
 package com.taiyilin.mandarinlearning.data
 
+import java.lang.Error
+
 //A generic class that holds a value with its api status. @param <T>
 
 sealed class Result<out R> {

@@ -21,7 +21,11 @@ data class Classroom(
 
     var answerList: List<Answer>? = null,
 
-    var messageList: List<Message>? =null
+    var messageList: List<Message>? = null,
+
+    var currentQuestion: Int? = null,
+
+    var totalQuestion: Int? = null
 
 ): Parcelable
 
