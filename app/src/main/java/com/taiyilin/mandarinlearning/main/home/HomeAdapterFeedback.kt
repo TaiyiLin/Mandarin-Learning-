@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.data.Feedback
 import com.taiyilin.mandarinlearning.databinding.ItemHomeCourseReviewBinding
 
 
-class HomeAdapterFeedback(private val homeViewModel: HomeViewModel, private val onClickListener: HomeAdapterRecomdNPop.OnClickListener) : ListAdapter<Feedback, RecyclerView.ViewHolder>(DiffCallback) {
-
+class HomeAdapterFeedback : ListAdapter<Feedback, RecyclerView.ViewHolder>(DiffCallback) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -53,6 +53,7 @@ class CourseReviewViewHolder(private var binding: ItemHomeCourseReviewBinding) :
 
         //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
         binding.feedback = feedback
+
         binding.executePendingBindings()
 
 

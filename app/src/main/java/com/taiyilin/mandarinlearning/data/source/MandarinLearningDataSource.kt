@@ -29,6 +29,8 @@ interface MandarinLearningDataSource {
 
     suspend fun getAnswerOutput(): Result<Answer>
 
+    suspend fun getFeedback(course: Course): Result<List<Feedback>>
+
 }
 
 

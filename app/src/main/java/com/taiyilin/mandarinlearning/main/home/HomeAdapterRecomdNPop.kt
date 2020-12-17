@@ -1,5 +1,6 @@
 package com.taiyilin.mandarinlearning.main.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,12 +73,12 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
             }
         }
 
+        //Feedback
         val recyclerViewReview = binding.recyclerReview
-        val homeAdapterFeedback = HomeAdapterFeedback(homeViewModel, HomeAdapterRecomdNPop.OnClickListener {
-            homeViewModel.navigateToDetail
-        })
+        val homeAdapterFeedback = HomeAdapterFeedback()
         recyclerViewReview.adapter = homeAdapterFeedback
         homeAdapterFeedback.submitList(course.feedbackList)
+        Log.d("feedback","feedback=${course.feedbackList}")
 
         binding.root.setOnClickListener{
             homeAdapterRecomdNPop.onClick(course)
@@ -87,6 +88,8 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
         binding.buttonPlus.setOnClickListener{
             homeViewModel.addSelectedCourse(course)
             UserManager.userUID?.let { it1 -> homeViewModel.updateCourse(course.id, it1) }
+
+
         binding.executePendingBindings()
         }
 

@@ -8,7 +8,7 @@ import com.taiyilin.mandarinlearning.sentenceReordering.SentenceReorderingViewMo
 import java.lang.IllegalArgumentException
 
 
-//Factory fro all ViewModels which needs [Classroom]
+//Factory for all ViewModels which needs [Classroom]
 class ClassroomArgsViewModelFactory (
     private val repository: MandarinLearningRepository,
     private val classroomArgs: Classroom?

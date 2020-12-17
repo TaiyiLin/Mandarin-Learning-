@@ -9,6 +9,9 @@
             name="recomdNPopCourse"
             type="com.taiyilin.mandarinlearning.data.Course" />
         <variable
+            name="viewModel"
+            type="com.taiyilin.mandarinlearning.homeDetail.HomeDetailViewModel" />
+        <variable
             name="feedback"
             type="com.taiyilin.mandarinlearning.data.Feedback" />
 

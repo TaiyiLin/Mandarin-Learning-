@@ -58,4 +58,8 @@ class DefaultMandarinLearningRepository(
 //        return remoteDataSource.getAnswerOutput(classroom, answer)
 //    }
 
+    override suspend fun getFeedback(course: Course): Result<List<Feedback>> {
+       return remoteDataSource.getFeedback(course)
+    }
+
 }

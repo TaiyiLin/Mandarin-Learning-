@@ -9,18 +9,17 @@
             name="viewModel"
             type="com.taiyilin.mandarinlearning.homeDetail.HomeDetailViewModel" />
 
-        <variable
-            name="recomdNPopCourse"
-            type="com.taiyilin.mandarinlearning.data.Course" />
-
     </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="4dp"
         tools:context=".homeDetail.HomeDetailFragment">
-
 
             <!-- //Base CardView-->
             <soup.neumorphism.NeumorphCardView
@@ -69,7 +68,7 @@
                             android:layout_marginEnd="16dp"
                             android:fontFamily="@font/inconsolata_bold"
                             android:letterSpacing="0.1"
-                            android:text="@{recomdNPopCourse.name}"
+                            android:text="@{viewModel.courseDetail.name}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"
                             android:textColor="@color/mint_green"
                             android:textSize="18dp"
@@ -84,6 +83,16 @@
                             android:layout_height="50dp"
                             android:scaleType="centerInside"
                             android:src="@drawable/ic_baseline_add_24"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <soup.neumorphism.NeumorphImageButton
+                            android:id="@+id/button_back"
+                            style="@style/Widget.Neumorph.ImageButton"
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/ic_baseline_subdirectory_arrow_left_24"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,7 +119,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="16dp"
                             android:fontFamily="@font/inconsolata"
-                            android:text="@{recomdNPopCourse.level}"
+                            android:text="@{viewModel.courseDetail.level}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Title"
                             android:textColor="@color/mint_green"
                             android:textSize="14dp"
@@ -119,17 +128,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/course_title"
                             tools:text="Basic" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recycler_review"
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:orientation="vertical"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            tools:layout_editor_absoluteY="347dp"
-                            tools:listitem="@layout/item_home_course_review">
-                            <!-- app:products="@{viewModel.products}"-->
 
-                        </androidx.recyclerview.widget.RecyclerView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -169,7 +168,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="16dp"
                             android:fontFamily="@font/inconsolata"
-                            android:text="@{recomdNPopCourse.description}"
+                            android:text="@{viewModel.courseDetail.description}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/mint_green"
                             android:textSize="16dp"
@@ -246,7 +245,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:fontFamily="@font/inconsolata"
-                            android:text="@{recomdNPopCourse.avgRating}"
+                            android:text="@{viewModel.courseDetail.avgRating}"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="@color/mint_green"
                             app:layout_constraintBottom_toBottomOf="@+id/star_05"
@@ -266,6 +265,23 @@
                             app:layout_constraintStart_toEndOf="@+id/rating_avg"
                             app:layout_constraintTop_toTopOf="@+id/rating_avg" />
 
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler_review"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginTop="32dp"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/review_title"
+                            tools:listitem="@layout/item_home_course_review">
+                            <!-- app:products="@{viewModel.products}"-->
+
+                        </androidx.recyclerview.widget.RecyclerView>
+
+
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -275,6 +291,6 @@
             </soup.neumorphism.NeumorphCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </ScrollView>
 
 </layout>

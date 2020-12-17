@@ -352,6 +352,32 @@ object MandarinLearningRemoteDataSource :
         TODO("Not yet implemented")
     }
 
+    override suspend fun getFeedback(course: Course): Result<List<Feedback>> = suspendCoroutine { continuation ->
+        FirebaseFirestore.getInstance()
+            .collection("Course").document(course.id).collection("Feedback")
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val list = mutableListOf<Feedback>()
+                    for (document in task.result!!) {
+                        Logger.d(document.id + " => " + document.data)
+
+                        val feedback = document.toObject(Feedback::class.java)
+                        list.add(feedback)
+                    }
+                    continuation.resume(Result.Success(list))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(""))
+                }
+            }
+    }
+
 //    //Get Answer output in Classroom detail page
 //    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> = suspendCoroutine { continuation ->
 //        //拿到一個Classroom的一包answers
