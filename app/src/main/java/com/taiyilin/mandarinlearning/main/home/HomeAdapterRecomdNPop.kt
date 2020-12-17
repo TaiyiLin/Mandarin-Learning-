@@ -15,8 +15,11 @@ import com.taiyilin.mandarinlearning.main.classroom.ClassroomSelectedClassAdapte
 import com.taiyilin.mandarinlearning.main.classroom.ClassroomViewModel
 
 
-class HomeAdapterRecomdNPop(private val homeViewModel: HomeViewModel) : ListAdapter<Course, RecyclerView.ViewHolder>(DiffCallback) {
+class HomeAdapterRecomdNPop(private val homeViewModel: HomeViewModel, private val onClickListener: HomeAdapterRecomdNPop.OnClickListener) : ListAdapter<Course, RecyclerView.ViewHolder>(DiffCallback) {
 
+    class OnClickListener(val clickListener: (course:Course) -> Unit){
+        fun onClick(course: Course)= clickListener(course)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CourseRNPViewHolder(
@@ -35,7 +38,7 @@ class HomeAdapterRecomdNPop(private val homeViewModel: HomeViewModel) : ListAdap
         val course = getItem(position)
 
         //呼叫自己的方法
-        courseRNPViewHolder.bind(homeViewModel, course)
+        courseRNPViewHolder.bind(homeViewModel, course, onClickListener)
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<Course>() {
@@ -53,7 +56,7 @@ class HomeAdapterRecomdNPop(private val homeViewModel: HomeViewModel) : ListAdap
 class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(homeViewModel: HomeViewModel, course: Course) {
+    fun bind(homeViewModel: HomeViewModel, course: Course, homeAdapterRecomdNPop: HomeAdapterRecomdNPop.OnClickListener) {
 
         //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
         binding.recomdNPopCourse = course
@@ -70,9 +73,15 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
         }
 
         val recyclerViewReview = binding.recyclerReview
-        val homeAdapterFeedback = HomeAdapterFeedback()
+        val homeAdapterFeedback = HomeAdapterFeedback(homeViewModel, HomeAdapterRecomdNPop.OnClickListener {
+            homeViewModel.navigateToDetail
+        })
         recyclerViewReview.adapter = homeAdapterFeedback
         homeAdapterFeedback.submitList(course.feedbackList)
+
+        binding.root.setOnClickListener{
+            homeAdapterRecomdNPop.onClick(course)
+        }
 
         // 按下首頁推薦/熱門課程的+按鈕時，會把課程加入Classroom同時也更新課程的studentList名單
         binding.buttonPlus.setOnClickListener{

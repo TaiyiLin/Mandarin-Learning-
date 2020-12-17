@@ -347,4 +347,47 @@ object MandarinLearningRemoteDataSource :
                     }
                 }
         }
+
+    override suspend fun getAnswerOutput(): Result<Answer> {
+        TODO("Not yet implemented")
+    }
+
+//    //Get Answer output in Classroom detail page
+//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> = suspendCoroutine { continuation ->
+//        //拿到一個Classroom的一包answers
+//        val answers = db.collection("Classroom")
+//            .document(classroom.id)
+//            .collection("Answer")
+//            .whereEqualTo(
+//                "questionNumber",
+//                answer.questionNumber
+//            ) //whereEqualTo 是找到那個collection下的一個欄位
+//            .get()
+//            .addOnCompleteListener { task ->
+//                if (task.isSuccessful) {
+//                    Logger.i("ToneGO: $answer")
+//
+//                    //一個list 但裡面只有一筆document
+//                    for (document in task.result!!) {
+//
+//
+//
+//                    }
+//
+//                        continuation.resume(Result.Success(answer))
+//                    } else {
+//                        task.exception?.let {
+//
+//                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+//                            continuation.resume(Result.Error(it))
+//
+//                        }
+//                        continuation.resume(Result.Fail(""))
+//                    }
+//                }
+//            }
+//    }
+
+
+
 }

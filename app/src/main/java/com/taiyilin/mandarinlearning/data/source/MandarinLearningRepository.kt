@@ -26,4 +26,6 @@ interface MandarinLearningRepository {
 
     suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer>
 
+    suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer>
+
 }

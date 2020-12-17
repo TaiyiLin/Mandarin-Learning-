@@ -27,6 +27,8 @@ interface MandarinLearningDataSource {
 
     suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer>
 
+    suspend fun getAnswerOutput(): Result<Answer>
+
 }
 
 

@@ -11,6 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.taiyilin.mandarinlearning.MobileNavigationDirections
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
@@ -37,17 +39,23 @@ class HomeFragment : Fragment() {
         binding.lifecycleOwner = this
 
         //Continue Adapter
-        val adapter = HomeAdapter() //類別N + () = 實例化
+        val adapter = HomeAdapter(homeViewModel, HomeAdapter.OnClickListener {
+            homeViewModel.navigateToDetail(it)
+        }) //類別N + () = 實例化
         val recyclerviewContinueCourse = binding.recyclerviewContinueCourse //binding . layout id 就可以拿到view元件
         recyclerviewContinueCourse.adapter = adapter
 
         //Recommended Adapter
-        val adapterR = HomeAdapterRecomdNPop(homeViewModel) //類別N + () = 實例化
+        val adapterR = HomeAdapterRecomdNPop(homeViewModel, HomeAdapterRecomdNPop.OnClickListener{
+            homeViewModel.navigateToDetail(it)
+        }) //類別N + () = 實例化
         val recyclerviewRecommendedCourse = binding.recyclerviewRecommendedCourse
         recyclerviewRecommendedCourse.adapter = adapterR
 
         //Popular Adapter
-        val adapterP = HomeAdapterRecomdNPop(homeViewModel) //類別N + () = 實例化
+        val adapterP = HomeAdapterRecomdNPop(homeViewModel, HomeAdapterRecomdNPop.OnClickListener{
+            homeViewModel.navigateToDetail(it)
+        }) //類別N + () = 實例化
         val recyclerviewPopularCourse = binding.recyclerviewPopularCourse
         recyclerviewPopularCourse.adapter = adapterP
 
@@ -76,6 +84,15 @@ class HomeFragment : Fragment() {
             it?.let {
 
                 adapterP.submitList(it)
+
+            }
+        })
+
+
+        homeViewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(MobileNavigationDirections.actionGlobalNavigationHomeDetail(it))
+                homeViewModel.onDetailNavigated()
 
             }
         })

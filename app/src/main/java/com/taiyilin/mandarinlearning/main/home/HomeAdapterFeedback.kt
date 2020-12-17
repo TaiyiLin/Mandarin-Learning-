@@ -10,7 +10,9 @@ import com.taiyilin.mandarinlearning.data.Feedback
 import com.taiyilin.mandarinlearning.databinding.ItemHomeCourseReviewBinding
 
 
-class HomeAdapterFeedback : ListAdapter<Feedback, RecyclerView.ViewHolder>(DiffCallback) {
+class HomeAdapterFeedback(private val homeViewModel: HomeViewModel, private val onClickListener: HomeAdapterRecomdNPop.OnClickListener) : ListAdapter<Feedback, RecyclerView.ViewHolder>(DiffCallback) {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return CourseReviewViewHolder(

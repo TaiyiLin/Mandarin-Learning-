@@ -57,6 +57,12 @@ class SentenceReorderingViewModel(
     //Set Answer
     val answerString = MutableLiveData<String>()
 
+    //Answer Output
+    private val _answerOutput =MutableLiveData<String>()
+    val answerOutput : LiveData<String>
+        get() = _answerOutput
+
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -97,6 +103,7 @@ class SentenceReorderingViewModel(
         getQuestionsResult()
         getAllLiveMessages()
         sendAnswer()
+//        getAnswerOutput()
     }
 
 
@@ -186,8 +193,46 @@ class SentenceReorderingViewModel(
             _refreshStatus.value = false
         }
 
-
     }
+
+//    // Get answer output
+//    private fun getAnswerOutput() {
+//
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            val result = repository.getAnswerOutput(classroomArgs!!, answer)
+//
+//            when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//                    questionList.addAll(result.data)
+//                    Log.d("Answer", "Answers=${result.data}")
+//
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//
+//                }
+//                else -> {
+//                    _error.value = MandarinLearningApplication.instance.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//
+//                }
+//            }
+//            _refreshStatus.value = false
+//        }
+//    }
+
+
 
 
     fun next() {

@@ -49,4 +49,13 @@ class DefaultMandarinLearningRepository(
     override suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer> {
         return remoteDataSource.sendAnswer(classroom, answer)
      }
+
+    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> {
+        TODO("Not yet implemented")
+    }
+
+//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer>{
+//        return remoteDataSource.getAnswerOutput(classroom, answer)
+//    }
+
 }

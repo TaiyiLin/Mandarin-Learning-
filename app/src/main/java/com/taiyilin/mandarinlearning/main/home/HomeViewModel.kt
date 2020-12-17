@@ -30,6 +30,13 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
 
     var liveNonSelectedCourses = MutableLiveData<List<Course>>()
 
+    // Handle navigation to detail
+    private val _navigateToDetail = MutableLiveData<Course>()
+
+    val navigateToDetail: LiveData<Course>
+        get() = _navigateToDetail
+
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -196,9 +203,15 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
 
         liveNonSelectedCourses.value = list
 
+    }
 
 
+    fun navigateToDetail(course: Course) {
+        _navigateToDetail.value = course
+    }
 
+    fun onDetailNavigated() {
+        _navigateToDetail.value = null
     }
 
 
