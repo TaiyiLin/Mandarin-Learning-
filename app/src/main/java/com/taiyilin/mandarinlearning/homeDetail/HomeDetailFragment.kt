@@ -60,7 +60,10 @@ class HomeDetailFragment : Fragment() {
       })
 
 
-
+//        // 按下首頁推薦/熱門課程的+按鈕時，會把課程加入Classroom同時也更新課程的studentList名單
+//        binding.buttonPlus.setOnClickListener{
+//            homeViewModel.addSelectedCourse(course)
+//            UserManager.userUID?.let { it1 -> homeViewModel.updateCourse(course.id, it1) }
 
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()

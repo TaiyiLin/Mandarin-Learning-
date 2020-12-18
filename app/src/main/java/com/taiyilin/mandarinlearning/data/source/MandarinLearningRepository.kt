@@ -30,4 +30,6 @@ interface MandarinLearningRepository {
 
     suspend fun getFeedback(course: Course): Result<List<Feedback>>
 
+    suspend fun sendMessage(classroom: Classroom, message: Message): Result<Boolean>
+
 }

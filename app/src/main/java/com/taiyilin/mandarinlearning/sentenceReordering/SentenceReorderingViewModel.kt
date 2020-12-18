@@ -1,6 +1,6 @@
 package com.taiyilin.mandarinlearning.sentenceReordering
 
-import android.app.Application
+
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.taiyilin.mandarinlearning.MandarinLearningApplication
 import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
+import com.taiyilin.mandarinlearning.login.UserManager
 import com.taiyilin.mandarinlearning.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,19 +48,22 @@ class SentenceReorderingViewModel(
 
 
     //ChatRoom
-    private val _message = MutableLiveData<Message>()
-    val message: LiveData<Message>
-        get() = _message
+//    private val _message = MutableLiveData<Message>()
+//    val message: LiveData<Message>
+//        get() = _message
 
     var liveMessage = MutableLiveData<List<Message>>()
+
+    //Set Message
+    val messageContent = MutableLiveData<String>()
 
 
     //Set Answer
     val answerString = MutableLiveData<String>()
 
     //Answer Output
-    private val _answerOutput =MutableLiveData<String>()
-    val answerOutput : LiveData<String>
+    private val _answerOutput = MutableLiveData<String>()
+    val answerOutput: LiveData<String>
         get() = _answerOutput
 
 
@@ -104,6 +108,7 @@ class SentenceReorderingViewModel(
         getAllLiveMessages()
         sendAnswer()
 //        getAnswerOutput()
+        sendMessage()
     }
 
 
@@ -195,6 +200,60 @@ class SentenceReorderingViewModel(
 
     }
 
+
+    // 輸入聊天室訊息
+    fun sendMessage() {
+        coroutineScope.launch {
+
+            _status.value = LoadApiStatus.LOADING
+
+
+            // set message info
+            val message = Message()
+            message.apply {
+                content = messageContent.value ?: "" //?:如果前面值為null 就給後面的""
+                senderId = UserManager.userUID!!
+                receiverId = "abc123"
+
+                // TODO
+//                when(UserManager.userType){
+//                    student -> message.receiverId = classroomArgs.teacherId
+//                    teacher -> message.receiverId = classroomArgs.studentId
+            }
+
+
+            val result = repository.sendMessage(classroomArgs!!, message)
+
+            when (result) {
+                is Result.Success -> {
+                    _error.value = null
+                    _status.value = LoadApiStatus.DONE
+
+                    Log.d("Message", "message=${result.data}")
+
+                }
+                is Result.Fail -> {
+                    _error.value = result.error
+                    _status.value = LoadApiStatus.ERROR
+
+                }
+                is Result.Error -> {
+                    _error.value = result.exception.toString()
+                    _status.value = LoadApiStatus.ERROR
+
+                }
+                else -> {
+                    _error.value = MandarinLearningApplication.instance.toString()
+                    _status.value = LoadApiStatus.ERROR
+
+                }
+            }
+            _refreshStatus.value = false
+        }
+
+    }
+
+
 //    // Get answer output
 //    private fun getAnswerOutput() {
 //
@@ -233,8 +292,6 @@ class SentenceReorderingViewModel(
 //    }
 
 
-
-
     fun next() {
 
         var size = questionList.size
@@ -270,6 +327,8 @@ class SentenceReorderingViewModel(
         }
 
     }
+
+}
 
 
 //    private fun getCourseData(id: String) {
@@ -324,7 +383,7 @@ class SentenceReorderingViewModel(
 //    }
 
 
-}
+
 
 
 

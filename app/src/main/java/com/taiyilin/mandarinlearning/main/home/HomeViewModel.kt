@@ -201,7 +201,6 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
         list.removeAll(liveUserCourse.value!!)
 
         liveNonSelectedCourses.value = list
-
     }
 
 

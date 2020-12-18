@@ -62,4 +62,8 @@ class DefaultMandarinLearningRepository(
        return remoteDataSource.getFeedback(course)
     }
 
+    override suspend fun sendMessage(classroom: Classroom, message: Message): Result<Boolean> {
+        return remoteDataSource.sendMessage(classroom, message)
+    }
+
 }

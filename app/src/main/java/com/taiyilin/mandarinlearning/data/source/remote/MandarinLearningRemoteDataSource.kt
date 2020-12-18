@@ -9,6 +9,7 @@ import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 import com.taiyilin.mandarinlearning.login.UserManager
 import com.taiyilin.mandarinlearning.util.Logger
+import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -282,7 +283,7 @@ object MandarinLearningRemoteDataSource :
         val liveData = MutableLiveData<List<Message>>()
 
         db.collection("Classroom").document(classroom.id).collection("Message")
-//            .orderBy(KEY_CREATED_TIME, Query.Direction.DESCENDING)
+            .orderBy("createdTime", Query.Direction.ASCENDING)
             .addSnapshotListener { snapshot, exception ->
 
                 Logger.i("addSnapshotListener detect")
@@ -312,7 +313,10 @@ object MandarinLearningRemoteDataSource :
             val answers = db.collection("Classroom")
                 .document(classroom.id)
                 .collection("Answer")
-                .whereEqualTo("questionNumber", answer.questionNumber) //whereEqualTo 是找到那個collection下的一個欄位
+                .whereEqualTo(
+                    "questionNumber",
+                    answer.questionNumber
+                ) //whereEqualTo 是找到那個collection下的一個欄位
                 .get()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -352,31 +356,62 @@ object MandarinLearningRemoteDataSource :
         TODO("Not yet implemented")
     }
 
-    override suspend fun getFeedback(course: Course): Result<List<Feedback>> = suspendCoroutine { continuation ->
-        FirebaseFirestore.getInstance()
-            .collection("Course").document(course.id).collection("Feedback")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val list = mutableListOf<Feedback>()
-                    for (document in task.result!!) {
-                        Logger.d(document.id + " => " + document.data)
+    override suspend fun getFeedback(course: Course): Result<List<Feedback>> =
+        suspendCoroutine { continuation ->
+            FirebaseFirestore.getInstance()
+                .collection("Course").document(course.id).collection("Feedback")
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val list = mutableListOf<Feedback>()
+                        for (document in task.result!!) {
+                            Logger.d(document.id + " => " + document.data)
 
-                        val feedback = document.toObject(Feedback::class.java)
-                        list.add(feedback)
-                    }
-                    continuation.resume(Result.Success(list))
-                } else {
-                    task.exception?.let {
+                            val feedback = document.toObject(Feedback::class.java)
+                            list.add(feedback)
+                        }
+                        continuation.resume(Result.Success(list))
+                    } else {
+                        task.exception?.let {
 
-                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-                        continuation.resume(Result.Error(it))
-                        return@addOnCompleteListener
+                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(""))
                     }
-                    continuation.resume(Result.Fail(""))
                 }
-            }
-    }
+        }
+
+    override suspend fun sendMessage(classroom: Classroom, message: Message): Result<Boolean> =
+        suspendCoroutine { continuation ->
+
+            val msgRef = FirebaseFirestore.getInstance().collection("Classroom").document(classroom.id).collection("Message")
+            //val document的document 是一個空資料夾
+            val document = msgRef.document()
+
+            message.createdTime = Calendar.getInstance().timeInMillis
+
+            document
+                .set(message)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Logger.i("ToneGo: $message")
+
+                        continuation.resume(Result.Success(true))
+                    } else {
+                        task.exception?.let {
+
+                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                            continuation.resume(Result.Error(it))
+                            return@addOnCompleteListener
+                        }
+                        continuation.resume(Result.Fail(""))
+                    }
+                }
+
+        }
+
 
 //    //Get Answer output in Classroom detail page
 //    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> = suspendCoroutine { continuation ->
@@ -413,7 +448,6 @@ object MandarinLearningRemoteDataSource :
 //                }
 //            }
 //    }
-
 
 
 }

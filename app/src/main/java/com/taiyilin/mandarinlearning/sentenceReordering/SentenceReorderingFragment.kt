@@ -71,6 +71,19 @@ class SentenceReorderingFragment : Fragment() {
           viewModel.sendAnswer()
       }
 
+       binding.buttonGetHint.setOnClickListener {
+
+           val message = viewModel.messageContent.value
+           if (message != null) {
+               if (message.isEmpty()){
+
+                   Toast.makeText(context,"message is empty", Toast.LENGTH_SHORT).show()
+               }else{
+                   viewModel.sendMessage()
+               }
+           }
+
+       }
 
 
         viewModel.liveMessage.observe(viewLifecycleOwner, Observer {
@@ -99,9 +112,6 @@ class SentenceReorderingFragment : Fragment() {
         })
 //                    Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
 //                    viewModel.resetShowToast()
-
-
-
 
 
 
