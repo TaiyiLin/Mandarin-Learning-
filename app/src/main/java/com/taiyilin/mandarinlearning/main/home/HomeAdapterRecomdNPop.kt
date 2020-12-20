@@ -63,20 +63,20 @@ class CourseRNPViewHolder(private var binding: ItemHomeRecomdNPopCourseBinding) 
         binding.recomdNPopCourse = course
 //        binding.executePendingBindings()
 
-        binding.btnLearnMore.setOnClickListener {
-            if (binding.hiddenView.visibility == View.GONE){
-                binding.hiddenView.visibility=View.VISIBLE
-                binding.btnLearnMore.text="See Less"
-            }else{
-                binding.hiddenView.visibility = View.GONE
-                binding.btnLearnMore.text="See More"
-            }
-        }
+//        binding.btnLearnMore.setOnClickListener {
+//            if (binding.hiddenView.visibility == View.GONE){
+//                binding.hiddenView.visibility=View.VISIBLE
+//                binding.btnLearnMore.text="See Less"
+//            }else{
+//                binding.hiddenView.visibility = View.GONE
+//                binding.btnLearnMore.text="See More"
+//            }
+//        }
 
         //Feedback
-        val recyclerViewReview = binding.recyclerReview
+//        val recyclerViewReview = binding.recyclerReview
         val homeAdapterFeedback = HomeAdapterFeedback()
-        recyclerViewReview.adapter = homeAdapterFeedback
+//        recyclerViewReview.adapter = homeAdapterFeedback
         homeAdapterFeedback.submitList(course.feedbackList)
         Log.d("feedback","feedback=${course.feedbackList}")
 

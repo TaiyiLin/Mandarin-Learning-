@@ -10,7 +10,8 @@
     <item
         android:id="@+id/navigation_classroom"
         android:icon="@drawable/ic_blackboard"
-        android:title="Classroom" />
+        android:title="Classroom"
+      android:iconTint="@color/white"/>
 <!--        android:icon="@drawable/ic_dashboard_black_24dp"-->
 
     <item

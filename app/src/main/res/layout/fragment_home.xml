@@ -12,15 +12,13 @@
         <variable
             name="course"
             type="com.taiyilin.mandarinlearning.data.Course" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/sand_gray"
+        android:background="@color/gray_light"
         tools:context=".main.home.HomeFragment">
-<!--        android:background="#F8F8FC"-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -33,115 +31,136 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <soup.neumorphism.NeumorphTextView
+                <TextView
                     android:id="@+id/textview_hello"
-                    style="@style/Widget.Neumorph.TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/inconsolata_bold"
-                    android:text="Good to see you!"
-                    android:textColor="@color/mint_green"
-                    android:textSize="24dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-
-                <soup.neumorphism.NeumorphTextView
-                    android:id="@+id/textview_user"
-                    style="@style/Widget.Neumorph.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/inconsolata_bold"
-                    android:text="Auntie Lin"
-                    android:textColor="@color/mint_green"
-                    android:textSize="24dp"
-                    app:layout_constraintStart_toEndOf="@+id/textview_hello"
+                    android:fontFamily="@font/cabin_bold"
+                    android:textColor="@color/purple_dark"
+                    android:letterSpacing="0.1"
+                    android:text="Good to see you!"
+                    android:textSize="20dp"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <soup.neumorphism.NeumorphCardView
+<!--                <TextView-->
+<!--                    android:id="@+id/textview_user"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="8dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:fontFamily="@font/cabin_semibold"-->
+<!--                    android:textColor="@color/purple_dark"-->
+<!--                    android:letterSpacing="0.1"-->
+<!--                    android:text="Auntie Lin"-->
+<!--                    android:textSize="20dp"-->
+<!--                    app:layout_constraintStart_toEndOf="@+id/textview_hello"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <soup.neumorphism.NeumorphCardView-->
+<!--                    android:id="@+id/edittext_card"-->
+<!--                    style="@style/Widget.Neumorph.CardView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="4dp"-->
+<!--                    android:layout_marginEnd="4dp"-->
+<!--                    android:layout_marginBottom="16dp"-->
+<!--                    app:layout_constraintBottom_toTopOf="@+id/textview_continue"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/textview_hello">-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/edittext_card"
-                    style="@style/Widget.Neumorph.CardView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
+                    android:background="@drawable/et_style"
+                    android:backgroundTint="@color/purple_light2"
                     app:layout_constraintBottom_toTopOf="@+id/textview_continue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textview_hello">
 
+                    <EditText
+                        android:id="@+id/edittext_search"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:background="@null"
+                        android:backgroundTint="@color/purple_dark"
+                        android:fontFamily="@font/cabin"
+                        android:gravity="left"
+                        android:hint="Search"
+                        android:letterSpacing="0.1"
+                        android:singleLine="true"
+                        android:foregroundGravity="left|center"
+                        android:textColorHint="@color/purple_light"
+                        android:textSize="18dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/edittext_search"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/edittext_search"
+                        app:srcCompat="@drawable/ic_baseline_search_24" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                </soup.neumorphism.NeumorphCardView>-->
 
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_search_24" />
-
-        <EditText
-            android:id="@+id/edittext_search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="16dp"
-            android:backgroundTint="@color/mint_green"
-            android:fontFamily="@font/inconsolata"
-            android:hint="Search"
-            android:letterSpacing="0.1"
-            android:singleLine="true"
-            android:textColor="#BDC1C9"
-            android:textColorHint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </soup.neumorphism.NeumorphCardView>
-
-                <soup.neumorphism.NeumorphTextView
+<!--            //Continue section-->
+                <TextView
                     android:id="@+id/textview_continue"
-                    style="@style/Widget.Neumorph.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="12dp"
-                    android:fontFamily="@font/inconsolata"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cabin_bold"
+                    android:textColor="@color/purple_dark"
                     android:text="Continue Your Courses"
-                    android:textColor="@color/brown"
-                    android:textSize="20dp"
+                    android:textSize="22dp"
+                    android:letterSpacing="0.1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/edittext_card" />
 
-                <soup.neumorphism.NeumorphTextView
+                <TextView
                     android:id="@+id/textview_see_all"
-                    style="@style/Widget.Neumorph.TextView"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/et_style"
-                    android:fontFamily="@font/inconsolata_bold"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/cabin_semibold"
                     android:gravity="center"
-                    android:text="Check All >"
-                    android:textColor="@color/brown"
-                    android:textSize="14sp"
+                    android:letterSpacing="0.1"
+                    android:text="More"
+                    android:textColor="@color/purple_mid"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textview_continue"
+                    app:layout_constraintEnd_toStartOf="@+id/continue_forward"
+                    app:layout_constraintTop_toTopOf="@+id/textview_continue" />
+
+                <ImageView
+                    android:id="@+id/continue_forward"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/purple_mid"
+                    app:layout_constraintBottom_toBottomOf="@+id/textview_see_all"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textview_continue"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintTop_toTopOf="@+id/textview_see_all"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewContinueCourse"
@@ -149,40 +168,52 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textview_continue"
                     tools:listitem="@layout/item_home_continue_course" />
 
-                <soup.neumorphism.NeumorphTextView
+<!--            //Recommend-->
+                <TextView
                     android:id="@+id/textview_recommended"
-                    style="@style/Widget.Neumorph.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/inconsolata"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cabin_bold"
+                    android:letterSpacing="0.1"
                     android:text="Recommended For You"
-                    android:textColor="@color/brown"
-                    android:textSize="20dp"
+                    android:textColor="@color/purple_dark"
+                    android:textSize="22dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerviewContinueCourse" />
 
-                <soup.neumorphism.NeumorphTextView
+                <TextView
                     android:id="@+id/recomd_see_all"
-                    style="@style/Widget.Neumorph.TextView"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/et_style"
-                    android:fontFamily="@font/inconsolata_bold"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/cabin_semibold"
                     android:gravity="center"
-                    android:text="Check All >"
-                    android:textColor="@color/brown"
-                    android:textSize="14sp"
+                    android:letterSpacing="0.1"
+                    android:text="More"
+                    android:textColor="@color/purple_mid"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textview_recommended"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/recomd_forward"
                     app:layout_constraintTop_toTopOf="@+id/textview_recommended" />
+
+                <ImageView
+                    android:id="@+id/recomd_forward"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/recomd_see_all"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/recomd_see_all"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewRecommendedCourse"
@@ -190,47 +221,62 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textview_recommended"
                     tools:listitem="@layout/item_home_recomd_n_pop_course" />
 
-                <soup.neumorphism.NeumorphTextView
+                <TextView
                     android:id="@+id/textview_popular"
-                    style="@style/Widget.Neumorph.TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/inconsolata"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/cabin_bold"
+                    android:letterSpacing="0.1"
                     android:text="Popular This Week"
-                    android:textColor="@color/brown"
-                    android:textSize="20dp"
+                    android:textColor="@color/purple_dark"
+                    android:textSize="22dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/recyclerviewRecommendedCourse" />
 
-                <soup.neumorphism.NeumorphTextView
+                <TextView
                     android:id="@+id/popular_see_all"
-                    style="@style/Widget.Neumorph.TextView"
-                    android:layout_width="100dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/et_style"
-                    android:fontFamily="@font/inconsolata_bold"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/cabin_semibold"
                     android:gravity="center"
-                    android:text="Check All >"
-                    android:textColor="@color/brown"
-                    android:textSize="14sp"
+                    android:letterSpacing="0.1"
+                    android:text="More"
+                    android:textColor="@color/purple_mid"
+                    android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@+id/textview_popular"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/popular_forward"
                     app:layout_constraintTop_toTopOf="@+id/textview_popular" />
+
+                <ImageView
+                    android:id="@+id/popular_forward"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/popular_see_all"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/popular_see_all"
+                    app:srcCompat="@drawable/ic_baseline_arrow_forward_ios_24" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerviewPopularCourse"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textview_popular"

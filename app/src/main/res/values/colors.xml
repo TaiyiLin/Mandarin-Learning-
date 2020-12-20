@@ -18,5 +18,12 @@
     <color name="mint_green">#ace6cf</color>
     <color name="sand_gray">#efefef</color>
 
+    //version 03
+    <color name="purple_dark">#786af5</color>
+    <color name="purple_mid">#8479f1</color>
+    <color name="purple_light">#b9b2f8</color>
+    <color name="purple_light2">#F0EEFF</color>
+    <color name="teal">#00fff7</color>
+    <color name="gray_light">#fbfbfb</color>
 
 </resources>

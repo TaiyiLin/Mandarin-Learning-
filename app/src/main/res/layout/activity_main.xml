@@ -12,7 +12,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/sand_gray"
+        android:background="@color/purple_dark"
         android:elevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -25,12 +25,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:fontFamily="@font/bauhaus_93"
+            android:letterSpacing="0.1"
             android:text="Let's ToneGo"
-            android:textColor="@color/brown"
-            android:fontFamily="@font/inconsolata_bold"
-            android:letterSpacing="0.15"
-            android:textSize="25sp"
-            android:textStyle="bold">
+            android:textColor="@color/white"
+            android:textSize="34dp"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="13dp">
+
         </TextView>
 <!--            tools:text="ToneGo"-->
 <!--            tools:visibility="visible"-->
@@ -70,7 +72,7 @@
         android:id="@+id/nav_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/sand_gray"
+        android:background="@color/purple_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

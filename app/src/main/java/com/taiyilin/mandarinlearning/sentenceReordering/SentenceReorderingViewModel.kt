@@ -108,7 +108,7 @@ class SentenceReorderingViewModel(
         getAllLiveMessages()
         sendAnswer()
 //        getAnswerOutput()
-        sendMessage()
+//        sendMessage()
     }
 
 
