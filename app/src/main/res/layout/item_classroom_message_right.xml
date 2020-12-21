@@ -9,118 +9,157 @@
         <variable
             name="msgLayout"
             type="com.taiyilin.mandarinlearning.data.Message" />
-
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:orientation="vertical">
 
-        <!--//Right-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout_right"
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/message_context_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:fontFamily="@font/cabin"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:text="@{msgLayout.content}"
+            android:background="@drawable/item_msg_right_side_background"
+            android:textSize="16sp"
+            tools:text="Great" />
 
-            <!--    //This is the entire left message outline    -->
-            <soup.neumorphism.NeumorphCardView
-                android:id="@+id/card_message_right"
-                style="@style/Widget.Neumorph.CardView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:neumorph_shapeType="pressed">
-
-                <!--//This is the constraintLayout inside the cardView-->
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraint_inside_card_view_right"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent">
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/userImage_right"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:src="@mipmap/ic_launcher" />
 
 
-                    <soup.neumorphism.NeumorphCardView
-                        android:id="@+id/card_message_headshot_right"
-                        style="@style/Widget.Neumorph.CardView"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
 
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <ImageView
-                                android:id="@+id/imageView_headshot_right"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:srcCompat="@drawable/ic_grandmother" />
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-                    </soup.neumorphism.NeumorphCardView>
-
-                    <TextView
-                        android:id="@+id/message_user_name_right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:fontFamily="@font/inconsolata"
-                        android:text="UserName"
-                        android:textSize="12dp"
-                        app:layout_constraintEnd_toStartOf="@+id/card_message_headshot_right"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/message_context_right"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:fontFamily="@font/inconsolata"
-                        android:text="@{msgLayout.content}"
-                        android:textColor="#000000"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/card_message_headshot_right"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <TextView
-                        android:id="@+id/message_time_right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:fontFamily="@font/inconsolata"
-                        android:text="yyyy/mm/dd"
-                        android:textSize="10dp"
-                        app:layout_constraintEnd_toStartOf="@+id/message_user_name_right"
-                        app:layout_constraintStart_toEndOf="@+id/message_read_right"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/message_read_right"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
-                        android:fontFamily="@font/inconsolata"
-                        android:text="Read"
-                        android:textSize="10dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </soup.neumorphism.NeumorphCardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+    </LinearLayout>
 </layout>
+
+
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        &lt;!&ndash;//Right&ndash;&gt;-->
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:id="@+id/constraintLayout_right"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
+
+<!--            &lt;!&ndash;    //This is the entire left message outline    &ndash;&gt;-->
+<!--            <soup.neumorphism.NeumorphCardView-->
+<!--                android:id="@+id/card_message_right"-->
+<!--                style="@style/Widget.Neumorph.CardView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:neumorph_shapeType="pressed">-->
+
+<!--                &lt;!&ndash;//This is the constraintLayout inside the cardView&ndash;&gt;-->
+<!--                <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:id="@+id/constraint_inside_card_view_right"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    app:layout_constraintEnd_toEndOf="parent"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toBottomOf="parent">-->
+
+
+<!--                    <soup.neumorphism.NeumorphCardView-->
+<!--                        android:id="@+id/card_message_headshot_right"-->
+<!--                        style="@style/Widget.Neumorph.CardView"-->
+<!--                        android:layout_width="50dp"-->
+<!--                        android:layout_height="50dp"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent">-->
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/imageView_headshot_right"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                                app:layout_constraintStart_toStartOf="parent"-->
+<!--                                app:layout_constraintTop_toTopOf="parent"-->
+<!--                                app:srcCompat="@drawable/ic_grandmother" />-->
+<!--                        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--                    </soup.neumorphism.NeumorphCardView>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/message_user_name_right"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:fontFamily="@font/inconsolata"-->
+<!--                        android:text="UserName"-->
+<!--                        android:textSize="12dp"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/card_message_headshot_right"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/message_context_right"-->
+<!--                        android:layout_width="0dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:layout_marginBottom="8dp"-->
+<!--                        android:fontFamily="@font/inconsolata"-->
+<!--                        android:text="@{msgLayout.content}"-->
+<!--                        android:textColor="#000000"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/card_message_headshot_right"-->
+<!--                        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/message_time_right"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:fontFamily="@font/inconsolata"-->
+<!--                        android:text="yyyy/mm/dd"-->
+<!--                        android:textSize="10dp"-->
+<!--                        app:layout_constraintEnd_toStartOf="@+id/message_user_name_right"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/message_read_right"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/message_read_right"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="16dp"-->
+<!--                        android:layout_marginTop="8dp"-->
+<!--                        android:fontFamily="@font/inconsolata"-->
+<!--                        android:text="Read"-->
+<!--                        android:textSize="10dp"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+<!--                </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--            </soup.neumorphism.NeumorphCardView>-->
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->

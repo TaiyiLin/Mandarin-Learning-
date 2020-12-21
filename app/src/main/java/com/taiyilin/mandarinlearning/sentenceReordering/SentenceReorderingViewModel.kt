@@ -39,7 +39,9 @@ class SentenceReorderingViewModel(
     val questionData: LiveData<Question>
         get() = _questionData
 
-    private var position = 0
+    var position = 0
+
+    var position1 = MutableLiveData<Int>()
 
     //For blocking clicking next question
     private val _showToast = MutableLiveData<Int>()
@@ -53,6 +55,7 @@ class SentenceReorderingViewModel(
 //        get() = _message
 
     var liveMessage = MutableLiveData<List<Message>>()
+    var liveAnswer = MutableLiveData<List<Answer>>()
 
     //Set Message
     val messageContent = MutableLiveData<String>()
@@ -107,10 +110,10 @@ class SentenceReorderingViewModel(
         getQuestionsResult()
         getAllLiveMessages()
         sendAnswer()
+        getLiveAnswer()
 //        getAnswerOutput()
 //        sendMessage()
     }
-
 
     private fun getQuestionsResult() {
 
@@ -156,7 +159,6 @@ class SentenceReorderingViewModel(
         _status.value = LoadApiStatus.DONE
         _refreshStatus.value = false
     }
-
 
     // 輸入訊息
     fun sendAnswer() {
@@ -253,6 +255,11 @@ class SentenceReorderingViewModel(
 
     }
 
+    private fun getLiveAnswer() {
+        liveAnswer = repository.getLiveAnswer(classroomArgs!!)
+        _status.value = LoadApiStatus.DONE
+        _refreshStatus.value = false
+    }
 
 //    // Get answer output
 //    private fun getAnswerOutput() {
@@ -299,6 +306,7 @@ class SentenceReorderingViewModel(
         if (position < size) {
 
             position += 1
+            position1.value = position
 
             if (position < size) {
                 _questionData.value = questionList[position]  //有下一題
@@ -317,6 +325,8 @@ class SentenceReorderingViewModel(
     fun back() {
         if (position > 0) {
             position -= 1
+
+            position1.value = position
 
             if (position >= 0) {
                 _questionData.value = questionList[position]

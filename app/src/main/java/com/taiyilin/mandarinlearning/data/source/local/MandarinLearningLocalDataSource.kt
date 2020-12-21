@@ -50,13 +50,15 @@ class MandarinLearningLocalDataSource(val context: Context) :
         TODO("Not yet implemented")
     }
 
-    override suspend fun getAnswerOutput(): Result<Answer> {
+    override fun getLiveAnswer(classroom: Classroom): MutableLiveData<List<Answer>> {
         TODO("Not yet implemented")
     }
 
-//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> {
+//    //ToDo
+//    override suspend fun getAnswerOutput(): Result<Answer> {
 //        TODO("Not yet implemented")
 //    }
+
 
     override suspend fun getFeedback(course: Course): Result<List<Feedback>> {
         TODO("Not yet implemented")

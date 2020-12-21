@@ -27,7 +27,10 @@ interface MandarinLearningDataSource {
 
     suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer>
 
-    suspend fun getAnswerOutput(): Result<Answer>
+//    //ToDo
+//    suspend fun getAnswerOutput(): Result<Answer>
+
+    fun getLiveAnswer(classroom: Classroom): MutableLiveData<List<Answer>>
 
     suspend fun getFeedback(course: Course): Result<List<Feedback>>
 

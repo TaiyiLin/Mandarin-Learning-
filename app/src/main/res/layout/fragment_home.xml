@@ -81,7 +81,7 @@
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/et_style"
-                    android:backgroundTint="@color/purple_light2"
+                    android:backgroundTint="@color/sand_gray"
                     app:layout_constraintBottom_toTopOf="@+id/textview_continue"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

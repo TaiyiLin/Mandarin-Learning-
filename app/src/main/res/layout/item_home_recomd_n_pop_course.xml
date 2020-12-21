@@ -168,13 +168,12 @@
 
             <ImageButton
                 android:id="@+id/button_plus"
-                android:layout_width="52dp"
+                android:layout_width="56dp"
                 android:layout_height="28dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
-                android:background="@drawable/rounded_btn"
-                android:backgroundTint="@color/purple_dark"
+                android:background="@drawable/capsule_shaped_btn"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_baseline_add_24"
                 android:textColor="@color/purple_dark"

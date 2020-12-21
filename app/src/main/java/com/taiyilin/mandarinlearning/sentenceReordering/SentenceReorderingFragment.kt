@@ -51,13 +51,13 @@ class SentenceReorderingFragment : Fragment() {
             findNavController().navigateUp()
         }
 
-        binding.buttonHint.setOnClickListener {
-            if (binding.recyclerMessage.visibility == View.GONE){
-                binding.recyclerMessage.visibility = View.VISIBLE
-            }else{
-                binding.recyclerMessage.visibility = View.GONE
-            }
-        }
+//        binding.buttonHint.setOnClickListener {
+//            if (binding.recyclerMessage.visibility == View.GONE){
+//                binding.recyclerMessage.visibility = View.VISIBLE
+//            }else{
+//                binding.recyclerMessage.visibility = View.GONE
+//            }
+//        }
 
         binding.buttonRight.setOnClickListener {
             viewModel.next()
@@ -112,7 +112,9 @@ class SentenceReorderingFragment : Fragment() {
         })
 //                    Toast.makeText(context,"Congrats! You just finished!", Toast.LENGTH_LONG).show()
 //                    viewModel.resetShowToast()
+        viewModel.liveAnswer.observe(viewLifecycleOwner, Observer {
 
+        })
 
 
         return binding.root

@@ -50,13 +50,18 @@ class DefaultMandarinLearningRepository(
         return remoteDataSource.sendAnswer(classroom, answer)
      }
 
-    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> {
-        TODO("Not yet implemented")
-    }
+//    //ToDo
+//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> {
+//        TODO("Not yet implemented")
+//    }
 
 //    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer>{
 //        return remoteDataSource.getAnswerOutput(classroom, answer)
 //    }
+
+    override fun getLiveAnswer(classroom: Classroom): MutableLiveData<List<Answer>> {
+        return remoteDataSource.getLiveAnswer(classroom)
+    }
 
     override suspend fun getFeedback(course: Course): Result<List<Feedback>> {
        return remoteDataSource.getFeedback(course)
