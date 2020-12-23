@@ -71,6 +71,15 @@
         android:label="fragment_picture_description"
         tools:layout="@layout/fragment_picture_description" />
 
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.taiyilin.mandarinlearning.ResultFragment"
+        android:label="fragment_result"
+        tools:layout="@layout/fragment_result" >
+        <argument
+            android:name="classroomKey"
+            app:argType="com.taiyilin.mandarinlearning.data.Classroom" />
+    </fragment>
 
 
     <action android:id="@+id/action_global_navigation_home" app:destination="@id/navigation_home"/>
@@ -80,7 +89,7 @@
     <action android:id="@+id/action_global_classesNFeedbackFragment" app:destination="@id/classesNFeedbackFragment" />
     <action android:id="@+id/action_global_identityFragment" app:destination="@id/identityFragment"/>
     <action android:id="@+id/action_global_navigation_homeDetail" app:destination="@id/navigation_homeDetail"/>
-
+    <action android:id="@+id/action_global_resultFragment" app:destination="@id/resultFragment" />
 
 
 </navigation>

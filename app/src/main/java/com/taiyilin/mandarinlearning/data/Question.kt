@@ -12,6 +12,9 @@ data class Question(
 
     var type: String = "",
 
-    var answer: String = ""
+    var answer: String = "",
+
+    var studentAnswer: String? = null //方便ResultFragment用
+
 
 ): Parcelable

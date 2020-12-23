@@ -25,7 +25,9 @@ data class Classroom(
 
     var currentQuestion: Int? = null,
 
-    var totalQuestion: Int? = null
+    var totalQuestion: Int? = null,
+
+    var questionList: List<Question>? = null
 
 ): Parcelable
 

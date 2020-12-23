@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.taiyilin.mandarinlearning.MobileNavigationDirections
+import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.databinding.FragmentSentenceReorderingBinding
 import com.taiyilin.mandarinlearning.ext.getVmFactory
 
@@ -45,7 +48,6 @@ class SentenceReorderingFragment : Fragment() {
 //        val list = classroomData.messageList!!
 //        Log.d("aaa", "$list")
 //        classroomData.messageList?.let { adapter.separateMsgSubmitList(it) }
-
 
         binding.buttonBack.setOnClickListener {
             findNavController().navigateUp()
@@ -89,6 +91,15 @@ class SentenceReorderingFragment : Fragment() {
         viewModel.liveMessage.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.separateMsgSubmitList(it)
+            }
+        })
+
+        //Click Result button navigate to resultFragment with Classroom Argument
+        viewModel.classroomWithAnswers.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                findNavController().navigate(MobileNavigationDirections.actionGlobalResultFragment(it))
+
+                viewModel.onResultNavigated()
             }
         })
 

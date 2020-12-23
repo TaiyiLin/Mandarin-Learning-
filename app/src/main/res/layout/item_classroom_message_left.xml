@@ -36,7 +36,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/item_msg_left_side_background"
                 android:fontFamily="@font/cabin"
-                android:textColor="@color/gray"
+                android:textColor="@color/purple_dark"
                 android:padding="5dp"
                 android:text="@{msgLayout.content}"
                 android:textSize="16sp"

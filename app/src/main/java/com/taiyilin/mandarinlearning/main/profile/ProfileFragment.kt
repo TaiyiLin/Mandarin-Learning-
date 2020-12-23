@@ -32,11 +32,9 @@ class ProfileFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentProfileBinding>(inflater, R.layout.fragment_profile, container, false)
 
-        binding.cardClassesNFeedback.setOnClickListener {
-            view?.findNavController()?.navigate(R.id.action_global_classesNFeedbackFragment)
-        }
-
-
+//        binding.cardClassesNFeedback.setOnClickListener {
+//            view?.findNavController()?.navigate(R.id.action_global_classesNFeedbackFragment)
+//        }
 
 
 

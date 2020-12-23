@@ -20,12 +20,17 @@ class SentenceReorderingViewModel(
     private val classroomArgs: Classroom?
 ) : ViewModel() {
 
-    //Classroom Data argument from Classroom Fragment
+    //Classroom Data argument from ClassroomFragment
     private val _classroomData = MutableLiveData<Classroom>().apply {
         value = classroomArgs
     }
     val classroomData: LiveData<Classroom>
         get() = _classroomData
+
+    //Classroom data with questionList passing to ResultFragment
+    private val _classroomWithAnswers = MutableLiveData<Classroom>()
+    val classroomWithAnswers: LiveData<Classroom>
+    get() = _classroomWithAnswers
 
 
     //Course Data
@@ -33,7 +38,7 @@ class SentenceReorderingViewModel(
 
 
     //Question Data
-    private var questionList = mutableListOf<Question>()
+    var questionList = mutableListOf<Question>()
 
     private val _questionData = MutableLiveData<Question>()
     val questionData: LiveData<Question>
@@ -68,6 +73,14 @@ class SentenceReorderingViewModel(
     private val _answerOutput = MutableLiveData<String>()
     val answerOutput: LiveData<String>
         get() = _answerOutput
+
+
+    // Handle navigation to result
+    private val _navigateToResultDetail = MutableLiveData<Classroom>()
+
+    val navigateToResultDetail: LiveData<Classroom>
+        get() = _navigateToResultDetail
+
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -261,42 +274,21 @@ class SentenceReorderingViewModel(
         _refreshStatus.value = false
     }
 
-//    // Get answer output
-//    private fun getAnswerOutput() {
-//
-//        coroutineScope.launch {
-//
-//            _status.value = LoadApiStatus.LOADING
-//
-//            val result = repository.getAnswerOutput(classroomArgs!!, answer)
-//
-//            when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//                    questionList.addAll(result.data)
-//                    Log.d("Answer", "Answers=${result.data}")
-//
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//
-//                }
-//                else -> {
-//                    _error.value = MandarinLearningApplication.instance.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//
-//                }
-//            }
-//            _refreshStatus.value = false
-//        }
-//    }
+    //打包classroom data 傳過去 result
+    fun navToResult(){
+        val classroom = classroomArgs!!
+        //student's answer
+        classroom.answerList = liveAnswer.value
+        //questions w/ correct answer
+        classroom.questionList = questionList
+        _classroomWithAnswers.value = classroom
+    }
+
+    fun onResultNavigated() {
+        _classroomWithAnswers.value = null
+    }
+
+
 
 
     fun next() {

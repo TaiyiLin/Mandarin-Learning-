@@ -216,11 +216,12 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <Button
-                    android:id="@+id/button_submit_all"
+                    android:id="@+id/button_result"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:fontFamily="@font/cabin_semibold"
                     android:gravity="center"
+                    android:onClick="@{()->viewModel.navToResult()}"
                     android:text="Result"
                     android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -324,8 +325,8 @@
 
             <ImageButton
                 android:id="@+id/button_get_hint"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
                 android:layout_marginEnd="8dp"
                 android:background="@color/sand_gray"
                 android:scaleType="centerCrop"

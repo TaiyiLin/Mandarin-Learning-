@@ -2,6 +2,7 @@ package com.taiyilin.mandarinlearning.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.taiyilin.mandarinlearning.ResultViewModel
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
 import com.taiyilin.mandarinlearning.sentenceReordering.SentenceReorderingViewModel
@@ -17,6 +18,10 @@ class ClassroomArgsViewModelFactory (
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SentenceReorderingViewModel::class.java)){
             return SentenceReorderingViewModel(repository, classroomArgs) as T
+        }
+
+        if (modelClass.isAssignableFrom(ResultViewModel::class.java)){
+            return ResultViewModel(repository, classroomArgs!!) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }

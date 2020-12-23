@@ -17,9 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_margin="10dp"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="4dp"
         android:elevation="10dp"
-        android:backgroundTint="@color/mint_green"
+        android:backgroundTint="@color/purple_light2"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
@@ -28,11 +28,11 @@
             android:orientation="horizontal">
 
             <View
-                android:layout_width="25dp"
+                android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="-10dp"
-                android:backgroundTint="@color/brown"
+                android:backgroundTint="@color/purple_dark"
                 android:textColor="@color/white"
                 android:background="@drawable/small_circle" />
 
@@ -75,11 +75,11 @@
                     android:id="@+id/determinateBar"
                     style="@android:style/Widget.ProgressBar.Horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
+                    android:layout_height="8dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="8dp"
-                    android:progress="40"
+                    android:progress="30"
                     android:progressBackgroundTint="@color/sand_gray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
