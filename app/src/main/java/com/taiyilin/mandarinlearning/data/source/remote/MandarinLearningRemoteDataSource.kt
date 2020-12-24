@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.taiyilin.mandarinlearning.MandarinLearningApplication
 import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 import com.taiyilin.mandarinlearning.login.UserManager
@@ -18,6 +19,47 @@ object MandarinLearningRemoteDataSource :
     MandarinLearningDataSource {
 
     private val db = FirebaseFirestore.getInstance()
+
+
+    //get user info from LogIn page
+    override suspend fun getUser(id: String, name: String): Result<User> =
+        suspendCoroutine { continuation ->
+            var user: User?
+            val users = db.collection("User")
+
+            users.document(id).get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    user = task.result?.toObject(User::class.java)
+                    if (user == null) {
+                        user = User(id, name)
+                        users.document(id).set(user!!).addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Logger.i("Sign up: $user")
+                                continuation.resume(Result.Success(user!!))
+                            } else {
+                                task.exception?.let { w ->
+                                    Logger.w("[${this::class.simpleName}] Error getting documents. ${w.message}")
+                                    continuation.resume(Result.Error(w))
+                                }
+                                continuation.resume(
+                                    Result.Fail(MandarinLearningApplication.instance.toString()))
+                            }
+                        }
+                    } else {
+                        UserManager.userName = user!!.name
+                        Logger.i("Login: $user")
+                        continuation.resume(Result.Success(user!!))
+                    }
+                } else {
+                    task.exception?.let { w ->
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${w.message}")
+                        continuation.resume(Result.Error(w))
+                    }
+                    continuation.resume(Result.Fail(MandarinLearningApplication.instance.toString()))
+                }
+            }
+        }
+
 
     override suspend fun getAllCourses(): Result<List<Course>> = suspendCoroutine { continuation ->
 
@@ -353,7 +395,6 @@ object MandarinLearningRemoteDataSource :
         }
 
 
-
     override suspend fun getFeedback(course: Course): Result<List<Feedback>> =
         suspendCoroutine { continuation ->
             FirebaseFirestore.getInstance()
@@ -384,7 +425,9 @@ object MandarinLearningRemoteDataSource :
     override suspend fun sendMessage(classroom: Classroom, message: Message): Result<Boolean> =
         suspendCoroutine { continuation ->
 
-            val msgRef = FirebaseFirestore.getInstance().collection("Classroom").document(classroom.id).collection("Message")
+            val msgRef =
+                FirebaseFirestore.getInstance().collection("Classroom").document(classroom.id)
+                    .collection("Message")
             //val document的document 是一個空資料夾
             val document = msgRef.document()
 

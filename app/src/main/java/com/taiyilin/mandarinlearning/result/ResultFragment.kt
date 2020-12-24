@@ -1,6 +1,5 @@
-package com.taiyilin.mandarinlearning
+package com.taiyilin.mandarinlearning.result
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,12 +9,16 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.databinding.FragmentResultBinding
 import com.taiyilin.mandarinlearning.ext.getVmFactory
 
 class ResultFragment : Fragment() {
 
-    private val viewModel by viewModels<ResultViewModel> {getVmFactory(ResultFragmentArgs.fromBundle(requireArguments()).classroomKey)  }
+    private val viewModel by viewModels<ResultViewModel> {getVmFactory(
+        ResultFragmentArgs.fromBundle(
+            requireArguments()
+        ).classroomKey)  }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,7 +27,8 @@ class ResultFragment : Fragment() {
 
         val root = inflater.inflate(R.layout.fragment_result, container, false)
 
-        val binding = DataBindingUtil.inflate<FragmentResultBinding>(inflater,R.layout.fragment_result,container,false)
+        val binding = DataBindingUtil.inflate<FragmentResultBinding>(inflater,
+            R.layout.fragment_result,container,false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 

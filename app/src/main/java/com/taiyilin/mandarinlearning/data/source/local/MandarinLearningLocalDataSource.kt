@@ -10,6 +10,10 @@ import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 class MandarinLearningLocalDataSource(val context: Context) :
     MandarinLearningDataSource {
 
+    override suspend fun getUser(id: String, name: String): Result<User> {
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getAllCourses(): Result<List<Course>> {
         TODO("Not yet implemented")
     }

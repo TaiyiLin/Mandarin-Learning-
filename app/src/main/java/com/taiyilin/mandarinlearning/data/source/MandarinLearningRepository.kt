@@ -6,6 +6,8 @@ import com.taiyilin.mandarinlearning.data.*
 //Interface to the Publisher layers
 interface MandarinLearningRepository {
 
+    suspend fun getUser(id: String, name: String): Result<User>
+
     suspend fun getAllCourses(): Result<List<Course>>
 
     suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean>

@@ -73,7 +73,7 @@
 
     <fragment
         android:id="@+id/resultFragment"
-        android:name="com.taiyilin.mandarinlearning.ResultFragment"
+        android:name="com.taiyilin.mandarinlearning.result.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result" >
         <argument
@@ -90,6 +90,11 @@
     <action android:id="@+id/action_global_identityFragment" app:destination="@id/identityFragment"/>
     <action android:id="@+id/action_global_navigation_homeDetail" app:destination="@id/navigation_homeDetail"/>
     <action android:id="@+id/action_global_resultFragment" app:destination="@id/resultFragment" />
+    <activity
+        android:id="@+id/pickRoleActivity"
+        android:name="com.taiyilin.mandarinlearning.pickRole.PickRoleActivity"
+        android:label="activity_pick_role"
+        tools:layout="@layout/activity_pick_role" />
 
 
 </navigation>

@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.taiyilin.mandarinlearning.ResultViewModel" />
+            type="com.taiyilin.mandarinlearning.result.ResultViewModel" />
 
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ResultFragment">
+        tools:context=".result.ResultFragment">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_view"

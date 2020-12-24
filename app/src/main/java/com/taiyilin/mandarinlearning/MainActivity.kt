@@ -5,11 +5,10 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.taiyilin.mandarinlearning.login.LogInActivity
 import com.taiyilin.mandarinlearning.login.UserManager
+import com.taiyilin.mandarinlearning.pickRole.PickRoleActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +23,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, LogInActivity::class.java))
 
         } else {
+
+            startActivity(Intent(this, PickRoleActivity::class.java))
 
 //            val userName = UserManager.userName  ?:  "No Name"
 //            viewModel.loginAndSetUser(UserManager.userUID!!, userName)

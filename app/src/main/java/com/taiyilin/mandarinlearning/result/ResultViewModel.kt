@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning
+package com.taiyilin.mandarinlearning.result
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

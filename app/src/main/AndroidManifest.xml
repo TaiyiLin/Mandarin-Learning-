@@ -11,9 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MandarinLearning"
         android:windowSoftInputMode="stateHidden|adjustPan">
-        <activity android:name=".login.LogInActivity">
-
-        </activity>
+        <activity android:name=".pickRole.PickRoleActivity"></activity>
+        <activity android:name=".login.LogInActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -31,5 +30,3 @@
     </application>
 
 </manifest>
-
-

@@ -7,6 +7,8 @@ import com.taiyilin.mandarinlearning.data.*
 // Main entry point for accessing Mandarin Learning sources.
 interface MandarinLearningDataSource {
 
+    suspend fun getUser(id: String, name: String): Result<User>
+
     suspend fun getAllCourses(): Result<List<Course>>
 
     suspend fun addSelectedCourse(classroom: Classroom) : Result<Boolean>

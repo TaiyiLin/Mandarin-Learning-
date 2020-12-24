@@ -10,6 +10,10 @@ class DefaultMandarinLearningRepository(
     private val localDataSource: MandarinLearningDataSource
 ) : MandarinLearningRepository {
 
+    override suspend fun getUser(id: String, name: String): Result<User> {
+        return remoteDataSource.getUser(id, name)
+    }
+
     override suspend fun getAllCourses(): Result<List<Course>> {
         return remoteDataSource.getAllCourses()
     }
@@ -49,15 +53,6 @@ class DefaultMandarinLearningRepository(
     override suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer> {
         return remoteDataSource.sendAnswer(classroom, answer)
      }
-
-//    //ToDo
-//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> {
-//        TODO("Not yet implemented")
-//    }
-
-//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer>{
-//        return remoteDataSource.getAnswerOutput(classroom, answer)
-//    }
 
     override fun getLiveAnswer(classroom: Classroom): MutableLiveData<List<Answer>> {
         return remoteDataSource.getLiveAnswer(classroom)
