@@ -26,18 +26,18 @@ class ResultFragment : Fragment() {
 
         val binding = DataBindingUtil.inflate<FragmentResultBinding>(inflater,R.layout.fragment_result,container,false)
         binding.lifecycleOwner = this
+        binding.viewModel = viewModel
 
-        val adapter = ResultAdapter(viewModel)
+        val adapter = ResultAdapter()
         val recyclerResult = binding.recyclerviewResult
         recyclerResult.adapter = adapter
 
-        //拿到整包Classroom
-        viewModel.classroom.observe(viewLifecycleOwner, Observer {
+        //拿到整包QuestionList w/ student's answer and correct answer
+        viewModel.questionList.observe(viewLifecycleOwner, Observer {
             it?.let {
-                Log.d("classroomResult", "classroomResult= $it")
-                binding.viewModel = viewModel
+                Log.d("qNa", "qNa= $it")
 
-//                adapter.submitList(/)
+                adapter.submitList(it)
             }
         })
 

@@ -16,6 +16,7 @@ class ClassroomArgsViewModelFactory (
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+
         if (modelClass.isAssignableFrom(SentenceReorderingViewModel::class.java)){
             return SentenceReorderingViewModel(repository, classroomArgs) as T
         }
@@ -23,6 +24,7 @@ class ClassroomArgsViewModelFactory (
         if (modelClass.isAssignableFrom(ResultViewModel::class.java)){
             return ResultViewModel(repository, classroomArgs!!) as T
         }
+
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
 

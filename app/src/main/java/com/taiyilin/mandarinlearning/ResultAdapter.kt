@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.taiyilin.mandarinlearning.data.Classroom
+import com.taiyilin.mandarinlearning.data.Question
 import com.taiyilin.mandarinlearning.databinding.ItemClassroomResultBinding
 
-class ResultAdapter(private val viewModel: ResultViewModel) :
-    ListAdapter<Classroom, RecyclerView.ViewHolder>(DiffCallback) {
+class ResultAdapter() :
+    ListAdapter<Question, RecyclerView.ViewHolder>(DiffCallback) {
 
-    
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ResultViewHolder(
@@ -27,19 +27,19 @@ class ResultAdapter(private val viewModel: ResultViewModel) :
         val holder = holder as ResultViewHolder
 
         //用getItem方法取得course的資料list
-        val classroom = getItem(position)
+        val question = getItem(position)
 
         //呼叫自己的方法
-        holder.bind(viewModel, classroom)
+        holder.bind(question)
     }
 
 
-    companion object DiffCallback : DiffUtil.ItemCallback<Classroom>() {
-        override fun areItemsTheSame(oldItem: Classroom, newItem: Classroom): Boolean {
+    companion object DiffCallback : DiffUtil.ItemCallback<Question>() {
+        override fun areItemsTheSame(oldItem: Question, newItem: Question): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Classroom, newItem: Classroom): Boolean {
+        override fun areContentsTheSame(oldItem: Question, newItem: Question): Boolean {
             return oldItem == newItem
         }
     }
@@ -49,17 +49,14 @@ class ResultAdapter(private val viewModel: ResultViewModel) :
 class ResultViewHolder(private var binding: ItemClassroomResultBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(viewModel: ResultViewModel, classroom: Classroom) {
+    fun bind(question: Question) {
 
-//        //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
-//        binding.viewModel = classroom
-
-
-        binding.root
-
+        //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
+        binding.question = question
 
         binding.executePendingBindings()
 
+        binding.root
     }
 
 }
