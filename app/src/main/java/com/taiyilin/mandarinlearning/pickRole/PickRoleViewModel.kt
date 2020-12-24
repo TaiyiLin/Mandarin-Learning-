@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning
+package com.taiyilin.mandarinlearning.pickRole
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,12 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class MainViewModel( private val repository: MandarinLearningRepository): ViewModel() {
+class PickRoleViewModel(private val repository: MandarinLearningRepository): ViewModel() {
 
-
-    private var _intentToPickType = MutableLiveData<Boolean>()
-    val intentToPickType: LiveData<Boolean>
-        get() = _intentToPickType
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -53,41 +49,8 @@ class MainViewModel( private val repository: MandarinLearningRepository): ViewMo
 
 
 
-    //Get User data
-    fun getUser(id: String, name: String) {
 
-        coroutineScope.launch {
 
-            _status.value = LoadApiStatus.LOADING
-
-            val result = repository.getUser(id, name)
-
-            when (result) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-
-                    val user = result.data
-                    if (user.type == ""){
-                        _intentToPickType.value = true
-                    }
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                }
-                else -> {
-                    _error.value = MandarinLearningApplication.instance.toString()
-                    _status.value = LoadApiStatus.ERROR
-
-                }
-            }
-        }
-    }
 
 
 

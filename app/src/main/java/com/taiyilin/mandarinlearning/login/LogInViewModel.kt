@@ -24,9 +24,9 @@ class LogInViewModel(private val repository: MandarinLearningRepository): ViewMo
         get() = _userData
 
 
-    private var _intentToPickType = MutableLiveData<Boolean>()
-    val intentToPickType: LiveData<Boolean>
-        get() = _intentToPickType
+//    private var _intentToPickType = MutableLiveData<Boolean>()
+//    val intentToPickType: LiveData<Boolean>
+//        get() = _intentToPickType
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -72,41 +72,41 @@ class LogInViewModel(private val repository: MandarinLearningRepository): ViewMo
     }
 
 
-    //Get User data
-    fun getUser(id: String, name: String) {
-
-        coroutineScope.launch {
-
-            _status.value = LoadApiStatus.LOADING
-
-            val result = repository.getUser(id, name)
-
-            when (result) {
-                is Result.Success -> {
-                    _error.value = null
-                    _status.value = LoadApiStatus.DONE
-
-                    val user = result.data
-                    if (user.type == ""){
-                        _intentToPickType.value = true
-                    }
-                }
-                is Result.Fail -> {
-                    _error.value = result.error
-                    _status.value = LoadApiStatus.ERROR
-                }
-                is Result.Error -> {
-                    _error.value = result.exception.toString()
-                    _status.value = LoadApiStatus.ERROR
-                }
-                else -> {
-                    _error.value = MandarinLearningApplication.instance.toString()
-                    _status.value = LoadApiStatus.ERROR
-
-                }
-            }
-        }
-    }
+//    //Get User data
+//    fun getUser(id: String, name: String) {
+//
+//        coroutineScope.launch {
+//
+//            _status.value = LoadApiStatus.LOADING
+//
+//            val result = repository.getUser(id, name)
+//
+//            when (result) {
+//                is Result.Success -> {
+//                    _error.value = null
+//                    _status.value = LoadApiStatus.DONE
+//
+//                    val user = result.data
+//                    if (user.type == ""){
+//                        _intentToPickType.value = true
+//                    }
+//                }
+//                is Result.Fail -> {
+//                    _error.value = result.error
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//                is Result.Error -> {
+//                    _error.value = result.exception.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//                }
+//                else -> {
+//                    _error.value = MandarinLearningApplication.instance.toString()
+//                    _status.value = LoadApiStatus.ERROR
+//
+//                }
+//            }
+//        }
+//    }
 
 
 

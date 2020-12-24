@@ -37,12 +37,12 @@ class LogInActivity : AppCompatActivity() {
     // FirebaseAuth
     private lateinit var auth: FirebaseAuth
 
-    val viewModel by viewModels<LogInViewModel>{getVmFactory()}
+//    val viewModel by viewModels<LogInViewModel>{getVmFactory()}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_log_in)
-        binding.viewModel = viewModel
+//        binding.viewModel = viewModel
         binding.lifecycleOwner = this
 
 
@@ -61,13 +61,13 @@ class LogInActivity : AppCompatActivity() {
         }
 
 
-        viewModel.intentToPickType.observe(this, Observer {
-            it?.let {
-                if (it){
-                    startActivity(Intent(this, PickRoleActivity::class.java))
-                }
-            }
-        })
+//        viewModel.intentToPickType.observe(this, Observer {
+//            it?.let {
+//                if (it){
+//                    startActivity(Intent(this, PickRoleActivity::class.java))
+//                }
+//            }
+//        })
 
 
     }
@@ -78,7 +78,7 @@ class LogInActivity : AppCompatActivity() {
             RC_SIGN_IN
         )
     }
-    
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RC_SIGN_IN) {
@@ -104,6 +104,7 @@ class LogInActivity : AppCompatActivity() {
                 val user = auth.currentUser
                 Logger.d("user = $user")
                 if (user != null) {
+                    //從firebase authentication 拿到google登入者的id
                     UserManager.userUID = user.uid
                     UserManager.userName = user.displayName
                 }
