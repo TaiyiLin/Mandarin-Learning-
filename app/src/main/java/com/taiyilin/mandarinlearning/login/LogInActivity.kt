@@ -54,21 +54,13 @@ class LogInActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         // Build a GoogleSignInClient with the options specified by gso.
-        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+
+
         binding.signInButton.setOnClickListener{
             signIn(mGoogleSignInClient)
-
         }
-
-
-//        viewModel.intentToPickType.observe(this, Observer {
-//            it?.let {
-//                if (it){
-//                    startActivity(Intent(this, PickRoleActivity::class.java))
-//                }
-//            }
-//        })
-
 
     }
 
@@ -99,17 +91,21 @@ class LogInActivity : AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
         auth.signInWithCredential(credential).addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
+
                 // Sign in success, intent to main activity with the signed-in user's information
                 Logger.d( "signInWithCredential:success")
                 val user = auth.currentUser
                 Logger.d("user = $user")
+
                 if (user != null) {
+
                     //從firebase authentication 拿到google登入者的id
                     UserManager.userUID = user.uid
                     UserManager.userName = user.displayName
                 }
                 startActivity(Intent(this, MainActivity::class.java))
             } else {
+
                 // If sign in fails, display a message to the user.
                 Toast.makeText(this, "Authentication Failed.", Toast.LENGTH_SHORT).show()
                 Log.w(TAG,"signInWithCredential:failure", task.exception)

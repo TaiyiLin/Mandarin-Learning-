@@ -11,12 +11,6 @@
         android:label="LogInActivity" />
 
     <fragment
-        android:id="@+id/identityFragment"
-        android:name="com.taiyilin.mandarinlearning.identity.IdentityFragment"
-        android:label="fragment_identity"
-        tools:layout="@layout/fragment_identity" />
-
-    <fragment
         android:id="@+id/navigation_home"
         android:name="com.taiyilin.mandarinlearning.main.home.HomeFragment"
         android:label="@string/title_home"
@@ -66,12 +60,6 @@
         tools:layout="@layout/fragment_classes_n_feedback" />
 
     <fragment
-        android:id="@+id/pictureDescriptionFragment"
-        android:name="com.taiyilin.mandarinlearning.pictureDescription.PictureDescriptionFragment"
-        android:label="fragment_picture_description"
-        tools:layout="@layout/fragment_picture_description" />
-
-    <fragment
         android:id="@+id/resultFragment"
         android:name="com.taiyilin.mandarinlearning.result.ResultFragment"
         android:label="fragment_result"
@@ -87,7 +75,6 @@
     <action android:id="@+id/action_global_sentenceReorderingFragment" app:destination="@id/sentenceReorderingFragment"/>
     <action android:id="@+id/action_global_navigation_profile" app:destination="@id/navigation_profile"/>
     <action android:id="@+id/action_global_classesNFeedbackFragment" app:destination="@id/classesNFeedbackFragment" />
-    <action android:id="@+id/action_global_identityFragment" app:destination="@id/identityFragment"/>
     <action android:id="@+id/action_global_navigation_homeDetail" app:destination="@id/navigation_homeDetail"/>
     <action android:id="@+id/action_global_resultFragment" app:destination="@id/resultFragment" />
     <activity

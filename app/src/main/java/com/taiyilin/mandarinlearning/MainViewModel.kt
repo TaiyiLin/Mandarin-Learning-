@@ -18,6 +18,7 @@ class MainViewModel( private val repository: MandarinLearningRepository): ViewMo
     val intentToPickType: LiveData<Boolean>
         get() = _intentToPickType
 
+
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
 
@@ -51,6 +52,12 @@ class MainViewModel( private val repository: MandarinLearningRepository): ViewMo
         viewModelJob.cancel()
     }
 
+
+    init {
+
+
+
+    }
 
 
     //Get User data

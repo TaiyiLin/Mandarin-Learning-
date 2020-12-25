@@ -10,6 +10,7 @@ import com.taiyilin.mandarinlearning.data.*
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningDataSource
 import com.taiyilin.mandarinlearning.login.UserManager
 import com.taiyilin.mandarinlearning.util.Logger
+import io.grpc.InternalChannelz.id
 import java.util.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
@@ -21,7 +22,7 @@ object MandarinLearningRemoteDataSource :
     private val db = FirebaseFirestore.getInstance()
 
 
-    //get user info from LogIn page
+    //get and set user info from LogIn page
     override suspend fun getUser(id: String, name: String): Result<User> =
         suspendCoroutine { continuation ->
             var user: User?
@@ -42,7 +43,8 @@ object MandarinLearningRemoteDataSource :
                                     continuation.resume(Result.Error(w))
                                 }
                                 continuation.resume(
-                                    Result.Fail(MandarinLearningApplication.instance.toString()))
+                                    Result.Fail(MandarinLearningApplication.instance.toString())
+                                )
                             }
                         }
                     } else {
@@ -59,6 +61,28 @@ object MandarinLearningRemoteDataSource :
                 }
             }
         }
+
+    override suspend fun updateUser(user: User): Result<Boolean> = suspendCoroutine { continuation ->
+
+        db.collection("User")
+            .document(user.id)
+            .set(user)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Logger.i("ToneGo: $user")
+
+                    continuation.resume(Result.Success(true))
+                } else {
+                    task.exception?.let {
+
+                        Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                        continuation.resume(Result.Error(it))
+                        return@addOnCompleteListener
+                    }
+                    continuation.resume(Result.Fail(""))
+                }
+            }
+    }
 
 
     override suspend fun getAllCourses(): Result<List<Course>> = suspendCoroutine { continuation ->
@@ -453,47 +477,6 @@ object MandarinLearningRemoteDataSource :
 
         }
 
-//    //ToDo
-//    override suspend fun getAnswerOutput(): Result<Answer> {
-//        TODO("Not yet implemented")
-//    }
-
-
-//    //Get Answer output in Classroom detail page
-//    override suspend fun getAnswerOutput(classroom: Classroom, answer: Answer): Result<Answer> = suspendCoroutine { continuation ->
-//        //拿到一個Classroom的一包answers
-//        val answers = db.collection("Classroom")
-//            .document(classroom.id)
-//            .collection("Answer")
-//            .whereEqualTo(
-//                "questionNumber",
-//                answer.questionNumber
-//            ) //whereEqualTo 是找到那個collection下的一個欄位
-//            .get()
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    Logger.i("ToneGO: $answer")
-//
-//                    //一個list 但裡面只有一筆document
-//                    for (document in task.result!!) {
-//
-//
-//
-//                    }
-//
-//                        continuation.resume(Result.Success(answer))
-//                    } else {
-//                        task.exception?.let {
-//
-//                            Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
-//                            continuation.resume(Result.Error(it))
-//
-//                        }
-//                        continuation.resume(Result.Fail(""))
-//                    }
-//                }
-//            }
-//    }
 
     override fun getLiveAnswer(classroom: Classroom): MutableLiveData<List<Answer>> {
         val liveData = MutableLiveData<List<Answer>>()

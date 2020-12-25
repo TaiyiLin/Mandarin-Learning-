@@ -18,15 +18,9 @@ import kotlinx.coroutines.launch
 class LogInViewModel(private val repository: MandarinLearningRepository): ViewModel() {
 
 
-    //get Firebase user
     private var _userData = MutableLiveData<User>()
     val userData: LiveData<User>
         get() = _userData
-
-
-//    private var _intentToPickType = MutableLiveData<Boolean>()
-//    val intentToPickType: LiveData<Boolean>
-//        get() = _intentToPickType
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -64,7 +58,6 @@ class LogInViewModel(private val repository: MandarinLearningRepository): ViewMo
 
 
 
-
     init {
 
 
@@ -72,68 +65,5 @@ class LogInViewModel(private val repository: MandarinLearningRepository): ViewMo
     }
 
 
-//    //Get User data
-//    fun getUser(id: String, name: String) {
-//
-//        coroutineScope.launch {
-//
-//            _status.value = LoadApiStatus.LOADING
-//
-//            val result = repository.getUser(id, name)
-//
-//            when (result) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadApiStatus.DONE
-//
-//                    val user = result.data
-//                    if (user.type == ""){
-//                        _intentToPickType.value = true
-//                    }
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//                }
-//                else -> {
-//                    _error.value = MandarinLearningApplication.instance.toString()
-//                    _status.value = LoadApiStatus.ERROR
-//
-//                }
-//            }
-//        }
-//    }
-
-
-
-
-//    fun loginAndSetUser(userUID: String, userName: String) {
-//        coroutineScope.launch {
-//
-//            _status.value = LoadStatus.LOADING
-//            when (val result = repository.login(userUID, userName)) {
-//                is Result.Success -> {
-//                    _error.value = null
-//                    _status.value = LoadStatus.DONE
-//                }
-//                is Result.Fail -> {
-//                    _error.value = result.error
-//                    _status.value = LoadStatus.ERROR
-//                }
-//                is Result.Error -> {
-//                    _error.value = result.exception.toString()
-//                    _status.value = LoadStatus.ERROR
-//                }
-//                else -> {
-//                    _error.value = MandarinLearningApplication.instance.getString(R.string.something_wrong)
-//                    _status.value = LoadStatus.ERROR
-//                }
-//            }
-//        }
-//    }
 
 }

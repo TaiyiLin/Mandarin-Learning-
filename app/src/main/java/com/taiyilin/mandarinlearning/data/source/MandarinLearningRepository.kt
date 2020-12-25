@@ -8,6 +8,8 @@ interface MandarinLearningRepository {
 
     suspend fun getUser(id: String, name: String): Result<User>
 
+    suspend fun updateUser(user: User): Result<Boolean>
+
     suspend fun getAllCourses(): Result<List<Course>>
 
     suspend fun addSelectedCourse(classroom: Classroom): Result<Boolean>

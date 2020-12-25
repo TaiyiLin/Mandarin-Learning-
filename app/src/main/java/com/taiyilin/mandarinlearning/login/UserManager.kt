@@ -59,6 +59,7 @@ object UserManager {
                 }
             }
         }
+
     //check Log In status
     val isLoggedIn: Boolean
         get() = userUID != null

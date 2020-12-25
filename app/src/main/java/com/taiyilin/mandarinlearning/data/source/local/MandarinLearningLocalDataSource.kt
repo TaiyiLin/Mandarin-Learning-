@@ -14,6 +14,10 @@ class MandarinLearningLocalDataSource(val context: Context) :
         TODO("Not yet implemented")
     }
 
+    override suspend fun updateUser(user: User): Result<Boolean>{
+        TODO("Not yet implemented")
+    }
+
     override suspend fun getAllCourses(): Result<List<Course>> {
         TODO("Not yet implemented")
     }
@@ -57,11 +61,6 @@ class MandarinLearningLocalDataSource(val context: Context) :
     override fun getLiveAnswer(classroom: Classroom): MutableLiveData<List<Answer>> {
         TODO("Not yet implemented")
     }
-
-//    //ToDo
-//    override suspend fun getAnswerOutput(): Result<Answer> {
-//        TODO("Not yet implemented")
-//    }
 
 
     override suspend fun getFeedback(course: Course): Result<List<Feedback>> {

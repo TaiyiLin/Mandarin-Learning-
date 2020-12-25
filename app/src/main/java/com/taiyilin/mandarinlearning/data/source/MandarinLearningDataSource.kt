@@ -9,6 +9,8 @@ interface MandarinLearningDataSource {
 
     suspend fun getUser(id: String, name: String): Result<User>
 
+    suspend fun updateUser(user: User): Result<Boolean>
+
     suspend fun getAllCourses(): Result<List<Course>>
 
     suspend fun addSelectedCourse(classroom: Classroom) : Result<Boolean>
@@ -28,9 +30,6 @@ interface MandarinLearningDataSource {
     fun getAllLiveMessages(classroom: Classroom): MutableLiveData<List<Message>>
 
     suspend fun sendAnswer(classroom: Classroom, answer: Answer): Result<Answer>
-
-//    //ToDo
-//    suspend fun getAnswerOutput(): Result<Answer>
 
     fun getLiveAnswer(classroom: Classroom): MutableLiveData<List<Answer>>
 

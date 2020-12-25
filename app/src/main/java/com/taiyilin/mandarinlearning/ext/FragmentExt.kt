@@ -14,18 +14,13 @@ fun Fragment.getVmFactory(): ViewModelFactory {
     return ViewModelFactory(repository)
 }
 
-
 fun Fragment.getVmFactory(classroomArgs: Classroom?): ClassroomArgsViewModelFactory {
     val repository = (requireContext().applicationContext as MandarinLearningApplication).repository
     return ClassroomArgsViewModelFactory(repository, classroomArgs)
 }
 
-
 fun Fragment.getVmFactory(courseArgs: Course): HomeDetailViewModelFactory {
     val repository = (requireContext().applicationContext as MandarinLearningApplication).repository
-    return HomeDetailViewModelFactory(
-        courseArgs,
-        repository
-    )
+    return HomeDetailViewModelFactory(courseArgs, repository)
 }
 
