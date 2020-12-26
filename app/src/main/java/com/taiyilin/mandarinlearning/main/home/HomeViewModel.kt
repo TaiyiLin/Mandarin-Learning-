@@ -196,8 +196,14 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
 
     // (3) = (1) - (2)
     fun getNonSelectedCourses(){
+
         val list = mutableListOf<Course>()
-        list.addAll(liveCourses.value!!)
+
+        //如果不是null才add all
+        liveCourses.value?.let {
+            list.addAll(it)
+        }
+
         list.removeAll(liveUserCourse.value!!)
 
         liveNonSelectedCourses.value = list

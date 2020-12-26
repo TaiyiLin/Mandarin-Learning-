@@ -57,7 +57,9 @@ object MandarinLearningRemoteDataSource :
                         Logger.w("[${this::class.simpleName}] Error getting documents. ${w.message}")
                         continuation.resume(Result.Error(w))
                     }
-                    continuation.resume(Result.Fail(MandarinLearningApplication.instance.toString()))
+                    continuation.resume(
+                        Result.Fail(MandarinLearningApplication.instance.toString())
+                    )
                 }
             }
         }
@@ -216,11 +218,13 @@ object MandarinLearningRemoteDataSource :
                 }
 
                 val list = mutableListOf<Course>()
-                for (document in snapshot!!) {
-                    Logger.d(document.id + " => " + document.data)
+                if (snapshot != null) {
+                    for (document in snapshot) {
+                        Logger.d(document.id + " => " + document.data)
 
-                    val course = document.toObject(Course::class.java)
-                    list.add(course)
+                        val course = document.toObject(Course::class.java)
+                        list.add(course)
+                    }
                 }
 
                 liveData.value = list
@@ -245,11 +249,13 @@ object MandarinLearningRemoteDataSource :
                 }
 
                 val list = mutableListOf<Course>()
-                for (document in snapshot!!) {
-                    Logger.d(document.id + " => " + document.data)
+                if (snapshot != null) {
+                    for (document in snapshot) {
+                        Logger.d(document.id + " => " + document.data)
 
-                    val course = document.toObject(Course::class.java)
-                    list.add(course)
+                        val course = document.toObject(Course::class.java)
+                        list.add(course)
+                    }
                 }
 
                 liveData.value = list
