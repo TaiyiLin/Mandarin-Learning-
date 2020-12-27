@@ -9,6 +9,7 @@ object UserManager {
     private const val USER_DATA = "user_data"
     private const val USER_UID = "user_uid"
     private const val USER_NAME = "user_name"
+    private const val USER_TYPE = "user_type"
 
         private val _user = MutableLiveData<User>()
     //    val user: LiveData<Users>
@@ -59,6 +60,31 @@ object UserManager {
                 }
             }
         }
+
+    var userType: String? = null
+        get() = MandarinLearningApplication.instance
+            .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE)
+            .getString(USER_TYPE, null)
+        set(value) {
+            field = when (value) {
+                null -> {
+                    MandarinLearningApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .remove(USER_TYPE)
+                        .apply()
+                    null
+                }
+                else -> {
+                    MandarinLearningApplication.instance
+                        .getSharedPreferences(USER_DATA, Context.MODE_PRIVATE).edit()
+                        .putString(USER_TYPE, value)
+                        .apply()
+                    value
+                }
+            }
+        }
+
+
 
     //check Log In status
     val isLoggedIn: Boolean

@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.taiyilin.mandarinlearning.data.User
 import com.taiyilin.mandarinlearning.databinding.ActivityMainBinding
 import com.taiyilin.mandarinlearning.ext.getVmFactory
 import com.taiyilin.mandarinlearning.login.LogInActivity
@@ -20,13 +21,64 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     val viewModel by viewModels<MainViewModel> { getVmFactory() }
+    companion object{
+        const val STUDENT = "student"
+        const val TEACHER = "teacher"
+    }
+
+    private val onNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when(item.itemId){
+
+                R.id.navigation_home -> {
+                    if (UserManager.userType == STUDENT){
+                        findNavController(R.id.nav_host_fragment).navigate(MobileNavigationDirections.actionGlobalNavigationHome())
+                        return@OnNavigationItemSelectedListener true
+                    } else if (UserManager.userType == TEACHER) {
+                        findNavController(R.id.nav_host_fragment).navigate(MobileNavigationDirections.actionGlobalTeacherHomeFragment())
+                        return@OnNavigationItemSelectedListener true
+                    } else {
+                        return@OnNavigationItemSelectedListener false
+                    }
+                }
+
+                R.id.navigation_classroom -> {
+                    if (UserManager.userType == STUDENT){
+                        findNavController(R.id.nav_host_fragment).navigate(MobileNavigationDirections.actionGlobalNavigationClassroom())
+                        return@OnNavigationItemSelectedListener true
+                    } else if (UserManager.userType == TEACHER) {
+                        findNavController(R.id.nav_host_fragment).navigate(MobileNavigationDirections.actionGlobalTeacherClassroomFragment())
+                        return@OnNavigationItemSelectedListener true
+                    } else {
+                        return@OnNavigationItemSelectedListener false
+                    }
+                }
+
+                R.id.navigation_profile -> {
+                    if (UserManager.userType == STUDENT){
+                        findNavController(R.id.nav_host_fragment).navigate(MobileNavigationDirections.actionGlobalNavigationProfile())
+                        return@OnNavigationItemSelectedListener true
+                    } else if (UserManager.userType == TEACHER) {
+                        findNavController(R.id.nav_host_fragment).navigate(MobileNavigationDirections.actionGlobalTeacherProfileFragment())
+                        return@OnNavigationItemSelectedListener true
+                    } else {
+                        return@OnNavigationItemSelectedListener false
+                    }
+                }
+
+            }
+            false
+        }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+
+
+//        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         //Login Check
         if (!UserManager.isLoggedIn) {
@@ -49,10 +101,16 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        setUpBottomNav()
 
-        val navController = findNavController(R.id.nav_host_fragment)
 
-        navView.setupWithNavController(navController)
+//
+//        val navController = findNavController(R.id.nav_host_fragment)
+//        navView.setupWithNavController(navController)
 
+    }
+
+    fun setUpBottomNav(){
+        binding.navView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
     }
 }

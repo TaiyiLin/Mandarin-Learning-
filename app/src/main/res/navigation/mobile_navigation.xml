@@ -69,6 +69,31 @@
             app:argType="com.taiyilin.mandarinlearning.data.Classroom" />
     </fragment>
 
+    <activity
+        android:id="@+id/pickRoleActivity"
+        android:name="com.taiyilin.mandarinlearning.pickRole.PickRoleActivity"
+        android:label="activity_pick_role"
+        tools:layout="@layout/activity_pick_role" />
+    <fragment
+        android:id="@+id/teacherClassroomFragment"
+        android:name="com.taiyilin.mandarinlearning.teacherClassroom.TeacherClassroomFragment"
+        android:label="fragment_teacher_classroom"
+        tools:layout="@layout/fragment_teacher_classroom" />
+    <fragment
+        android:id="@+id/teacherHomeFragment"
+        android:name="com.taiyilin.mandarinlearning.teacherHome.TeacherHomeFragment"
+        android:label="fragment_teacher_home_"
+        tools:layout="@layout/fragment_teacher_home_" />
+    <fragment
+        android:id="@+id/teacherProfileFragment"
+        android:name="com.taiyilin.mandarinlearning.teacherProfile.TeacherProfileFragment"
+        android:label="fragment_teacher_profile_"
+        tools:layout="@layout/fragment_teacher_profile_" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.taiyilin.mandarinlearning.MainActivity"
+        android:label="MainActivity" />
+
 
     <action android:id="@+id/action_global_navigation_home" app:destination="@id/navigation_home"/>
     <action android:id="@+id/action_global_navigation_classroom" app:destination="@id/navigation_classroom"/>
@@ -77,11 +102,12 @@
     <action android:id="@+id/action_global_classesNFeedbackFragment" app:destination="@id/classesNFeedbackFragment" />
     <action android:id="@+id/action_global_navigation_homeDetail" app:destination="@id/navigation_homeDetail"/>
     <action android:id="@+id/action_global_resultFragment" app:destination="@id/resultFragment" />
-    <activity
-        android:id="@+id/pickRoleActivity"
-        android:name="com.taiyilin.mandarinlearning.pickRole.PickRoleActivity"
-        android:label="activity_pick_role"
-        tools:layout="@layout/activity_pick_role" />
+    <action android:id="@+id/action_global_teacherHomeFragment" app:destination="@id/teacherHomeFragment"/>
+    <action android:id="@+id/action_global_teacherClassroomFragment" app:destination="@id/teacherClassroomFragment"/>
+    <action android:id="@+id/action_global_teacherProfileFragment" app:destination="@id/teacherProfileFragment"/>
+
+
+
 
 
 </navigation>

@@ -12,6 +12,7 @@ import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.databinding.ActivityPickRoleBinding
 import com.taiyilin.mandarinlearning.ext.getVmFactory
 import com.taiyilin.mandarinlearning.login.LogInActivity
+import com.taiyilin.mandarinlearning.login.UserManager
 
 class PickRoleActivity : AppCompatActivity() {
 
@@ -33,13 +34,19 @@ class PickRoleActivity : AppCompatActivity() {
         binding.buttonStudent.setOnClickListener {
             binding.buttonTeacher.isEnabled = false
             binding.buttonTeacher.isClickable = false
+            //存進firebase
             viewModel.pickRole("student")
+            //存進Manager
+            UserManager.userType = "student"
         }
 
         binding.buttonTeacher.setOnClickListener {
             binding.buttonStudent.isEnabled = false
             binding.buttonStudent.isClickable = false
+            //存進firebase
             viewModel.pickRole("teacher")
+            //存進Manager
+            UserManager.userType = "teacher"
         }
 
 
