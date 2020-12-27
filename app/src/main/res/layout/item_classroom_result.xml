@@ -11,19 +11,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
 
 
         <TextView
             android:id="@+id/text_question_number"
-            android:layout_width="wrap_content"
+            android:layout_width="20dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:background="@drawable/button_background_light"
             android:text="@{String.valueOf(question.number)}"
-            android:textSize="20dp"
+            android:textSize="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="01" />
 
 
         <TextView
@@ -42,26 +45,38 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/cabin"
             android:text="Your Answer"
+            android:textColor="@color/purple_mid"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_question_number" />
+            app:layout_constraintTop_toBottomOf="@+id/title_correct_answer" />
 
         <TextView
             android:id="@+id/title_correct_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/cabin"
             android:text="Correct Answer"
+            android:textColor="@color/purple_mid"
+            android:textSize="14dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title_user_answer" />
+            app:layout_constraintTop_toBottomOf="@+id/text_question_number" />
 
         <TextView
             android:id="@+id/text_user_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/cabin_bold"
             android:text="@{question.studentAnswer}"
+            android:textColor="@color/purple_dark"
+            android:textSize="14dp"
+            android:background="@color/sand_gray"
             app:layout_constraintBottom_toBottomOf="@+id/title_user_answer"
             app:layout_constraintStart_toEndOf="@+id/title_user_answer"
             app:layout_constraintTop_toTopOf="@+id/title_user_answer"
@@ -72,7 +87,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:fontFamily="@font/cabin_bold"
             android:text="@{question.answer}"
+            android:textColor="@color/purple_mid"
+            android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="@+id/title_correct_answer"
             app:layout_constraintStart_toEndOf="@+id/title_correct_answer"
             app:layout_constraintTop_toTopOf="@+id/title_correct_answer"

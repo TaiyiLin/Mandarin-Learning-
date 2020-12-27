@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.taiyilin.mandarinlearning.data.Result
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
+import com.taiyilin.mandarinlearning.login.UserManager
 import com.taiyilin.mandarinlearning.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -76,7 +77,12 @@ class MainViewModel( private val repository: MandarinLearningRepository): ViewMo
 
                     val user = result.data
                     if (user.type == ""){
+
                         _intentToPickType.value = true
+
+                    } else {
+
+                        UserManager.userType = user.type
                     }
                 }
                 is Result.Fail -> {

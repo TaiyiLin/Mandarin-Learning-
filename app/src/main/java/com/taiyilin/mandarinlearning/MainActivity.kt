@@ -2,6 +2,7 @@ package com.taiyilin.mandarinlearning
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_classroom -> {
+                    Log.d("123","UserManager=${UserManager.userType}")
                     if (UserManager.userType == STUDENT){
                         findNavController(R.id.nav_host_fragment).navigate(MobileNavigationDirections.actionGlobalNavigationClassroom())
                         return@OnNavigationItemSelectedListener true
