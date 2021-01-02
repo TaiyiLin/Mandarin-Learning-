@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".TeacherClassroomDetailFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/purple_light2"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="1dp"
+            app:cardMaxElevation="10dp"
+            app:cardPreventCornerOverlap="true"
+            app:contentPadding="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_inside_card_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/button_back"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:alpha="0.3"
+                    android:background="@drawable/button_background_light"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_baseline_navigate_before_24"
+                    android:tint="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_question_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/cabin_bold"
+                    android:letterSpacing="0.1"
+                    android:text="Q."
+                    android:textColor="@color/purple_mid"
+                    android:textSize="18dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/button_back" />
+
+                <TextView
+                    android:id="@+id/text_question_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/cabin_semibold"
+                    android:letterSpacing="0.1"
+                    android:text="@{String.valueOf(viewModel.questionData.number)}"
+                    android:textColor="@color/purple_mid"
+                    android:textSize="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_question"
+                    tools:text="01" />
+
+                <TextView
+                    android:id="@+id/text_question"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/cabin_semibold"
+                    android:gravity="start"
+                    android:letterSpacing="0.1"
+                    android:text="@{viewModel.questionData.title}"
+                    android:textColor="@color/purple_dark"
+                    android:textSize="20dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_question_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/text_question_title"
+                    app:layout_constraintTop_toTopOf="@+id/text_question_title"
+                    tools:text="回家/昨天/晚上/你/幾點?" />
+
+                <TextView
+                    android:id="@+id/text_question_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/cabin"
+                    android:gravity="center"
+                    android:letterSpacing="0.1"
+                    android:text="Sentence Reordering "
+                    android:textColor="@color/purple_mid"
+                    android:textSize="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/button_back"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/text_question_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/cabin"
+                    android:gravity="center"
+                    android:letterSpacing="0.1"
+                    android:text="Level"
+                    android:textColor="@color/purple_mid"
+                    android:textSize="14dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_question_type"
+                    app:layout_constraintStart_toEndOf="@+id/text_question_type"
+                    app:layout_constraintTop_toTopOf="@+id/text_question_type" />
+
+
+
+                <ImageButton
+                    android:id="@+id/button_left"
+                    android:layout_width="48dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/half_capsule_btn_left"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
+                    android:tint="@color/gray_light"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/text_question_number"
+                    app:layout_constraintTop_toTopOf="@+id/text_question_number"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageButton
+                    android:id="@+id/button_right"
+                    android:layout_width="48dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/half_capsule_btn_right"
+                    android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    android:tint="@color/gray_light"
+                    app:layout_constraintBottom_toBottomOf="@+id/text_question_number"
+                    app:layout_constraintStart_toEndOf="@+id/text_question_number"
+                    app:layout_constraintTop_toTopOf="@+id/text_question_number"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <Button
+                    android:id="@+id/button_result"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/cabin_semibold"
+                    android:gravity="center"
+                    android:onClick="@{()->viewModel.navToResult()}"
+                    android:text="Result"
+                    android:textSize="9dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recycler_message"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            <!--            android:visibility="gone">-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/message_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/message_edit_text_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/sand_gray"
+                android:backgroundTint="@color/sand_gray"
+                android:ems="10"
+                android:fontFamily="@font/cabin"
+                android:hint="Get Help From Your Instructor"
+                android:inputType="textMultiLine"
+                android:letterSpacing="0.1"
+                android:padding="12dp"
+                android:text="@={viewModel.messageContent}"
+                android:textColor="#BDC1C9"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/button_get_hint"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/sand_gray"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_baseline_send_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/message_edit_text_type"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
