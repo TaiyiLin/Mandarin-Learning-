@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".TeacherClassroomDetailFragment">
+        tools:context=".teacherClassroomDetail.TeacherClassroomDetailFragment">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -65,7 +65,6 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/cabin_semibold"
                     android:letterSpacing="0.1"
-                    android:text="@{String.valueOf(viewModel.questionData.number)}"
                     android:textColor="@color/purple_mid"
                     android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -73,6 +72,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_question"
                     tools:text="01" />
+<!--                    android:text="@{String.valueOf(viewModel.questionData.number)}"-->
 
                 <TextView
                     android:id="@+id/text_question"
@@ -83,7 +83,6 @@
                     android:fontFamily="@font/cabin_semibold"
                     android:gravity="start"
                     android:letterSpacing="0.1"
-                    android:text="@{viewModel.questionData.title}"
                     android:textColor="@color/purple_dark"
                     android:textSize="20dp"
                     app:layout_constraintBottom_toBottomOf="@+id/text_question_title"
@@ -91,6 +90,7 @@
                     app:layout_constraintStart_toEndOf="@+id/text_question_title"
                     app:layout_constraintTop_toTopOf="@+id/text_question_title"
                     tools:text="回家/昨天/晚上/你/幾點?" />
+<!--                    android:text="@{viewModel.questionData.title}"-->
 
                 <TextView
                     android:id="@+id/text_question_type"
@@ -156,11 +156,11 @@
                     android:layout_height="40dp"
                     android:fontFamily="@font/cabin_semibold"
                     android:gravity="center"
-                    android:onClick="@{()->viewModel.navToResult()}"
                     android:text="Result"
                     android:textSize="9dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+<!--                    android:onClick="@{()->viewModel.navToResult()}"-->
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -208,13 +208,13 @@
                 android:inputType="textMultiLine"
                 android:letterSpacing="0.1"
                 android:padding="12dp"
-                android:text="@={viewModel.messageContent}"
                 android:textColor="#BDC1C9"
                 android:textSize="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+<!--                android:text="@={viewModel.messageContent}"-->
 
             <ImageButton
                 android:id="@+id/button_get_hint"

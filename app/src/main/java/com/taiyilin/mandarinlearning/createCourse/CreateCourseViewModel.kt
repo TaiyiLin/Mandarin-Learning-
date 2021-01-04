@@ -1,19 +1,14 @@
-package com.taiyilin.mandarinlearning.teacherClassroom
+package com.taiyilin.mandarinlearning.createCourse
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.taiyilin.mandarinlearning.data.Classroom
-import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
 import com.taiyilin.mandarinlearning.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 
-class TeacherClassroomViewModel(private val repository: MandarinLearningRepository) : ViewModel() {
-
-
-    var liveClassrooms = MutableLiveData<List<Classroom>>()
+class CreateCourseViewModel : ViewModel() {
 
 
     // status: The internal MutableLiveData that stores the status of the most recent request
@@ -52,16 +47,6 @@ class TeacherClassroomViewModel(private val repository: MandarinLearningReposito
 
     init {
 
-        getTLiveClassroom()
-
     }
-
-    private fun getTLiveClassroom() {
-        liveClassrooms = repository.getTLiveClassrooms()
-        _status.value = LoadApiStatus.DONE
-        _refreshStatus.value = false
-    }
-
-
 
 }

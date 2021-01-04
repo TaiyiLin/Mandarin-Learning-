@@ -6,6 +6,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.taiyilin.mandarinlearning.teacherClassroom.TeacherClassroomViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

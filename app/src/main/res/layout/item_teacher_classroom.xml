@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-
+        <variable
+            name="classroom"
+            type="com.taiyilin.mandarinlearning.data.Classroom" />
 
     </data>
 
@@ -53,8 +55,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/cabin"
-                    android:text="Mandarin 101"
                     android:letterSpacing="0.1"
+                    android:text="Mandarin 101"
                     android:textColor="@color/white"
                     android:textSize="14dp"
                     app:layout_constraintStart_toEndOf="@+id/cardView2"
@@ -65,8 +67,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cabin"
-                    android:text="Basic"
                     android:letterSpacing="0.1"
+                    android:text="Basic"
                     android:textColor="@color/sand_gray"
                     android:textSize="9dp"
                     app:layout_constraintStart_toStartOf="@+id/course_title"
@@ -78,8 +80,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/cabin_medium"
-                    android:text="New Messages"
                     android:letterSpacing="0.1"
+                    android:text="New Messages"
                     android:textColor="@color/teal"
                     android:textSize="14dp"
                     app:layout_constraintBottom_toBottomOf="@+id/cardView2"

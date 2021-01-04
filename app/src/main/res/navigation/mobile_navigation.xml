@@ -15,9 +15,6 @@
         android:name="com.taiyilin.mandarinlearning.main.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_navigation_home_to_navigation_homeDetail"
-            app:destination="@id/navigation_homeDetail" />
     </fragment>
 
     <fragment
@@ -94,6 +91,10 @@
         android:name="com.taiyilin.mandarinlearning.MainActivity"
         android:label="MainActivity" />
 
+    <fragment
+        android:id="@+id/teacherClassroomDetailFragment"
+        android:name="com.taiyilin.mandarinlearning.teacherClassroomDetail.TeacherClassroomDetailFragment"
+        android:label="TeacherClassroomDetailFragment" />
 
     <action android:id="@+id/action_global_navigation_home" app:destination="@id/navigation_home"/>
     <action android:id="@+id/action_global_navigation_classroom" app:destination="@id/navigation_classroom"/>
@@ -105,9 +106,7 @@
     <action android:id="@+id/action_global_teacherHomeFragment" app:destination="@id/teacherHomeFragment"/>
     <action android:id="@+id/action_global_teacherClassroomFragment" app:destination="@id/teacherClassroomFragment"/>
     <action android:id="@+id/action_global_teacherProfileFragment" app:destination="@id/teacherProfileFragment"/>
-
-
-
-
+    <action android:id="@+id/action_global_teacherClassroomDetailFragment" app:destination="@id/teacherClassroomDetailFragment" />
+    <action android:id="@+id/action_navigation_home_to_navigation_homeDetail" app:destination="@id/navigation_homeDetail" />
 
 </navigation>

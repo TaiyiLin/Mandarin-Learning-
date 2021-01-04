@@ -1,4 +1,4 @@
-package com.taiyilin.mandarinlearning.main.classroom
+package com.taiyilin.mandarinlearning.teacherClassroom
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.Course
 import com.taiyilin.mandarinlearning.databinding.ItemClassroomSelectedCoursesBinding
+import com.taiyilin.mandarinlearning.databinding.ItemTeacherClassroomBinding
 
-class ClassroomSelectedClassAdapter(private val viewModel: ClassroomViewModel, private val onClickListener: OnClickListener ) :
+class TeacherClassroomAdapter(private val viewModel: TeacherClassroomViewModel, private val onClickListener: OnClickListener ) :
     ListAdapter<Classroom, RecyclerView.ViewHolder>(DiffCallback) {
 
 
@@ -20,7 +21,7 @@ class ClassroomSelectedClassAdapter(private val viewModel: ClassroomViewModel, p
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ClassroomViewHolder(
-            ItemClassroomSelectedCoursesBinding.inflate(
+            ItemTeacherClassroomBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
@@ -52,23 +53,18 @@ class ClassroomSelectedClassAdapter(private val viewModel: ClassroomViewModel, p
 }
 
 
-class ClassroomViewHolder(private var binding: ItemClassroomSelectedCoursesBinding) :
+class ClassroomViewHolder(private var binding: ItemTeacherClassroomBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(viewModel: ClassroomViewModel, classroom: Classroom, onClickListener: ClassroomSelectedClassAdapter.OnClickListener) {
+    fun bind(viewModel: TeacherClassroomViewModel, classroom: Classroom, onClickListener: TeacherClassroomAdapter.OnClickListener) {
 
         //binding . 小layout id = 取得真正的值(在上面getItem方法取得的list)
         binding.classroom = classroom
 
-//        viewModel.(classroom.courseId)
-//        val course = viewModel.course.value
-//        binding.selectedCourse = course
-
-
         binding.root.setOnClickListener {
-//            if (course != null) {
+
                 onClickListener.onClick(classroom)
-//            }
+
         }
 
 
