@@ -483,8 +483,35 @@ object MandarinLearningRemoteDataSource :
 
         }
 
-    override fun getTLiveClassrooms(): MutableLiveData<List<Classroom>> {
-        TODO("Not yet implemented")
+
+    override fun getTLiveClassrooms(teacherId: String): MutableLiveData<List<Classroom>> {
+
+        val liveData = MutableLiveData<List<Classroom>>()
+
+        db.collection("Classroom")
+
+            .whereEqualTo("teacherId", teacherId)
+            .addSnapshotListener { snapshot, exception ->
+
+                Logger.i("addSnapshotListener detect")
+
+                exception?.let {
+                    Logger.w("[${this::class.simpleName}] Error getting documents. ${it.message}")
+                }
+
+                val list = mutableListOf<Classroom>()
+                for (document in snapshot!!) {
+                    Logger.d(document.id + " => " + document.data)
+
+                    val classroom = document.toObject(Classroom::class.java)
+                    list.add(classroom)
+                }
+
+                liveData.value = list
+            }
+        return liveData
+
+
     }
 
 

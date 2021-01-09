@@ -10,6 +10,7 @@ import com.taiyilin.mandarinlearning.main.home.HomeViewModel
 import com.taiyilin.mandarinlearning.main.profile.ProfileViewModel
 import com.taiyilin.mandarinlearning.pickRole.PickRoleViewModel
 import com.taiyilin.mandarinlearning.sentenceReordering.SentenceReorderingViewModel
+import com.taiyilin.mandarinlearning.teacherClassroom.TeacherClassroomViewModel
 
 @Suppress("UNCHECKED_CAST")
 
@@ -36,6 +37,9 @@ class ViewModelFactory constructor(private val repository: MandarinLearningRepos
 
                 isAssignableFrom(ProfileViewModel::class.java) ->
                     ProfileViewModel(repository)
+
+                isAssignableFrom(TeacherClassroomViewModel::class.java) ->
+                    TeacherClassroomViewModel(repository)
 
                 else ->
                     throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

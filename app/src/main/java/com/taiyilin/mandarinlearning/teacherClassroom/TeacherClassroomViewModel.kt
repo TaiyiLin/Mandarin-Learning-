@@ -1,10 +1,12 @@
 package com.taiyilin.mandarinlearning.teacherClassroom
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
+import com.taiyilin.mandarinlearning.login.UserManager
 import com.taiyilin.mandarinlearning.network.LoadApiStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -57,9 +59,12 @@ class TeacherClassroomViewModel(private val repository: MandarinLearningReposito
     }
 
     private fun getTLiveClassroom() {
-        liveClassrooms = repository.getTLiveClassrooms()
-        _status.value = LoadApiStatus.DONE
-        _refreshStatus.value = false
+        UserManager.userUID?.let {
+            liveClassrooms = repository.getTLiveClassrooms(it)
+            _status.value = LoadApiStatus.DONE
+            _refreshStatus.value = false
+        }
+
     }
 
 

@@ -70,8 +70,8 @@ class DefaultMandarinLearningRepository(
         return remoteDataSource.sendMessage(classroom, message)
     }
 
-    override fun getTLiveClassrooms(): MutableLiveData<List<Classroom>> {
-        return remoteDataSource.getTLiveClassrooms()
+    override fun getTLiveClassrooms(teacherId: String): MutableLiveData<List<Classroom>> {
+        return remoteDataSource.getTLiveClassrooms(teacherId)
     }
 
 }
