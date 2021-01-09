@@ -104,6 +104,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chipGroup"
             tools:listitem="@layout/item_teacher_classroom" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

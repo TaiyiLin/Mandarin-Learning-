@@ -40,7 +40,6 @@ class TeacherClassroomAdapter(private val viewModel: TeacherClassroomViewModel, 
     }
 
 
-
     companion object DiffCallback : DiffUtil.ItemCallback<Classroom>() {
         override fun areItemsTheSame(oldItem: Classroom, newItem: Classroom): Boolean {
             return oldItem === newItem

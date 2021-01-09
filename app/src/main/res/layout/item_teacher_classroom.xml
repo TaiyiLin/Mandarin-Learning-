@@ -46,7 +46,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:srcCompat="@drawable/ic_chinese_knot" />
-
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -56,11 +55,12 @@
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/cabin"
                     android:letterSpacing="0.1"
-                    android:text="Mandarin 101"
+                    android:text="@={classroom.courseTitle}"
                     android:textColor="@color/white"
                     android:textSize="14dp"
                     app:layout_constraintStart_toEndOf="@+id/cardView2"
-                    app:layout_constraintTop_toTopOf="@+id/cardView2" />
+                    app:layout_constraintTop_toTopOf="@+id/cardView2"
+                    tools:text="Mandarin 101"/>
 
                 <TextView
                     android:id="@+id/course_level"

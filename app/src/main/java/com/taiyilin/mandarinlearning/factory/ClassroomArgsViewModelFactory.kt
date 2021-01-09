@@ -6,10 +6,11 @@ import com.taiyilin.mandarinlearning.result.ResultViewModel
 import com.taiyilin.mandarinlearning.data.Classroom
 import com.taiyilin.mandarinlearning.data.source.MandarinLearningRepository
 import com.taiyilin.mandarinlearning.sentenceReordering.SentenceReorderingViewModel
+import com.taiyilin.mandarinlearning.teacherClassroomDetail.TeacherClassroomDetailViewModel
 import java.lang.IllegalArgumentException
 
 
-//Factory for all ViewModels which needs [Classroom]
+//Factory for all ViewModels which need [Classroom]
 class ClassroomArgsViewModelFactory (
     private val repository: MandarinLearningRepository,
     private val classroomArgs: Classroom?
@@ -22,10 +23,11 @@ class ClassroomArgsViewModelFactory (
         }
 
         if (modelClass.isAssignableFrom(ResultViewModel::class.java)){
-            return ResultViewModel(
-                repository,
-                classroomArgs!!
-            ) as T
+            return ResultViewModel(repository, classroomArgs!!) as T
+        }
+
+        if (modelClass.isAssignableFrom(TeacherClassroomDetailViewModel::class.java)){
+            return TeacherClassroomDetailViewModel(repository, classroomArgs) as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

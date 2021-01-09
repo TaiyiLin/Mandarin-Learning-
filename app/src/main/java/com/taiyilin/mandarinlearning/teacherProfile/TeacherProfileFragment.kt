@@ -21,7 +21,7 @@ class TeacherProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_teacher_profile_, container, false)
+        return inflater.inflate(R.layout.fragment_teacher_profile, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

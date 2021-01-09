@@ -5,6 +5,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="viewModel"
+            type="com.taiyilin.mandarinlearning.teacherClassroomDetail.TeacherClassroomDetailViewModel" />
 
     </data>
 
@@ -67,12 +70,12 @@
                     android:letterSpacing="0.1"
                     android:textColor="@color/purple_mid"
                     android:textSize="16dp"
+                    android:text="@{String.valueOf(viewModel.questionData.number)}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_question"
                     tools:text="01" />
-<!--                    android:text="@{String.valueOf(viewModel.questionData.number)}"-->
 
                 <TextView
                     android:id="@+id/text_question"
@@ -85,12 +88,12 @@
                     android:letterSpacing="0.1"
                     android:textColor="@color/purple_dark"
                     android:textSize="20dp"
+                    android:text="@{viewModel.questionData.title}"
                     app:layout_constraintBottom_toBottomOf="@+id/text_question_title"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/text_question_title"
                     app:layout_constraintTop_toTopOf="@+id/text_question_title"
                     tools:text="回家/昨天/晚上/你/幾點?" />
-<!--                    android:text="@{viewModel.questionData.title}"-->
 
                 <TextView
                     android:id="@+id/text_question_type"
@@ -210,11 +213,11 @@
                 android:padding="12dp"
                 android:textColor="#BDC1C9"
                 android:textSize="16dp"
+                android:text="@={viewModel.messageContent}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-<!--                android:text="@={viewModel.messageContent}"-->
 
             <ImageButton
                 android:id="@+id/button_get_hint"

@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/cabin"
-            android:padding="5dp"
+            android:padding="8dp"
             android:layout_marginTop="5dp"
             android:textColor="@color/white"
             android:text="@{msgLayout.content}"

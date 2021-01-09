@@ -10,6 +10,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.taiyilin.mandarinlearning.MobileNavigationDirections
 import com.taiyilin.mandarinlearning.R
 import com.taiyilin.mandarinlearning.databinding.FragmentTeacherClassroomBinding
 import com.taiyilin.mandarinlearning.ext.getVmFactory
@@ -30,7 +32,7 @@ class TeacherClassroomFragment : Fragment() {
         binding.lifecycleOwner = this
 
         val adapter = TeacherClassroomAdapter(teacherClassroomViewModel, TeacherClassroomAdapter.OnClickListener{
-
+            teacherClassroomViewModel.navigateToDetail(it)
         })
         val recyclerView = binding.recyclerTeacherClassroom
         recyclerView.adapter = adapter
@@ -40,6 +42,15 @@ class TeacherClassroomFragment : Fragment() {
                 Log.d("tttttt", "ttttttt=$it")
                 binding.viewModel = teacherClassroomViewModel
                 adapter.submitList(it)
+            }
+        })
+
+        teacherClassroomViewModel.navigateToDetail.observe(viewLifecycleOwner, Observer {
+            it?.let{
+                Log.wtf("123123123","123$it")
+                findNavController().navigate(MobileNavigationDirections.actionGlobalTeacherClassroomDetailFragment(it))
+
+                teacherClassroomViewModel.onDetailNavigated()
             }
         })
 

@@ -19,7 +19,7 @@ import com.taiyilin.mandarinlearning.ext.getVmFactory
 
 class SentenceReorderingFragment : Fragment() {
 
-    private val viewModel by viewModels<SentenceReorderingViewModel> {getVmFactory(SentenceReorderingFragmentArgs.fromBundle(requireArguments()).classroomData)}
+    private val viewModel by viewModels<SentenceReorderingViewModel> { getVmFactory(SentenceReorderingFragmentArgs.fromBundle(requireArguments()).classroomData)}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +43,8 @@ class SentenceReorderingFragment : Fragment() {
         binding.viewModel = viewModel
 
         val adapter = SRChatRoomAdapter()
-        binding.messageList.adapter = adapter
+        val recyclerView = binding.messageList
+        recyclerView.adapter = adapter
 
 //        val list = classroomData.messageList!!
 //        Log.d("aaa", "$list")
@@ -91,6 +92,8 @@ class SentenceReorderingFragment : Fragment() {
         viewModel.liveMessage.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.separateMsgSubmitList(it)
+                // set the view to the last element (list size)
+                recyclerView.smoothScrollToPosition(it.size)
             }
         })
 

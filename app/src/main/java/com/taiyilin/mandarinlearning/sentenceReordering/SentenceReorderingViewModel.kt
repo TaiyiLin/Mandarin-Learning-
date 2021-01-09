@@ -228,12 +228,14 @@ class SentenceReorderingViewModel(
             message.apply {
                 content = messageContent.value ?: "" //?:如果前面值為null 就給後面的""
                 senderId = UserManager.userUID!!
-                receiverId = "abc123"
-
-                // TODO
-//                when(UserManager.userType){
-//                    student -> message.receiverId = classroomArgs.teacherId
-//                    teacher -> message.receiverId = classroomArgs.studentId
+                receiverId = when (UserManager.userType) {
+                    "student" -> {
+                        classroomArgs!!.teacherId
+                    }
+                    else -> {
+                        classroomArgs!!.studentId
+                    }
+                }
             }
 
 

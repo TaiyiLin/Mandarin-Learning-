@@ -79,13 +79,13 @@
     <fragment
         android:id="@+id/teacherHomeFragment"
         android:name="com.taiyilin.mandarinlearning.teacherHome.TeacherHomeFragment"
-        android:label="fragment_teacher_home_"
-        tools:layout="@layout/fragment_teacher_home_" />
+        android:label="fragment_teacher_home"
+        tools:layout="@layout/fragment_teacher_home" />
     <fragment
         android:id="@+id/teacherProfileFragment"
         android:name="com.taiyilin.mandarinlearning.teacherProfile.TeacherProfileFragment"
         android:label="fragment_teacher_profile_"
-        tools:layout="@layout/fragment_teacher_profile_" />
+        tools:layout="@layout/fragment_teacher_profile" />
     <activity
         android:id="@+id/mainActivity"
         android:name="com.taiyilin.mandarinlearning.MainActivity"
@@ -94,7 +94,11 @@
     <fragment
         android:id="@+id/teacherClassroomDetailFragment"
         android:name="com.taiyilin.mandarinlearning.teacherClassroomDetail.TeacherClassroomDetailFragment"
-        android:label="TeacherClassroomDetailFragment" />
+        android:label="TeacherClassroomDetailFragment" >
+        <argument
+            android:name="classroomKey"
+            app:argType="com.taiyilin.mandarinlearning.data.Classroom" />
+    </fragment>
 
     <action android:id="@+id/action_global_navigation_home" app:destination="@id/navigation_home"/>
     <action android:id="@+id/action_global_navigation_classroom" app:destination="@id/navigation_classroom"/>

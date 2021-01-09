@@ -1,6 +1,7 @@
 package com.taiyilin.mandarinlearning.teacherClassroom
 
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,9 +15,13 @@ import kotlinx.coroutines.Job
 
 class TeacherClassroomViewModel(private val repository: MandarinLearningRepository) : ViewModel() {
 
-
+    //Get live classroom data
     var liveClassrooms = MutableLiveData<List<Classroom>>()
 
+    //pass args to detail page
+    private val _navigateToDetail = MutableLiveData<Classroom>()
+    val navigateToDetail: LiveData<Classroom>
+        get() = _navigateToDetail
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
@@ -67,6 +72,13 @@ class TeacherClassroomViewModel(private val repository: MandarinLearningReposito
 
     }
 
+    fun navigateToDetail (classroom: Classroom){
+        Log.wtf("123123","123wtf")
+        _navigateToDetail.value = classroom
+    }
 
+    fun onDetailNavigated() {
+        _navigateToDetail.value = null
+    }
 
 }
