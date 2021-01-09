@@ -92,6 +92,7 @@ class MainActivity : AppCompatActivity() {
 
 //        val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
+        Log.d("aaaaaaaaaaa", "${UserManager.isLoggedIn}")
         //Login Check
         if (!UserManager.isLoggedIn) {
 
@@ -100,20 +101,21 @@ class MainActivity : AppCompatActivity() {
         } else {
             viewModel.getUser(UserManager.userUID!!, UserManager.userName!!)
 
-        }
-
-        binding.textToolbarTitle.setOnClickListener {
-            UserManager.clear()
-        }
-        viewModel.intentToPickType.observe(this, Observer {
-            it?.let {
-                if (it) {
-                    startActivity(Intent(this, PickRoleActivity::class.java))
-                }
+            binding.textToolbarTitle.setOnClickListener {
+                UserManager.clear()
             }
-        })
+            viewModel.intentToPickType.observe(this, Observer {
+                it?.let {
+                    if (it) {
+                        startActivity(Intent(this, PickRoleActivity::class.java))
+                    }
+                }
+            })
 
-        setUpBottomNav()
+            setUpBottomNav()
+        }
+
+
 
 
 

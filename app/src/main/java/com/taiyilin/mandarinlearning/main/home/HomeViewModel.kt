@@ -21,7 +21,7 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
     private var _course = MutableLiveData<List<Course>>()
 
     val course: LiveData<List<Course>>
-    get() = _course
+        get() = _course
 
     var liveCourses = MutableLiveData<List<Course>>()
 
@@ -71,10 +71,12 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
 
 
     init {
+        if (UserManager.userUID != null) {
 
-        getAllCoursesResult()
-        getAllLiveCoursesResult()
-        getUserLiveCourseResult()
+            getAllCoursesResult()
+            getAllLiveCoursesResult()
+            getUserLiveCourseResult()
+        }
     }
 
     //不會用到???
@@ -145,13 +147,13 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
         }
     }
 
-   // (0) Update Course
-    fun updateCourse(courseId: String, studentId: String){
+    // (0) Update Course
+    fun updateCourse(courseId: String, studentId: String) {
         coroutineScope.launch {
 
             _status.value = LoadApiStatus.LOADING
 
-            val result = repository.updateCourse(courseId,studentId)
+            val result = repository.updateCourse(courseId, studentId)
 
             when (result) {
                 is Result.Success -> {
@@ -181,21 +183,21 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
     }
 
     // (1) 取得所有監聽的的Live課程
-    private fun getAllLiveCoursesResult(){
+    private fun getAllLiveCoursesResult() {
         liveCourses = repository.getAllLiveCourses()
         _status.value = LoadApiStatus.DONE
         _refreshStatus.value = false
     }
 
     // (2) 取得所有同一個User的Live課程
-    private fun getUserLiveCourseResult(){
+    private fun getUserLiveCourseResult() {
         liveUserCourse = repository.getUserLiveCourse()
         _status.value = LoadApiStatus.DONE
         _refreshStatus.value = false
     }
 
     // (3) = (1) - (2)
-    fun getNonSelectedCourses(){
+    fun getNonSelectedCourses() {
 
         val list = mutableListOf<Course>()
 
@@ -217,7 +219,6 @@ class HomeViewModel(private val repository: MandarinLearningRepository) : ViewMo
     fun onDetailNavigated() {
         _navigateToDetail.value = null
     }
-
 
 
 }
