@@ -42,9 +42,8 @@
             android:textColor="@color/teal"
             android:textSize="12dp"
             app:layout_constraintBottom_toTopOf="@+id/animation_student"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/animation_teacher"
+            app:layout_constraintStart_toStartOf="@+id/animation_teacher"
             app:layout_constraintTop_toBottomOf="@+id/animation_teacher" />
 
         <com.airbnb.lottie.LottieAnimationView
@@ -64,7 +63,7 @@
 
         <Button
             android:id="@+id/button_student"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:fontFamily="@font/cabin_semibold"
@@ -74,9 +73,8 @@
             android:textColor="@color/teal"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/animation_student"
+            app:layout_constraintStart_toStartOf="@+id/animation_student"
             app:layout_constraintTop_toBottomOf="@+id/animation_student" />
 
         <com.airbnb.lottie.LottieAnimationView
